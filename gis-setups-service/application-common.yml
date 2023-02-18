@@ -1,0 +1,121 @@
+server:
+  port: 4000
+  servlet:
+    context-path: /gis-setups-service
+  error:
+    include-message: always
+  endpoints:
+    web:
+      exposure:
+        include: [ "health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings","flyway" ]
+app:
+  name: TurnQuest Version Vi Integrated GIS Setups System
+  configurations:
+    password-strength: 3 
+    password-length: 6  
+  auth:
+    server:
+      realm-url: http://10.176.18.211:8181/realms/turnquest-version-six
+  rolesClaim: roles
+  locale:
+    baseName: i18n/messages
+    defaultLang: en
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  messages:
+    basename: i18n/messages
+  application:
+    name: GIS-SETUPS-SERVICE
+    jackson:
+      serialization:
+        FAIL_ON_EMPTY_BEANS: false
+  datasource:
+    initialization-mode: always
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: none
+    generate-ddl: false
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+  cloud:
+    config:
+      import-check:
+        enabled: false
+      server:
+        git:
+          uri: https://github.com/turnkeyafrica/turnquest-v6-configs
+          searchPaths: gis-setups-service
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+    # change this property if you are using your own Kafka cluster or your Docker IP is different
+    bootstrap-servers: 10.176.18.211:29092
+    client-id: gis-setups-service
+  security:
+    oauth2:
+      resource:
+        id: turnquest-version-6-apis
+        token-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token
+        authorization-uri: ${app.auth.server.realm-url}/protocol/openid-connect/auth
+        userinfo-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
+        token-info-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token/introspect
+        user-info-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+  flyway:
+    locations: classpath:/db/migration/oracle
+    baseline-on-migrate: false #NEVER CHANGE BASELINE TO TRUE
+    validate-on-migrate: false #true to populate local DB
+    table: schema_version
+    enabled: true
+    ignore-missing-migrations: false
+    out-of-order: true
+  quartz:
+    job-store-type: jdbc
+    enabled: false
+    properties:
+      org:
+        quartz:
+          jobStore:
+            isClustered: true
+            driverDelegateClass: 'org.quartz.impl.jdbcjobstore.StdJDBCDelegate'
+            class: 'org.quartz.impl.jdbcjobstore.JobStoreTXthreadPool'
+            tablePrefix: 'QRTZ_'
+            selectWithLockSQL: 'SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE'
+          threadPool:
+            threadCount: 5
+defaultTenant: turnquest
+# configure eureka client
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+  client:
+    serviceUrl:
+      defaultZone: http://10.176.18.211:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+instanceId: gis-setups-service-intance
+env: environment
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
