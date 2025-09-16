@@ -96,7 +96,7 @@ logging:
 ---
 # turnquest profile specific configuration (from application-turnquest.yml)
 spring:
-  profiles: turnquest
+
   jpa:
     hibernate:
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
