@@ -1,4 +1,3 @@
-# Environment-specific properties for production
 # Base configuration (from application-common.yml)
 server:
   port: 1031
@@ -58,6 +57,12 @@ spring:
         git:
           uri: https://github.com/turnkeyafrica/turnquest-crm-v6
           searchPaths: crm-configs
+    consul:
+      host: consul.service.consul
+      port: 8500
+      discovery:
+        health-check-path: /actuator/health
+        service-name: crm-accounts-service
   security:
     oauth2:
       resourceserver:
