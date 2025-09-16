@@ -22,13 +22,13 @@ spring:
             - RewritePath=/v2/api-docs/(?<path>.*), /$\{path}/v2/api-docs
           uri: http://localhost:${server.port}
         - id: crm-setups-service
-          uri: lb://CRM-SETUPS-SERVICE
+          uri: lb://crm-setups-service
           predicates:
             - Path=/crm/setups/**
           filters:
             - StripPrefix=2
         - id: crm-accounts-service
-          uri: lb://CRM-ACCOUNTS-SERVICE
+          uri: lb://crm-accounts-service
           predicates:
             - Path=/crm/accounts/**
           filters:

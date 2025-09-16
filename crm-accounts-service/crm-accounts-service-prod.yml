@@ -27,7 +27,7 @@ app:
   rolesClaim: roles
 spring:
   application:
-    name: CRM-ACCOUNTS-SERVICE
+    name: crm-accounts-service
     jackson:
       serialization:
         FAIL_ON_EMPTY_BEANS: false
