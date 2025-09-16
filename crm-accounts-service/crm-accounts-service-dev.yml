@@ -1,0 +1,123 @@
+# Environment-specific properties for development
+# Base configuration (from application-common.yml)
+server:
+  port: 1031
+  error:
+    include-message: always
+  endpoints:
+    web:
+      exposure:
+        include: ["health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings","flyway"]
+# configure eureka client
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://10.176.18.211:8761/eureka/
+app:
+  name: TurnQuest Version Vi CRM Setups System
+  configurations:
+    password-strength: 3
+    password-length: 6
+  auth:
+    server:
+      realm-url: http://10.176.18.211:8181/realms/turnquest-version-six
+  rolesClaim: roles
+spring:
+  application:
+    name: CRM-ACCOUNTS-SERVICE
+    jackson:
+      serialization:
+        FAIL_ON_EMPTY_BEANS: false
+  datasource:
+    initialization-mode: always
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle10gDialect
+        format_sql: true
+        order_by:
+          default_null_ordering: last
+      generate-ddl: true
+      show-sql: true
+  cloud:
+    config:
+      import-check:
+        enabled: false
+      server:
+        git:
+          uri: https://github.com/turnkeyafrica/turnquest-crm-v6
+          searchPaths: crm-configs
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+  quartz:
+    job-store-type: jdbc
+    enabled: false
+    properties:
+      org:
+        quartz:
+          jobStore:
+            isClustered: true
+            driverDelegateClass: 'org.quartz.impl.jdbcjobstore.StdJDBCDelegate'
+            class: 'org.quartz.impl.jdbcjobstore.JobStoreTXthreadPool'
+            tablePrefix: 'QRTZ_'
+            selectWithLockSQL: 'SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE'
+          threadPool:
+            threadCount: 5
+defaultTenant: turnquest
+springdoc:
+  packagesToScan: com.turnkey.turnquest.v6.crm.*.controllers
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+---
+# turnquest profile specific configuration (from application-turnquest.yml)
+spring:
+  profiles: turnquest
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      hbm2ddl:
+        auto: update
+    generate-ddl: false
+    show-sql: false
+  datasource:
+    url: jdbc:oracle:thin:@10.176.18.211:18000/TURNQUESTVI
+    username: TQ_CRM
+    password: TQ_CRM
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  flyway:
+    url: jdbc:oracle:thin:@10.176.18.211:18000/TURNQUESTVI
+    user: TQ_CRM
+    password: TQ_CRM
+    locations: classpath:/db/migration/oracle
+    baseline-on-migrate: true
+    out-of-order: true
+    enabled: false
+    validation: false

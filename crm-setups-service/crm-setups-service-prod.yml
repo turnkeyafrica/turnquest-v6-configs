@@ -1,0 +1,101 @@
+server:
+  port: 1034
+  error:
+    include-message: always
+  endpoints:
+    web:
+      exposure:
+        include: ["health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings","flyway"]
+app:
+  name: TurnQuest Version Vi Integrated CRM Setups System
+  configurations:
+    password-strength: 3
+    password-length: 6
+  auth:
+    server:
+      realm-url: http://192.0.0.169:8080/realms/turnquest-version-six
+  rolesClaim: roles
+spring:
+  application:
+    name: CRM-SETUPS-SERVICE
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  datasource:
+    initialization-mode: always
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: update
+    generate-ddl: false
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+        format_sql: true
+        order_by:
+          default_null_ordering: last
+  cloud:
+    config:
+      import-check:
+        enabled: false
+      server:
+        git:
+          uri: https://github.com/turnkeyafrica/turnquest-crm-v6
+          searchPaths: crm-configs
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+  flyway:
+    locations: classpath:/db/migration
+    baseline-on-migrate: true
+    out-of-order: true
+    enabled: false
+  quartz:
+    job-store-type: jdbc
+    enabled: false
+    properties:
+      org:
+        quartz:
+          jobStore:
+            isClustered: true
+            driverDelegateClass: 'org.quartz.impl.jdbcjobstore.StdJDBCDelegate'
+            class: 'org.quartz.impl.jdbcjobstore.JobStoreTXthreadPool'
+            tablePrefix: 'QRTZ_'
+            selectWithLockSQL: 'SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE'
+          threadPool:
+            threadCount: 5
+  messages:
+    basename: lang/messages
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://192.0.0.169:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+defaultTenant: clouddb
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+locale:
+  baseName: messages
+  defaultLang: en
