@@ -112,3 +112,7 @@ spring:
     out-of-order: true
     enabled: false
     validation: false
+
+locale:
+  baseName: messages
+  defaultLang: en
