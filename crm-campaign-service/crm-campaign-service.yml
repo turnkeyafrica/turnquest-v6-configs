@@ -15,6 +15,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.OracleDialect
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
 logging:
   file:
     name: crm-campaigns-service.log
