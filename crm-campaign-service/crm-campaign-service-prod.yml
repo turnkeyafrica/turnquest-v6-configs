@@ -3,6 +3,13 @@ server:
 
 app:
   name: TurnQuest Version Vi Integrated CRM campaign service
+  configurations:
+    password-strength: 3
+    password-length: 6
+  auth:
+    server:
+      realm-url: http://10.176.18.211:8181/realms/turnquest-version-six
+  rolesClaim: roles
 
 spring:
   application:
