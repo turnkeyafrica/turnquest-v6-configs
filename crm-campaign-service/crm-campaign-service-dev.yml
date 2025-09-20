@@ -19,3 +19,7 @@ logging:
   file:
     name: crm-campaigns-service.log
     path: ./logs
+
+locale:
+  baseName: messages
+  defaultLang: en
