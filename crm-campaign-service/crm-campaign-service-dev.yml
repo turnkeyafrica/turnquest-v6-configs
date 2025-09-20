@@ -1,0 +1,21 @@
+server:
+  port: 1040
+
+app:
+  name: TurnQuest Version Vi Integrated CRM campaign service
+
+spring:
+  application:
+    name: crm-campaign-service
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+
+logging:
+  file:
+    name: crm-campaigns-service.log
+    path: ./logs
