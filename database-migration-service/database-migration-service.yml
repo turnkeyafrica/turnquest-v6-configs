@@ -1,0 +1,14 @@
+
+
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest
+  tenants:
+    turnquest:
+      datasource:
+        #        url: jdbc:oracle:thin:@192.0.0.169:1524/V6BETA
+        url: jdbc:oracle:thin:@10.176.18.211:18000/TURNQUESTVI
+        username: TQ_CRM
+        password: TQ_CRM
+        driver-class-name: oracle.jdbc.OracleDriver
+        change-log-file: db/turnquest/changelog-master.xml
