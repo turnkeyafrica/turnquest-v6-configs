@@ -1,0 +1,27 @@
+server:
+  port: 1038
+
+app:
+  name: TurnQuest Version Vi Integrated User Administration System
+
+spring:
+  application:
+    name: user-administration-service
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: none
+    properties:
+      hibernate:
+        #        type:
+        #          wrapper_array_handling: ALLOW
+        dialect: org.hibernate.dialect.OracleDialect
+
+logging:
+  file:
+    name: user-administration-service.log
+    path: ./logs
+
+#eureka:
+#  client:
+#    register-with-eureka: false
