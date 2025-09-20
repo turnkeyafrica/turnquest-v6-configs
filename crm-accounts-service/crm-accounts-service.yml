@@ -11,13 +11,13 @@ server:
 app:
   name: TurnQuest Version Vi CRM Setups System
   configurations:
-    password-strength: 3 
-    password-length: 6    
+    password-strength: 3
+    password-length: 6
   auth:
     server:
       realm-url: http://10.176.18.211:8181/realms/turnquest-version-six
   rolesClaim: roles
-spring:   
+spring:
   application:
     name: crm-accounts-service
     jackson:
@@ -26,9 +26,9 @@ spring:
   datasource:
     initialization-mode: always
     hikari:
-      connection-timeout: 30000 
+      connection-timeout: 30000
       idle-timeout: 600000
-      max-lifetime: 1800000 
+      max-lifetime: 1800000
   jpa:
     hibernate:
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
@@ -87,7 +87,6 @@ logging:
 ---
 # turnquest profile specific configuration (from application-turnquest.yml)
 spring:
-
   jpa:
     hibernate:
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
