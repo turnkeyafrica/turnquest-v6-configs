@@ -5,7 +5,7 @@ spring:
   messages:
     basename: i18n/messages
   application:
-    name: QUOTATION-SERVICE
+    name: quotation-service
   jackson:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
