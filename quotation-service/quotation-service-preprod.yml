@@ -30,6 +30,12 @@ spring:
         endpoint: http://10.176.18.211:9411
   cloud:
     config:
+      consul:
+        host: ${CONSUL_SERVER_IP}
+        port: 8500
+        discovery:
+          register: true
+          prefer-ip-address: true
       import-check:
         enabled: false
       server:
