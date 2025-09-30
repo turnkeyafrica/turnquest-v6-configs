@@ -43,7 +43,7 @@ spring:
           uri: https://github.com/turnkeyafrica/turnquest-v6
           searchPaths: gis-quotation-configs
   kafka:
-    bootstrap-servers: kafka:9092
+    bootstrap-servers: kafka.service.consul:9092
     consumer:
       auto-offset-reset: earliest
     client-id: gis-quotation-service
@@ -88,7 +88,7 @@ spring:
   data:
     redis:
       port: 6379
-      host: redis
+      host: redis.service.consul
 resilience4j:
   circuitbreaker:
     configs:
