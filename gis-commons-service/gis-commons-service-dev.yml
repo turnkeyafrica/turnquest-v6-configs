@@ -1,0 +1,225 @@
+spring:
+  sleuth:
+    sampler:
+      probability: 1.0
+  messages:
+    basename: i18n/messages
+  application:
+    name: gis-commons-service
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  datasource:
+    hikari:
+      idle-timeout: 300000
+      max-lifetime: 1800000
+      allow-pool-suspension: true
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: none
+    generate-ddl: false
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+  management:
+    zipkin:
+      tracing:
+        endpoint: http://10.176.18.211:9411
+  cloud:
+    config:
+      import-check:
+        enabled: false
+      server:
+        git:
+          uri: https://github.com/turnkeyafrica/turnquest-v6
+          searchPaths: gis-commons-configs
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+    # change this property if you are using your own Kafka cluster or your Docker IP is different
+    bootstrap-servers: ${kafka:localhost:9092}
+    client-id: gis-commons-service
+  security:
+    oauth2:
+      resource:
+        id: turnquest-version-6-apis
+        token-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token
+        authorization-uri: ${app.auth.server.realm-url}/protocol/openid-connect/auth
+        userinfo-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
+        token-info-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token/introspect
+        user-info-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+  flyway:
+    locations: classpath:/db/migration/oracle
+    baseline-on-migrate: false
+    validate-on-migrate: false
+    table: schema_version
+    enabled: false
+    out-of-order: true
+    ignore-migration-patterns: false
+  quartz:
+    job-store-type: jdbc
+    enabled: false
+    properties:
+      org:
+        quartz:
+          jobStore:
+            isClustered: true
+            driverDelegateClass: 'org.quartz.impl.jdbcjobstore.StdJDBCDelegate'
+            class: 'org.quartz.impl.jdbcjobstore.JobStoreTXthreadPool'
+            tablePrefix: 'QRTZ_'
+            selectWithLockSQL: 'SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE'
+          threadPool:
+            threadCount: 5
+  redis:
+    cache:
+      type: redis
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:redis.service.consul}
+      port: ${SPRING_REDIS_PORT:6379}
+  sql:
+    init:
+      mode: always
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 30s
+        register-health-indicator: true
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        permitted-number-of-calls-in-half-open-state: 3
+        minimum-number-of-calls: 5
+    instances:
+      crmService:
+        baseConfig: default
+      setupsService:
+        baseConfig: default
+      premiumComputationService:
+        baseConfig: default
+      notificationClient:
+        baseConfig: default
+      underwritingClient:
+        baseConfig: default
+
+
+server:
+  port: 4009
+  servlet:
+    context-path: /
+  error:
+    include-message: always
+  endpoints:
+    web:
+      exposure:
+        include: [ "health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings","flyway" ]
+
+app:
+  name: TurnQuest Version Vi Integrated GIS Commons Service
+  configurations:
+    password-strength: 3
+    password-length: 6
+  auth:
+    server:
+      realm-url: http://10.176.18.211:8181/realms/turnquest-version-six
+  rolesClaim: roles
+  locale:
+    baseName: i18n/messages
+    defaultLang: en
+
+defaultTenant: v6test
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+  client:
+    serviceUrl:
+      defaultZone: http://10.176.18.211:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
+instanceId: gis-commons-instance
+env: environment
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+  file:
+    name: gis-commons.log
+    path: ./logs
+
+turnquest:
+  api:
+    basePath:
+      v1: "/api/v1"
+      v2: "/api/v2"
+  clients:
+    crm-setups:
+      base-url: http://10.176.18.211:1034
+    crm-accounts:
+      base-url: http://10.176.18.211:1031
+    crm-useradmin:
+      base-url: http://10.176.18.211:1038
+    setups:
+      base-url: http://10.176.18.211:4010
+    premium-computation-engine:
+      base-url: http://10.176.18.211:4020
+    notification-service:
+      base-url: http://10.176.18.211:1021
+    underwriting-service:
+      base-url: http://10.176.18.211:4001
+
+
+feign:
+  client:
+    config:
+      premium-computation-engine:
+        url: http://10.176.18.211:4020
+
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest,v6test,heritage19c
+  tenants:
+    turnquest:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.211:18000/TURNQUESTVI
+        username: TQ_GIS
+        password: TQ_GIS
+        driver-class-name: oracle.jdbc.OracleDriver
+    heritage:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.91:1521/HERITAGE
+        username: TQ_GIS
+        password: TQ_GIS
+        driver-class-name: oracle.jdbc.OracleDriver
+    heritage19c:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.91:1522/heritage19c
+        username: TQ_GIS
+        password: TQ_GIS
+        driver-class-name: oracle.jdbc.OracleDriver
+    v6test:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.70:18000/TQV6
+        username: TQ_GIS
+        password: TQ_GIS
+        driver-class-name: oracle.jdbc.OracleDriver
