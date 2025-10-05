@@ -1,7 +1,7 @@
 server:
-  port: 4000
+  port: 4011
   servlet:
-    context-path: /gis-setups-service
+    context-path: /
   error:
     include-message: always
   endpoints:
@@ -11,8 +11,8 @@ server:
 app:
   name: TurnQuest Version Vi Integrated GIS Setups System
   configurations:
-    password-strength: 3 
-    password-length: 6  
+    password-strength: 3
+    password-length: 6
   auth:
     server:
       realm-url: http://10.176.18.211:8181/realms/turnquest-version-six
@@ -21,17 +21,19 @@ app:
     baseName: i18n/messages
     defaultLang: en
 spring:
+  sleuth:
+    sampler:
+      probability: 1.0
   jackson:
     property-naming-strategy: SNAKE_CASE
   messages:
     basename: i18n/messages
   application:
-    name: GIS-SETUPS-SERVICE
+    name: gis-setups-service
     jackson:
       serialization:
         FAIL_ON_EMPTY_BEANS: false
   datasource:
-    initialization-mode: always
     hikari:
       connection-timeout: 30000
       idle-timeout: 600000
@@ -45,19 +47,23 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.OracleDialect
+  management:
+    zipkin:
+      tracing:
+        endpoint: http://10.176.18.27:9411
   cloud:
     config:
       import-check:
         enabled: false
       server:
         git:
-          uri: https://github.com/turnkeyafrica/turnquest-v6-configs
-          searchPaths: gis-setups-service
+          uri: https://github.com/turnkeyafrica/turnquest-v6
+          searchPaths: gis-setups-configs
   kafka:
     consumer:
       auto-offset-reset: earliest
     # change this property if you are using your own Kafka cluster or your Docker IP is different
-    bootstrap-servers: 10.176.18.211:29092
+    bootstrap-servers: ${kafka:localhost:9092}
     client-id: gis-setups-service
   security:
     oauth2:
@@ -78,8 +84,8 @@ spring:
     validate-on-migrate: false #true to populate local DB
     table: schema_version
     enabled: true
-    ignore-missing-migrations: false
     out-of-order: true
+    ignore-migration-patterns: false
   quartz:
     job-store-type: jdbc
     enabled: false
@@ -94,28 +100,81 @@ spring:
             selectWithLockSQL: 'SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE'
           threadPool:
             threadCount: 5
-defaultTenant: turnquest
+  sql:
+    init:
+      mode: always
+defaultTenant: v6test
 # configure eureka client
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 3
+    prefer-ip-address: true
   client:
     serviceUrl:
       defaultZone: http://10.176.18.211:8761/eureka/
     fetch-registry: true
     register-with-eureka: true
-instanceId: gis-setups-service-intance
+instanceId: gis-setups-service-instance
 env: environment
 
 logging:
   pattern:
-    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+    console: '%d{yyyy-MM-dd HH:mm:ss} [%X{tenantId:-gis}] %-5level %logger{36} - %msg%n'
   level:
+    com:
+      turnkey:
+        turnquest: DEBUG
     org:
+      #      springframework:
+      #        security: debug
       hibernate:
         SQL: DEBUG
         type:
           descriptor:
             sql:
               BasicBinder: TRACE
+  file:
+    name: gis-setups-service.log
+    path: ./logs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest,v6test,heritage19c,evolvetest
+  tenants:
+    turnquest:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.211:18000/TURNQUESTVI
+        username: TQ_GIS
+        password: TQ_GIS
+        driver-class-name: oracle.jdbc.OracleDriver
+    heritage:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.91:1521/HERITAGE
+        username: TQ_GIS
+        password: TQ_GIS
+        driver-class-name: oracle.jdbc.OracleDriver
+    heritage19c:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.91:1522/heritage19c
+        username: TQ_GIS
+        password: TQ_GIS
+        driver-class-name: oracle.jdbc.OracleDriver
+    v6test:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.70:18000/TQV6
+        username: TQ_GIS
+        password: TQ_GIS
+        driver-class-name: oracle.jdbc.OracleDriver
+    evolvetest:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.10:1521/EVOLVE_TEST
+        username: TQ_GIS
+        password: TQ_GIS
+        driver-class-name: oracle.jdbc.OracleDriver
