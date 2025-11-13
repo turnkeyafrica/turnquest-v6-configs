@@ -1,0 +1,73 @@
+debug: false
+logging:
+  level: INFO
+  level.root: INFO
+  level.com.netflix.discovery: "OFF"
+  level.com.netflix.eureka: "OFF"
+  level.org.hibernate.SQL: "OFF"
+  level.org.hibernate.type: "OFF"
+  level.org.apache.kafka: "INFO"
+  level.c.t.t.g.s.c.RequestAndResponseLoggingFilter: ERROR
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+
+server:
+  port: 4016
+
+springdoc:
+  swagger-ui:
+    path: "/gateway/swagger-ui.html"
+
+spring:
+  application:
+    name: crm-gateway
+
+  cloud:
+    kubernetes:
+      enabled: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: crm-accounts-service
+          uri: lb://crm-accounts-service
+          predicates:
+            - Path=/accounts/**
+          filters:
+            - RewritePath=/(?<segment>.*), /${segment}
+
+        - id: crm-campaign-service
+          uri: lb://crm-campaign-service
+          predicates:
+            - Path=/campaigns/**
+          filters:
+            - RewritePath=/(?<segment>.*), /${segment}
+
+        - id: crm-service-request
+          uri: lb://crm-service-request
+          predicates:
+            - Path=/requests/**
+          filters:
+            - RewritePath=/(?<segment>.*), /${segment}
+
+        - id: crm-setups-service
+          uri: lb://crm-setups-service
+          predicates:
+            - Path=/setups/**
+          filters:
+            - RewritePath=/(?<segment>.*), /${segment}
+
+        - id: database-migration-service
+          uri: lb://database-migration-service
+          predicates:
+            - Path=/migration/**
+          filters:
+            - RewritePath=/(?<segment>.*), /${segment}
+
+        - id: user-administration-service
+          uri: lb://user-administration-service
+          predicates:
+            - Path=/users/**
+          filters:
+            - RewritePath=/(?<segment>.*), /${segment}

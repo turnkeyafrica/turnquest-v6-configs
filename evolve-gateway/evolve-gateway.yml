@@ -1,0 +1,44 @@
+debug: false
+logging:
+  level: INFO
+  level.root: INFO
+  level.com.netflix.discovery: "OFF"
+  level.com.netflix.eureka: "OFF"
+  level.org.hibernate.SQL: "OFF"
+  level.org.hibernate.type: "OFF"
+  level.org.apache.kafka: "INFO"
+  level.c.t.t.g.s.c.RequestAndResponseLoggingFilter: ERROR
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+
+server:
+  port: 4017
+
+springdoc:
+  swagger-ui:
+    path: "/gateway/swagger-ui.html"
+
+spring:
+  application:
+    name: evolve-gateway
+
+  cloud:
+    kubernetes:
+      enabled: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: gis-service
+          uri: lb://gis-service
+          predicates:
+            - Path=/gis/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
+        - id: crm-service
+          uri: lb://crm-service
+          predicates:
+            - Path=/crm/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
