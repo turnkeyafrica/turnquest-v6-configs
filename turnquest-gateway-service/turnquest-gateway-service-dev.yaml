@@ -220,7 +220,7 @@ app:
   auth-realm: master
   auth-client-id: admin-cli
 
-app.auth.server.realm-url: http://10.176.18.211:8181/realms/turnquest-version-six
+app.auth.server.realm-url: https://evolve.api.dev.caavagroup.com/realms/turnquest-version-six
 
 locale:
   baseName: messages
