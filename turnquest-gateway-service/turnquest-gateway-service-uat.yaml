@@ -15,6 +15,11 @@ spring:
     enabled: false
     ignore-missing-migrations: false
     out-of-order: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
   jpa:
     hibernate:
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
