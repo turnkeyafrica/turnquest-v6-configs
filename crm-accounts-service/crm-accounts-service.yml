@@ -115,10 +115,6 @@ spring:
     enabled: false
     validation: false
 
-locale:
-  baseName: messages
-  defaultLang: en
-
 multitenancy:
   defaultTenant: turnquest
   include: turnquest
