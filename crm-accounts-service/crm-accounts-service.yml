@@ -1,4 +1,7 @@
 # Base configuration (from application-common.yml)
+locale:
+  baseName: messages
+  defaultLang: en
 server:
   port: 1031
   error:
