@@ -1,0 +1,325 @@
+spring:
+  application:
+    name: turnquest-gateway-service
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
+  sleuth:
+    sampler:
+      probability: 1.0
+  flyway:
+    locations: classpath:/db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: false
+    table: schema_version
+    enabled: false
+    ignore-missing-migrations: false
+    out-of-order: true
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+  cloud:
+    circuitbreaker:
+      resilience4j:
+        enabled: true
+    config:
+      import-check:
+        enabled: false
+      uri: http://10.176.18.211:1026
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin TokenRelay
+      routes:
+        - id: swagger-v2
+          predicates:
+            - Path=/v2/api-docs/**
+          filters:
+            - RewritePath=/v2/api-docs/(?<path>.*), /$\{path}/v2/api-docs
+          uri: http://localhost:${server.port}
+        - id: swagger
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v2/api-docs
+          uri: http://localhost:${server.port}
+        - id: crm-setups-service
+          uri: lb://crm-setups-service
+          predicates:
+            - Path=/crm/setups/**
+          filters:
+            - StripPrefix=2
+        - id: user-administration-service
+          uri: lb://user-administration-service
+          predicates:
+            - Path=/user/administration/**
+          filters:
+            - StripPrefix=2
+        - id: crm-accounts-service
+          uri: lb://crm-accounts-service
+          predicates:
+            - Path=/crm/accounts/**
+          filters:
+            - StripPrefix=2
+        - id: banca-setups-service
+          uri: lb://banca-setups-service
+          predicates:
+            - Path=/banca/setups/**
+          filters:
+            - StripPrefix=2
+        - id: lms-setups-service
+          uri: lb://lms-setups-service
+          predicates:
+            - Path=/lms/setups/**
+          filters:
+            - StripPrefix=2
+        - id: lms-marketing-service
+          uri: lb://lms-marketing-service
+          predicates:
+            - Path=/lms/marketing/**
+          filters:
+            - StripPrefix=2
+        - id: gis-setups-service
+          uri: lb://gis-setups-service
+          predicates:
+            - Path=/gis/setups/**
+          filters:
+            - StripPrefix=2
+        - id: gis-underwriting-service
+          uri: lb://gis-underwriting-service
+          predicates:
+            - Path=/gis/underwriting/**
+          filters:
+            - StripPrefix=2
+        - id: chart-service
+          uri: lb://turnquest-chart-service
+          predicates:
+            - Path=/crm/chart/**
+          filters:
+            - StripPrefix=2
+        - id: gis-quotation-service
+          uri: lb://gis-quotation-service
+          predicates:
+            - Path=/gis/quotation/**
+          filters:
+            - StripPrefix=2
+        - id: gis-claims-service
+          uri: lb://gis-claims-service
+          predicates:
+            - Path=/gis/claims/**
+          filters:
+            - StripPrefix=2
+        - id: turnquest-notification-service
+          uri: lb://turnquest-notification-service
+          predicates:
+            - Path=/notification/**
+          filters:
+            - StripPrefix=2
+        - id: data-etl-service
+          uri: lb://data-etl-service
+          predicates:
+            - Path=/data/**
+          filters:
+            - StripPrefix=2
+        - id: turnquest-ticketing-service
+          uri: lb://turnquest-ticketing-service
+          predicates:
+            - Path=/turnquest/workflow/**
+          filters:
+            - StripPrefix=2
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+  security:
+    oauth2:
+      resource:
+        id: turnquest-version-6-apis
+        token-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token
+        authorization-uri: ${app.auth.server.realm-url}/protocol/openid-connect/auth
+        userinfo-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
+        token-info-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token/introspect
+        user-info-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+      client:
+        provider:
+          keycloak:
+            token-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token
+            authorization-uri: ${app.auth.server.realm-url}/protocol/openid-connect/auth
+            userinfo-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+        registration:
+          turnquest-version-6-apis:
+            provider: keycloak
+            client-id: turnquest-version-6-apis
+            client-secret: 7cecc554-9bc4-4f70-a0c4-f6d393433d89
+            authorization-grant-type: password
+            redirect-uri: "{baseUrl}/oauth/token"
+  thymeleaf:
+    check-template-location: true
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    cache: true
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+  client:
+    serviceUrl:
+      defaultZone: http://10.176.18.211:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
+server:
+  port: 1037
+
+management:
+  zipkin:
+    tracing:
+      endpoint: http://10.176.18.211:9411
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: ["health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings","flyway","gateway"]
+  endpoint:
+    health:
+      show-details: always
+    gateway:
+      enabled: true
+
+app:
+  name: TurnQuest Version Vi Gateway Service
+  configurations:
+    password-strength: 3
+    password-length: 6
+  client-secret: 7cecc554-9bc4-4f70-a0c4-f6d393433d89
+  auth-server-url: http://10.176.18.211:8181
+  auth-username: admin
+  auth-password: turnkey4ever
+  client-id: turnquest-version-6-apis
+  realm: turnquest-version-six
+  ssl-required: external
+  grant_type: password
+  auth-realm: master
+  auth-client-id: admin-cli
+
+app.auth.server.realm-url: http://10.176.18.211:8181/realms/turnquest-version-six
+
+locale:
+  baseName: messages
+  defaultLang: en
+
+springdoc:
+  swagger-ui:
+    path: /openapi/swagger-ui.html
+  api-docs:
+    path: /openapi/v3/api-docs
+  paths-to-match: /**
+
+instanceId: turnquest-gateway-service-intance
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+  file:
+    name: gateway-service.log
+    path: ./logs
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      crm-setups-service:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED
+      crm-accounts-service:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED
+      banca-setups-service:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED
+      lms-setups-service:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED
+      lms-marketing-service:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED
+      gis-setups-service:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED
+      swagger:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED
+
+feign:
+  notification:
+    name: turnquest-notification-service
+    url: turnquest-notification-service
