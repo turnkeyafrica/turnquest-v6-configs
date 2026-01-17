@@ -210,7 +210,7 @@ app:
     password-strength: 3
     password-length: 6
   client-secret: 7cecc554-9bc4-4f70-a0c4-f6d393433d89
-  auth-server-url: http://10.176.18.211:8181
+  auth-server-url: https://evolve.keycloak.caavagroup.com
   auth-username: admin
   auth-password: turnkey4ever
   client-id: turnquest-version-6-apis
