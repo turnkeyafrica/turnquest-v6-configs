@@ -2,7 +2,7 @@ spring:
   application:
     name: turnquest-gateway-service
   main:
-    web-application-type: reactive
+    web-application-type: servlet
     allow-bean-definition-overriding: true
   sleuth:
     sampler:
