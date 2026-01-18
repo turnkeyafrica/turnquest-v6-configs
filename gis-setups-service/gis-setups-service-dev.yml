@@ -154,24 +154,24 @@ multitenancy:
         username: TQ_GIS
         password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver
-    heritage:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.91:1521/HERITAGE
-        username: TQ_GIS
-        password: TQ_GIS
-        driver-class-name: oracle.jdbc.OracleDriver
-    heritage19c:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.91:1522/heritage19c
-        username: TQ_GIS
-        password: TQ_GIS
-        driver-class-name: oracle.jdbc.OracleDriver
-    v6test:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.70:18000/TQV6
-        username: TQ_GIS
-        password: TQ_GIS
-        driver-class-name: oracle.jdbc.OracleDriver
+#    heritage:
+#      datasource:
+#        url: jdbc:oracle:thin:@10.176.18.91:1521/HERITAGE
+#        username: TQ_GIS
+#        password: TQ_GIS
+#        driver-class-name: oracle.jdbc.OracleDriver
+#    heritage19c:
+#      datasource:
+#        url: jdbc:oracle:thin:@10.176.18.91:1522/heritage19c
+#        username: TQ_GIS
+#        password: TQ_GIS
+#        driver-class-name: oracle.jdbc.OracleDriver
+#    v6test:
+#      datasource:
+#        url: jdbc:oracle:thin:@10.176.18.70:18000/TQV6
+#        username: TQ_GIS
+#        password: TQ_GIS
+#        driver-class-name: oracle.jdbc.OracleDriver
     evolvetest:
       datasource:
         url: jdbc:oracle:thin:@10.176.18.10:1521/EVOLVE_TEST
