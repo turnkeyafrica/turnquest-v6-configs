@@ -20,6 +20,21 @@ app:
   locale:
     baseName: i18n/messages
     defaultLang: en
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
 
 spring:
   sleuth:
