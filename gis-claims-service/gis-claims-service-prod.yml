@@ -109,7 +109,7 @@ spring:
     redis:
       host: ${SPRING_REDIS_HOST:redis-service}
       port: ${SPRING_REDIS_PORT:6379}
-      password: ${SPRING_REDIS_PASSWORD}
+      password: ${SPRING_DATA_REDIS_PASSWORD}
       timeout: 2000ms
       connect-timeout: 2000ms
 defaultTenant: turnquest
