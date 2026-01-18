@@ -219,6 +219,7 @@ app:
   grant_type: password
   auth-realm: master
   auth-client-id: admin-cli
+  keycloak.enabled: false
 
 app.auth.server.realm-url: https://evolve.keycloak.caavagroup.com/realms/turnquest-version-six
 
