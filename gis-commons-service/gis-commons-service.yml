@@ -191,22 +191,6 @@ turnquest:
       base-url: http://gis-quotation-service
     alfresco-service:
       base-url: http://turnquest-alfresco-service
-  clients:
-    crm-setups:
-      base-url: http://10.176.18.211:1034
-    crm-accounts:
-      base-url: http://10.176.18.211:1031
-    crm-useradmin:
-      base-url: http://10.176.18.211:1038
-    setups:
-      base-url: http://10.176.18.211:4010
-    premium-computation-engine:
-      base-url: http://10.176.18.211:4020
-    notification-service:
-      base-url: http://10.176.18.211:1021
-    underwriting-service:
-      base-url: http://10.176.18.211:4001
-
 
 feign:
   client:

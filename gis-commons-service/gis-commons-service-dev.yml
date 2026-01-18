@@ -174,19 +174,23 @@ turnquest:
       v2: "/api/v2"
   clients:
     crm-setups:
-      base-url: http://10.176.18.211:1034
+      base-url: http://crm-setups-service
     crm-accounts:
-      base-url: http://10.176.18.211:1031
+      base-url: http://crm-accounts-service
     crm-useradmin:
-      base-url: http://10.176.18.211:1038
+      base-url: http://crm-user-administration-service
     setups:
-      base-url: http://10.176.18.211:4010
+      base-url: http://gis-setups-service
     premium-computation-engine:
-      base-url: http://10.176.18.211:4020
+      base-url: http://gis-premium-computation-service
     notification-service:
-      base-url: http://10.176.18.211:1021
+      base-url: http://turnquest-notification-service
     underwriting-service:
-      base-url: http://10.176.18.211:4001
+      base-url: http://gis-underwriting-service
+    quotation-service:
+      base-url: http://gis-quotation-service
+    alfresco-service:
+      base-url: http://turnquest-alfresco-service
 
 
 feign:
