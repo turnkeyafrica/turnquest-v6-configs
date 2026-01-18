@@ -136,6 +136,25 @@ turnquest:
     basePath:
       v1: "/api/v1"
       v2: "/api/v2"
+  clients:
+    crm-setups:
+      base-url: http://crm-setups-service
+    crm-accounts:
+      base-url: http://crm-accounts-service
+    crm-useradmin:
+      base-url: http://crm-user-administration-service
+    setups:
+      base-url: http://gis-setups-service
+    premium-computation-engine:
+      base-url: http://gis-premium-computation-service
+    notification-service:
+      base-url: http://turnquest-notification-service
+    underwriting-service:
+      base-url: http://gis-underwriting-service
+    quotation-service:
+      base-url: http://gis-quotation-service
+    alfresco-service:
+      base-url: http://turnquest-alfresco-service
 
   crm:
     setupsService: "http://10.176.18.211:1034"

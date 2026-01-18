@@ -28,20 +28,7 @@ spring:
     zipkin:
       tracing:
         endpoint: http://10.176.18.211:9411
-  cloud:
-    config:
-      consul:
-        host: ${CONSUL_SERVER_IP}
-        port: 8500
-        discovery:
-          register: true
-          prefer-ip-address: true
-      import-check:
-        enabled: false
-      server:
-        git:
-          uri: https://github.com/turnkeyafrica/turnquest-v6
-          searchPaths: gis-quotation-configs
+
   kafka:
     bootstrap-servers: ${SPRING_KAFKA_HOST:kafka.service.consul}:${SPRING_KAFKA_PORT:9092}
     consumer:
@@ -188,6 +175,25 @@ turnquest:
     basePath:
       v1: "/api/v1"
       v2: "/api/v2"
+  clients:
+    crm-setups:
+      base-url: http://crm-setups-service
+    crm-accounts:
+      base-url: http://crm-accounts-service
+    crm-useradmin:
+      base-url: http://crm-user-administration-service
+    setups:
+      base-url: http://gis-setups-service
+    premium-computation-engine:
+      base-url: http://gis-premium-computation-service
+    notification-service:
+      base-url: http://turnquest-notification-service
+    underwriting-service:
+      base-url: http://gis-underwriting-service
+    quotation-service:
+      base-url: http://gis-quotation-service
+    alfresco-service:
+      base-url: http://turnquest-alfresco-service
   clients:
     crm:
       base-url: http://10.176.18.211:1031
