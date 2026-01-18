@@ -86,7 +86,7 @@ spring:
     out-of-order: true
     ignore-migration-patterns: false
 
-defaultTenant: v6test
+defaultTenant: turnquest
 # configure eureka client
 eureka:
   instance:

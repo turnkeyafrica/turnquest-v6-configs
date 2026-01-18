@@ -89,7 +89,7 @@ spring:
     init:
       mode: always
 
-defaultTenant: v6test
+defaultTenant: turnquest
 # configure eureka client
 eureka:
   instance:

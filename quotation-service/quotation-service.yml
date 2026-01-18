@@ -140,7 +140,7 @@ app:
     mandatory-clauses-endpoint: /clauses/mandatory
     find-clause-wording-endpoint: /clauses/wording
 
-defaultTenant: v6test
+defaultTenant: turnquest
 
 eureka:
   instance:

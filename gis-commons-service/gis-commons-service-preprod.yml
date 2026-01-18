@@ -137,7 +137,7 @@ app:
     baseName: i18n/messages
     defaultLang: en
 
-defaultTenant: v6test
+defaultTenant: turnquest
 
 eureka:
   instance:

@@ -104,7 +104,7 @@ spring:
             selectWithLockSQL: 'SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE'
           threadPool:
             threadCount: 5
-defaultTenant: v6test
+defaultTenant: turnquest
 # configure eureka client
 eureka:
   instance:
