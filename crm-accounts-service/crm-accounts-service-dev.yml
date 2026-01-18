@@ -52,12 +52,7 @@ spring:
         git:
           uri: https://github.com/turnkeyafrica/turnquest-crm-v6
           searchPaths: crm-configs
-    consul:
-      host: ${CONSUL_SERVER_IP}
-      port: 8500
-      discovery:
-        health-check-path: /actuator/health
-        service-name: crm-accounts-service
+
   security:
     oauth2:
       resourceserver:
