@@ -187,26 +187,26 @@ turnquest:
       v1: "/api/v1"
       v2: "/api/v2"
   clients:
-    crm-setups:
-      base-url: http://crm-setups-service
-    crm:
-      base-url: http://crm-accounts-service
+    commons-service:
+      base-url: http://gis-commons-service
     crm-accounts:
-      base-url: http://crm-accounts-service
+      base-url: http://turnquest-crm-accounts-service
+    crm-setups:
+      base-url: http://turnquest-crm-setups-service
     crm-useradmin:
-      base-url: http://crm-user-administration-service
-    setups:
-      base-url: http://gis-setups-service
-    premium-computation-engine:
-      base-url: http://gis-premium-computation-service
+      base-url: http://turnquest-crm-useradmin-service
+    crm:
+      base-url: http://turnquest-crm-service
     notification-service:
       base-url: http://turnquest-notification-service
+    premium-computation-engine:
+      base-url: http://premium-computation-service
+    setups:
+      base-url: http://gis-setups-service
+    ticketing-service:
+      base-url: http://gis-ticketing-service
     underwriting-service:
       base-url: http://gis-underwriting-service
-    quotation-service:
-      base-url: http://gis-quotation-service
-    alfresco-service:
-      base-url: http://turnquest-alfresco-service
   
 feign:
   client:
