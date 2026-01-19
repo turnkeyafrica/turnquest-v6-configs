@@ -219,7 +219,8 @@ app:
   grant_type: password
   auth-realm: geminia
   auth-client-id: admin-cli
-  data-sync-rate: 3600000
+  keycloak:
+    data-sync-rate: 3600000
   keycloak.enabled: true
 
 app.auth.server.realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
