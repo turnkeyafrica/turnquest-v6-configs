@@ -219,7 +219,7 @@ app:
   grant_type: password
   auth-realm: geminia
   auth-client-id: admin-cli
-  keycloak.enabled: false
+  keycloak.enabled: true
 
 app.auth.server.realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
 
