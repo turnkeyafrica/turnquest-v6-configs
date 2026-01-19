@@ -219,7 +219,7 @@ app:
   grant_type: password
   auth-realm: geminia
   auth-client-id: admin-cli
-  data-sync-rate: 14400
+  data-sync-rate: 3600000
 
 app.auth.server.realm-url: http://10.176.18.211:8181/realms/turnquest-version-six
 
