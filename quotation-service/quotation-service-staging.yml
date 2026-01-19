@@ -196,7 +196,8 @@ turnquest:
       base-url: http://gis-quotation-service
     alfresco-service:
       base-url: http://turnquest-alfresco-service
-  
+    commons-service:
+      base-url: http://gis-commons-service
 
 
 feign:
