@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: gis-migration-service
+  datasource:
+    url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+    username: TQ_GIS
+    password: GIS_2026
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml
+  jpa:
+    show-sql: false
+
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest
+  tenants:
+    turnquest:
+      datasource:
+        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        username: TQ_GIS
+        password: GIS_2026
+        driver-class-name: oracle.jdbc.OracleDriver
