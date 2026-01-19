@@ -142,7 +142,7 @@ spring:
   security:
     oauth2:
       resource:
-        id: turnquest-version-6-apis
+        id: geminia
         token-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token
         authorization-uri: ${app.auth.server.realm-url}/protocol/openid-connect/auth
         userinfo-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
@@ -160,10 +160,10 @@ spring:
             userinfo-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
             user-name-attribute: preferred_username
         registration:
-          turnquest-version-6-apis:
+          geminia:
             provider: keycloak
-            client-id: turnquest-version-6-apis
-            client-secret: 7cecc554-9bc4-4f70-a0c4-f6d393433d89
+            client-id: geminia
+            client-secret: rZfEihte7Zgg9CrR5eS9WPcioodTZh3p
             authorization-grant-type: password
             redirect-uri: "{baseUrl}/oauth/token"
   thymeleaf:
@@ -209,15 +209,15 @@ app:
   configurations:
     password-strength: 3
     password-length: 6
-  client-secret: 7cecc554-9bc4-4f70-a0c4-f6d393433d89
+  client-secret: rZfEihte7Zgg9CrR5eS9WPcioodTZh3p
   auth-server-url: http://10.176.18.211:8181
-  auth-username: admin
-  auth-password: turnkey4ever
-  client-id: turnquest-version-6-apis
-  realm: turnquest-version-six
+  auth-username: geminiaadmin@geminia.com
+  auth-password: geminiaadmin@
+  client-id: geminia
+  realm: geminia
   ssl-required: external
   grant_type: password
-  auth-realm: master
+  auth-realm: geminia
   auth-client-id: admin-cli
 
 app.auth.server.realm-url: http://10.176.18.211:8181/realms/turnquest-version-six
