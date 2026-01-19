@@ -175,6 +175,8 @@ turnquest:
   clients:
     crm-setups:
       base-url: http://crm-setups-service
+    crm:
+      base-url: http://crm-accounts-service
     crm-accounts:
       base-url: http://crm-accounts-service
     crm-useradmin:
