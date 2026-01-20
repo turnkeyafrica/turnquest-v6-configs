@@ -104,3 +104,12 @@ meta:
     api-version: "v23.0"
     phone-number-id: ${META_WHATSAPP_PHONE_NUMBER_ID}
     access-token: ${META_WHATSAPP_SYSTEM_USER_TOKEN}
+
+
+redis:
+  cache:
+    type: redis
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:redis.service.consul}
+      port: ${SPRING_REDIS_PORT:6379}
