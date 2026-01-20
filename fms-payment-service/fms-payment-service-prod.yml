@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: dev
   # from application-common.yml
   mail:
     host: smtp.office365.com
