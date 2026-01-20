@@ -57,7 +57,7 @@ spring:
             - Path=/crm/setups/**
           filters:
             - StripPrefix=2
-        - id: user-administration-service
+        - id: crm-user-administration-service
           uri: lb://crm-user-administration-service
           predicates:
             - Path=/user/administration/**
