@@ -1,0 +1,163 @@
+spring:
+  profiles:
+    active: dev
+  # from application-common.yml
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: none # from application-dev.yml
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+        format_sql: true
+        order_by:
+          default_null_ordering: last
+      generate-ddl: true
+      show-sql: true
+  flyway:
+    locations: classpath:db/migration/oracle
+    baseline-on-migrate: true
+    ignore-missing-migrations: true
+    out-of-order: true
+    table: schema_version
+    enabled: false
+  cloud:
+    config:
+      enabled: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+  redis:
+    host: ${REDIS_HOST:10.176.18.211}
+    port: ${REDIS_PORT:6380}
+  quartz:
+    job-store-type: jdbc
+    properties:
+      org:
+        quartz:
+          threadPool:
+            threadCount: 5
+            class: org.quartz.simpl.SimpleThreadPool
+          scheduler:
+            instanceId: AUTO
+            instanceName: V6ServiceScheduler
+  messages:
+    basename: i18n/messages
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    enabled: false # from application-dev.yml
+    base-url: ${ZIPKIN_URL:http://10.176.18.211:9411}
+  mvc:
+    format:
+      date: yyyy-MM-dd
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 50MB
+      max-file-size: 50MB
+  sql:
+    init:
+      mode: always
+  # from application-fmsReceiptingService.yml
+  application:
+    name: fms-receipting-service
+
+server:
+  port: 2001 # from application-fmsReceiptingService.yml
+  error:
+    include-message: always
+  servlet:
+    context-path: /
+tq:
+  dateTimeFormat: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - metrics
+          - prometheus
+          - bindings
+          - beans
+          - env
+          - loggers
+          - streamsbindings
+          - mappings
+          - flyway
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 6000
+        logger-level: basic
+      # from application-fmsReceiptingService.yml
+      FMS-RECEIPTING-SERVICE:
+        requestInterceptors: com.turnkey.turnquest.common.multitenancy.MultiTenantFeignClientInterceptor
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${server.port}
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+    hostname: ${HOSTNAME:localhost}
+    prefer-ip-address: ${EUREKA_PREFER_IP:true}
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://10.176.18.211:8761/eureka/}
+    register-with-eureka: ${EUREKA_CLIENT_REGISTER_WITH_EUREKA:true} # from application-dev.yml
+    fetch-registry: true # from application-dev.yml
+app:
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_URL:http://10.176.18.211:8181/realms/turnquest-version-six}
+      jwk-set-uri: ${KEYCLOAK_URL:http://10.176.18.211:8181/realms/turnquest-version-six}/protocol/openid-connect/certs
+  rolesClaim: roles
+  locale:
+    languages: "en, fr, sw"
+    baseName: i18n/messages
+    defaultLang: en
+base_url: /api/v1
+alfresco:
+  api:
+    url: http://10.176.18.101:9080/alfrescoServices
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    org:
+      hibernate:
+        SQL: OFF
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+    feign:
+      client: DEBUG
+    # from application-fmsReceiptingService.yml
+    com.turnkey.turnquest.feigns.*: DEBUG
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest
+  tenants:
+    turnquest:
+      datasource:
+        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        username: TQ_FMS
+        password: FMS_2026
+        driver-class-name: oracle.jdbc.OracleDriver

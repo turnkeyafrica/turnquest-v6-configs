@@ -1,0 +1,130 @@
+spring:
+  profiles:
+    active: dev
+  # from application-common.yml
+  mail:
+    host: smtp.office365.com
+    port: 587
+    username: emailHere
+    password: "passwordHere"
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+        debug: true
+  security:
+    oauth2:
+      resource server:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+  property-naming-strategy: SNAKE_CASE
+  cloud:
+    config:
+      enabled: false
+  mvc:
+    format:
+      date: yyyy-MM-dd
+  servlet:
+    multipart:
+      max-file-size: 10MB
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-timeout: 60000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      validation-timeout: 5000
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: none # from application-dev.yml
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+        format_sql: true
+        order_by:
+          default_null_ordering: last
+      generate-ddl: true
+      show-sql: true
+  sql:
+    init:
+      mode: always
+  zipkin:
+    enabled: false # from application-dev.yml
+  # from application-fmsPaymentService.yml
+  application:
+    name: fms-payment-service
+
+server:
+  port: 2002 # from application-fmsPaymentService.yml
+  error:
+    include-message: always
+  servlet:
+    context-path: /
+tq:
+  dateTimeFormat: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+management:
+  endpoints:
+    web:
+      exposure:
+        include: [ "health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings","flyway" ]
+app:
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_URL:http://10.176.18.211:8181/realms/turnquest-version-six}
+      jwk-set-uri: ${KEYCLOAK_URL:http://10.176.18.211:8181/realms/turnquest-version-six}/protocol/openid-connect/certs
+  rolesClaim: roles
+  cors:
+    allowed-origins: "http://localhost:2002"
+  locale:
+    languages: "en, fr, sw"
+    baseName: i18n/messages
+    defaultLang: en
+base_url: api/v1
+feign:
+  client:
+    name: fms-payment-service
+    config:
+      default:
+        connectTimeout: 6000
+        logger-level: basic
+      # from application-fmsPaymentService.yml
+      FMS-PAYMENT-SERVICE:
+        requestInterceptors:
+          - com.turnkey.turnquest.common.multitenancy.MultiTenantFeignClientInterceptor
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${server.port}
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+    hostname: ${HOSTNAME:localhost}
+    prefer-ip-address: ${EUREKA_PREFER_IP:true}
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://10.176.18.211:8761/eureka/}
+    register-with-eureka: ${EUREKA_CLIENT_REGISTER_WITH_EUREKA:true} # from application-dev.yml
+    fetch-registry: true # from application-dev.yml
+  springdoc:
+    swagger-ui:
+      path: /swagger-ui.html
+logging:
+  level:
+    # from application-fmsPaymentService.yml
+    com.turnkey.turnquest.feigns.*: DEBUG
+    com.turnkey.turnquest.service.*: DEBUG
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest
+  tenants:
+    turnquest:
+      datasource:
+        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        username: TQ_FMS
+        password: FMS_2026
+        driver-class-name: oracle.jdbc.OracleDriver
