@@ -1,3 +1,6 @@
+locale:
+    languages: "en, fr, sw"
+    baseName: i18n/messages
 spring:
   # from application-common.yml
   cloud:
