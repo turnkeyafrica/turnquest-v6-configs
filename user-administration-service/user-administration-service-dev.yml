@@ -8,7 +8,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: http://192.0.0.169:8080/realms/turnquest-version-six
+      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
   rolesClaim: roles
 
 spring:
