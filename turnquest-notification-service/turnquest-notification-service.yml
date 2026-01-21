@@ -89,10 +89,16 @@ spring:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
 
+# Kubernetes client disabled due to OkHttp version conflict with Africa's Talking SDK
+# The AT SDK bundles an old OkHttp version incompatible with kubernetes-client
 spring.cloud.kubernetes:
+  enabled: false
+  config:
+    enabled: false
   discovery:
-    enabled: true
-    all-namespaces: false
+    enabled: false
+  loadbalancer:
+    enabled: false
 
 logging:
   pattern:

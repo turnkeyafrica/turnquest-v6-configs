@@ -1,32 +1,116 @@
 server:
   port: 9991
-
-app:
-  auth:
-    server:
-      realm-url: ${KEYCLOAK_REALM_URL}
+  error:
+    include-message: always
+  endpoints:
+    web:
+      exposure:
+        include: ["health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings", "flyway"]
 
 spring.cloud.kubernetes:
   discovery:
     enabled: true
     all-namespaces: false
 
-v6:
-  datasource:
-    jdbc-url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
-    driver-class-name: oracle.jdbc.OracleDriver
+app:
+  name: TurnQuest Version Vi Data ETL Service
+  configurations:
+    password-strength: 3
+    password-length: 6
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
+  rolesClaim: roles
 
-source:
+spring:
+  application:
+    name: data-etl-service
+    jackson:
+      serialization:
+        FAIL_ON_EMPTY_BEANS: false
   datasource:
-    jdbc-url: ${SOURCE_DATASOURCE_URL}
-    username: ${SOURCE_DATASOURCE_USERNAME}
-    password: ${SOURCE_DATASOURCE_PASSWORD}
-    driver-class-name: oracle.jdbc.OracleDriver
+    initialization-mode: always
+  cloud:
+    config:
+      import-check:
+        enabled: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+  flyway:
+    locations: classpath:/db/migration/oracle
+    baseline-on-migrate: true
+    out-of-order: true
+    enabled: false
+  quartz:
+    job-store-type: jdbc
+    enabled: false
+    properties:
+      org:
+        quartz:
+          jobStore:
+            isClustered: true
+            driverDelegateClass: 'org.quartz.impl.jdbcjobstore.StdJDBCDelegate'
+            class: 'org.quartz.impl.jdbcjobstore.JobStoreTXthreadPool'
+            tablePrefix: 'QRTZ_'
+            selectWithLockSQL: 'SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE'
+          threadPool:
+            threadCount: 5
+  jpa:
+    properties:
+      hibernate:
+        order_by:
+          default_null_ordering: last
+        dialect: org.hibernate.dialect.OracleDialect
+        id:
+          db_structure_naming_strategy: legacy
+          optimizer:
+            pooled:
+              preferred: none
+          sequence:
+            increment_size_mismatch_strategy: fix
+        jpa:
+          compliance:
+            global_id_generator_scope_compliance: false
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: none
+    generate-ddl: false
+    show-sql: false
+
+springdoc:
+  packagesToScan: com.turnkey.turnquest.v6.*.*.controllers
 
 logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
   level:
     org:
       hibernate:
-        SQL: ERROR
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+# V6 target datasource (primary)
+v6:
+  datasource:
+    jdbc-url: ${SPRING_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev}
+    username: ${SPRING_DATASOURCE_USERNAME:TQ_CRM}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: oracle.jdbc.OracleDriver
+
+# Source datasource for migration
+source:
+  datasource:
+    jdbc-url: ${SOURCE_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev}
+    username: ${SOURCE_DATASOURCE_USERNAME:TQ_CRM}
+    password: ${SOURCE_DATASOURCE_PASSWORD}
+    driver-class-name: oracle.jdbc.OracleDriver
