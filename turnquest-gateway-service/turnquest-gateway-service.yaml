@@ -222,7 +222,7 @@ app:
   keycloak:
     data-sync-rate: 3600000
 
-app.auth.server.realm-url: http://10.176.18.211:8181/realms/turnquest-version-six
+app.auth.server.realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
 
 locale:
   baseName: messages

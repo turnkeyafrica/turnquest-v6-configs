@@ -105,8 +105,8 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: ${KEYCLOAK_URL:http://10.176.18.211:8181/realms/turnquest-version-six}
-      jwk-set-uri: ${KEYCLOAK_URL:http://10.176.18.211:8181/realms/turnquest-version-six}/protocol/openid-connect/certs
+      realm-url: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
+      jwk-set-uri: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}/protocol/openid-connect/certs
     rolesClaim: roles
   locale:
     languages: "en, fr, sw"  # Add new languages in the format ",vi"
