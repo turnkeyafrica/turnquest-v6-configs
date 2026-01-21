@@ -3,6 +3,9 @@ server:
 
 app:
   name: TurnQuest Version Vi Charts Service
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.keycloak.caavagroup.com/realms/turnquest-version-six}
 
 spring:
   application:
@@ -11,6 +14,12 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.OracleDialect
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
 
 spring.cloud.kubernetes:
   discovery:
