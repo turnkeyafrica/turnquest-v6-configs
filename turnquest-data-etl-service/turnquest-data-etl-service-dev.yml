@@ -14,7 +14,7 @@ spring.cloud.kubernetes:
 # V6 target datasource (primary)
 v6:
   datasource:
-    url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+    jdbc-url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
     username: TQ_CRM
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: oracle.jdbc.OracleDriver
@@ -22,7 +22,7 @@ v6:
 # Source datasource for migration
 source:
   datasource:
-    url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+    jdbc-url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
     username: TQ_CRM
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: oracle.jdbc.OracleDriver

@@ -92,7 +92,7 @@ logging:
 # V6 target datasource (primary)
 v6:
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev}
+    jdbc-url: ${SPRING_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev}
     username: ${SPRING_DATASOURCE_USERNAME:TQ_CRM}
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: oracle.jdbc.OracleDriver
@@ -100,7 +100,7 @@ v6:
 # Source datasource for migration
 source:
   datasource:
-    url: ${SOURCE_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev}
+    jdbc-url: ${SOURCE_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev}
     username: ${SOURCE_DATASOURCE_USERNAME:TQ_CRM}
     password: ${SOURCE_DATASOURCE_PASSWORD}
     driver-class-name: oracle.jdbc.OracleDriver
