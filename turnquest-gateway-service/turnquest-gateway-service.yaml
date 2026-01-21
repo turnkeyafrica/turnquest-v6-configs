@@ -2,7 +2,7 @@ spring:
   application:
     name: turnquest-gateway-service
   main:
-    web-application-type: reactive
+    web-application-type: servlet
     allow-bean-definition-overriding: true
   sleuth:
     sampler:
@@ -35,110 +35,7 @@ spring:
       import-check:
         enabled: false
       uri: http://10.176.18.211:1026
-    gateway:
-      default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin TokenRelay
-      routes:
-        - id: swagger-v2
-          predicates:
-            - Path=/v2/api-docs/**
-          filters:
-            - RewritePath=/v2/api-docs/(?<path>.*), /$\{path}/v2/api-docs
-          uri: http://localhost:${server.port}
-        - id: swagger
-          predicates:
-            - Path=/v3/api-docs/**
-          filters:
-            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v2/api-docs
-          uri: http://localhost:${server.port}
-        - id: crm-setups-service
-          uri: http://crm-setups-service
-          predicates:
-            - Path=/crm/setups/**
-          filters:
-            - StripPrefix=2
-        - id: user-administration-service
-          uri: http://user-administration-service
-          predicates:
-            - Path=/user/administration/**
-          filters:
-            - StripPrefix=2
-        - id: crm-accounts-service
-          uri: http://crm-accounts-service
-          predicates:
-            - Path=/crm/accounts/**
-          filters:
-            - StripPrefix=2
-        - id: banca-setups-service
-          uri: http://banca-setups-service
-          predicates:
-            - Path=/banca/setups/**
-          filters:
-            - StripPrefix=2
-        - id: lms-setups-service
-          uri: http://lms-setups-service
-          predicates:
-            - Path=/lms/setups/**
-          filters:
-            - StripPrefix=2
-        - id: lms-marketing-service
-          uri: http://lms-marketing-service
-          predicates:
-            - Path=/lms/marketing/**
-          filters:
-            - StripPrefix=2
-        - id: gis-setups-service
-          uri: http://gis-setups-service
-          predicates:
-            - Path=/gis/setups/**
-          filters:
-            - StripPrefix=2
-        - id: gis-underwriting-service
-          uri: http://gis-underwriting-service
-          predicates:
-            - Path=/gis/underwriting/**
-          filters:
-            - StripPrefix=2
-        - id: chart-service
-          uri: http://turnquest-chart-service
-          predicates:
-            - Path=/crm/chart/**
-          filters:
-            - StripPrefix=2
-        - id: gis-quotation-service
-          uri: http://gis-quotation-service
-          predicates:
-            - Path=/gis/quotation/**
-          filters:
-            - StripPrefix=2
-        - id: gis-claims-service
-          uri: http://gis-claims-service
-          predicates:
-            - Path=/gis/claims/**
-          filters:
-            - StripPrefix=2
-        - id: turnquest-notification-service
-          uri: http://turnquest-notification-service
-          predicates:
-            - Path=/notification/**
-          filters:
-            - StripPrefix=2
-        - id: data-etl-service
-          uri: http://data-etl-service
-          predicates:
-            - Path=/data/**
-          filters:
-            - StripPrefix=2
-        - id: turnquest-ticketing-service
-          uri: http://turnquest-ticketing-service
-          predicates:
-            - Path=/turnquest/workflow/**
-          filters:
-            - StripPrefix=2
-      discovery:
-        locator:
-          lower-case-service-id: true
-          enabled: true
+    # Routes are defined in GatewayRoutesConfig.java (Gateway MVC requires Java config)
   security:
     oauth2:
       resource:
@@ -242,6 +139,11 @@ logging:
     console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
   level:
     org:
+      springframework:
+        boot:
+          autoconfigure: DEBUG
+        cloud:
+          gateway: DEBUG
       hibernate:
         SQL: DEBUG
         type:
@@ -330,3 +232,16 @@ feign:
   notification:
     name: turnquest-notification-service
     url: turnquest-notification-service
+
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest
+  tenants:
+    turnquest:
+      datasource:
+        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        username: TQ_CRM
+        password: CRM_2026
+        driver-class-name: oracle.jdbc.OracleDriver
+      notification:
+        enabled: true
