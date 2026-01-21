@@ -19,7 +19,7 @@ multitenancy:
       datasource:
         url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
         username: TQ_CRM
-        password: ${DATASOURCE_PASSWORD}
+        password: ${SPRING_DATASOURCE_PASSWORD}
         driver-class-name: oracle.jdbc.OracleDriver
 
 logging:

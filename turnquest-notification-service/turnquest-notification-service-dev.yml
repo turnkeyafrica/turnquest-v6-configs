@@ -10,7 +10,7 @@ spring:
   datasource:
     url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
     username: TQ_GIS
-    password: ${DATASOURCE_PASSWORD}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: oracle.jdbc.OracleDriver
 
 spring.cloud.kubernetes:
@@ -26,7 +26,7 @@ multitenancy:
       datasource:
         url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
         username: TQ_GIS
-        password: ${DATASOURCE_PASSWORD}
+        password: ${SPRING_DATASOURCE_PASSWORD}
         driver-class-name: oracle.jdbc.OracleDriver
 
 logging:

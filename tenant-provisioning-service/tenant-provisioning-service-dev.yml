@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/provisioning_jobs
     username: provisioning_user
-    password: ${DATASOURCE_PASSWORD}
+    password: ${SPRING_DATASOURCE_PASSWORD}
   kafka:
     bootstrap-servers: localhost:9092
 
