@@ -8,7 +8,7 @@ camunda.bpm:
 
 camunda.bpm.database:
   schema-update: true
-  type: h2
+  type: oracle
   jdbc-batch-processing: true
 
 spring.cloud.kubernetes:
