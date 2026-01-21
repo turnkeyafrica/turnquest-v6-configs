@@ -1,0 +1,20 @@
+server:
+  port: 9990
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: INFO

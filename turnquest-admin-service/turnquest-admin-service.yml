@@ -1,0 +1,57 @@
+server:
+  port: 9990
+  error:
+    include-message: always
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,flyway
+
+app:
+  name: TurnQuest Version Vi Admin Service
+  configurations:
+    password-strength: 3
+    password-length: 6
+
+spring:
+  application:
+    name: turnquest-admin-service
+  main:
+    web-application-type: reactive
+  boot:
+    admin:
+      discovery:
+        ignored-services: turnquest-gateway-service
+      notify:
+        mail:
+          to: paul.gichure@turnkeyafrica.com
+  mail:
+    host: smtp.office365.com
+    username: ${SMTP_USERNAME:ithelpdesk@fidelityshield.com}
+    password: ${SMTP_PASSWORD}
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+    initialization-mode: always
+    database-platform: org.hibernate.dialect.H2Dialect
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE

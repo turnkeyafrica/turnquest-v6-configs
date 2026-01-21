@@ -1,0 +1,35 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+
+tenant-registry:
+  base-url: ${TENANT_REGISTRY_URL}
+
+provisioning:
+  saas:
+    postgresql:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT:5432}
+      admin-username: ${POSTGRES_ADMIN_USERNAME}
+      admin-password: ${POSTGRES_ADMIN_PASSWORD}
+    oracle:
+      host: ${ORACLE_HOST}
+      port: ${ORACLE_PORT:1521}
+      admin-username: ${ORACLE_ADMIN_USERNAME}
+      admin-password: ${ORACLE_ADMIN_PASSWORD}
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+logging:
+  level:
+    root: WARN

@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: tenant-registry-service
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5433/tenant_registry}
+    username: ${DATASOURCE_USERNAME:registry_user}
+    password: ${DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  cache:
+    type: redis
+    redis:
+      time-to-live: 900000
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:redis-service}
+      port: ${SPRING_REDIS_PORT:6379}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+server:
+  port: 8080
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'

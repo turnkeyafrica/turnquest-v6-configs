@@ -1,0 +1,36 @@
+server:
+  port: 1041
+
+app:
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_REALM_URL}
+
+spring:
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    driver-class-name: oracle.jdbc.OracleDriver
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest
+  tenants:
+    turnquest:
+      datasource:
+        url: ${DATASOURCE_URL}
+        username: ${DATASOURCE_USERNAME}
+        password: ${DATASOURCE_PASSWORD}
+        driver-class-name: oracle.jdbc.OracleDriver
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: INFO

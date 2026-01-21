@@ -1,0 +1,48 @@
+server:
+  port: 9991
+
+app:
+  base-url: http://localhost:9991
+  auth:
+    server:
+      realm-url: https://evolve.keycloak.caavagroup.com/realms/turnquest-version-six
+
+reports:
+  deployed:
+    path: /tqv6vol/APIS/TQ-V6/reports
+  individual:
+    path: /tqv6vol/APIS/TQ-V6/lms/Reports/individual
+  group:
+    path: /tqv6vol/APIS/TQ-V6/lms/Reports/group
+  gis:
+    path: /tqv6vol/APIS/TQ-V6/lms/Reports/gis
+  crm:
+    path: /tqv6vol/APIS/TQ-V6/lms/Reports/crm
+
+spring:
+  data:
+    redis:
+      host: redis-service
+      port: 6379
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest
+  tenants:
+    turnquest:
+      datasource:
+        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        username: TQ_LMS
+        password: ${DATASOURCE_PASSWORD}
+        driver-class-name: oracle.jdbc.OracleDriver
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG

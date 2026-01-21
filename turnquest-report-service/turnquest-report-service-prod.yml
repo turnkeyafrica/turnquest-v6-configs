@@ -1,0 +1,48 @@
+server:
+  port: 9991
+
+app:
+  base-url: ${APP_BASE_URL}
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_REALM_URL}
+
+reports:
+  deployed:
+    path: ${REPORTS_DEPLOYED_PATH}
+  individual:
+    path: ${REPORTS_INDIVIDUAL_PATH}
+  group:
+    path: ${REPORTS_GROUP_PATH}
+  gis:
+    path: ${REPORTS_GIS_PATH}
+  crm:
+    path: ${REPORTS_CRM_PATH}
+
+spring:
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:redis-service}
+      port: ${SPRING_REDIS_PORT:6379}
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest
+  tenants:
+    turnquest:
+      datasource:
+        url: ${DATASOURCE_URL}
+        username: ${DATASOURCE_USERNAME}
+        password: ${DATASOURCE_PASSWORD}
+        driver-class-name: oracle.jdbc.OracleDriver
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: ERROR

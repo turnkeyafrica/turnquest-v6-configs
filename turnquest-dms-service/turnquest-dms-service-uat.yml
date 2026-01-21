@@ -1,0 +1,18 @@
+server:
+  port: 1040
+
+app:
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_REALM_URL}
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: INFO

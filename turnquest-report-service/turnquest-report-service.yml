@@ -1,0 +1,115 @@
+server:
+  port: 9991
+  error:
+    include-message: always
+    whitelabel:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: ["health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings", "flyway"]
+
+app:
+  base-url: ${APP_BASE_URL:http://localhost:9991}
+  name: TurnQuest Version Vi Reports service
+  configurations:
+    password-strength: 3
+    password-length: 6
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.keycloak.caavagroup.com/realms/turnquest-version-six}
+  rolesClaim: roles
+
+reports:
+  deployed:
+    path: ${REPORTS_DEPLOYED_PATH:/tqv6vol/APIS/TQ-V6/reports}
+  relative:
+    path: /src/main/resources/reports/
+  local:
+    path: ${REPORTS_LOCAL_PATH:/tqv6vol/reports}
+  individual:
+    path: ${REPORTS_INDIVIDUAL_PATH:/tqv6vol/APIS/TQ-V6/lms/Reports/individual}
+  group:
+    path: ${REPORTS_GROUP_PATH:/tqv6vol/APIS/TQ-V6/lms/Reports/group}
+  gis:
+    path: ${REPORTS_GIS_PATH:/tqv6vol/APIS/TQ-V6/lms/Reports/gis}
+  crm:
+    path: ${REPORTS_CRM_PATH:/tqv6vol/APIS/TQ-V6/lms/Reports/crm}
+
+birt:
+  base:
+    url: ${BIRT_BASE_URL:http://127.0.0.1:63641/viewer/preview?__report=}
+  reports:
+    default-format: html
+
+images:
+  relative:
+    path: images/
+
+spring:
+  application:
+    name: turnquest-report-service
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  datasource:
+    initialization-mode: always
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+        format_sql: true
+        order_by:
+          default_null_ordering: last
+        proc:
+          param_null_passing: true
+    generate-ddl: false
+    show-sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:redis-service}
+      port: ${SPRING_REDIS_PORT:6379}
+      timeout: 2000ms
+  cache:
+    type: redis
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest
+  tenants:
+    turnquest:
+      datasource:
+        url: ${DATASOURCE_URL}
+        username: ${DATASOURCE_USERNAME}
+        password: ${DATASOURCE_PASSWORD}
+        driver-class-name: oracle.jdbc.OracleDriver

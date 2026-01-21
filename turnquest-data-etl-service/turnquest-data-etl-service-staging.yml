@@ -1,6 +1,15 @@
-spring:
-  application:
-    name: database-migration-service
+server:
+  port: 9991
+
+app:
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_REALM_URL}
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
 
 multitenancy:
   defaultTenant: turnquest
@@ -12,13 +21,9 @@ multitenancy:
         username: ${DATASOURCE_USERNAME}
         password: ${DATASOURCE_PASSWORD}
         driver-class-name: oracle.jdbc.OracleDriver
-        change-log-file: db/turnquest/changelog-master.xml
 
 logging:
   level:
-    liquibase: INFO
-
-spring.cloud.kubernetes:
-  discovery:
-    enabled: true
-    all-namespaces: false
+    org:
+      hibernate:
+        SQL: INFO

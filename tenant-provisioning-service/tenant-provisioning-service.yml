@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: tenant-provisioning-service
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/provisioning_jobs}
+    username: ${DATASOURCE_USERNAME:provisioning_user}
+    password: ${DATASOURCE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: provisioning-service
+      auto-offset-reset: earliest
+      properties:
+        spring.json.trusted.packages: "*"
+
+server:
+  port: 8081
+
+tenant-registry:
+  base-url: ${TENANT_REGISTRY_URL:http://tenant-registry-service:8080/api/v1}
+
+provisioning:
+  retry:
+    max-attempts: 3
+  saas:
+    postgresql:
+      host: ${POSTGRES_HOST:postgres-shared.internal}
+      port: ${POSTGRES_PORT:5432}
+      admin-username: ${POSTGRES_ADMIN_USERNAME:postgres}
+      admin-password: ${POSTGRES_ADMIN_PASSWORD}
+    mysql:
+      host: ${MYSQL_HOST:mysql-shared.internal}
+      port: ${MYSQL_PORT:3306}
+      admin-username: ${MYSQL_ADMIN_USERNAME:root}
+      admin-password: ${MYSQL_ADMIN_PASSWORD}
+    oracle:
+      host: ${ORACLE_HOST:oracle-shared.internal}
+      port: ${ORACLE_PORT:1521}
+      admin-username: ${ORACLE_ADMIN_USERNAME:sys as sysdba}
+      admin-password: ${ORACLE_ADMIN_PASSWORD}
+    sqlserver:
+      host: ${SQLSERVER_HOST:sqlserver-shared.internal}
+      port: ${SQLSERVER_PORT:1433}
+      admin-username: ${SQLSERVER_ADMIN_USERNAME:sa}
+      admin-password: ${SQLSERVER_ADMIN_PASSWORD}
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'

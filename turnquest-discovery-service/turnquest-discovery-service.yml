@@ -1,0 +1,39 @@
+server:
+  port: ${PORT:8761}
+
+eureka:
+  client:
+    enabled: false
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,flyway
+
+app:
+  name: TurnQuest Version Vi Discovery Service
+  configurations:
+    password-strength: 3
+    password-length: 6
+
+spring:
+  application:
+    name: turnquest-discovery-service
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n'
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE

@@ -1,0 +1,27 @@
+server:
+  port: 1036
+
+app:
+  name: TurnQuest Version Vi Charts Service
+
+spring:
+  application:
+    name: chart-services
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+logging:
+  file:
+    name: chart-service.log
+    path: ./logs
+
+locale:
+  baseName: messages
+  defaultLang: en

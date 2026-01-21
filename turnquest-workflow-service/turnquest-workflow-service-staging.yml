@@ -1,0 +1,30 @@
+server:
+  port: 1027
+
+camunda.bpm:
+  admin-user:
+    id: ${CAMUNDA_ADMIN_USER}
+    password: ${CAMUNDA_ADMIN_PASSWORD}
+
+spring:
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    driver-class-name: oracle.jdbc.OracleDriver
+
+camunda.bpm.database:
+  schema-update: true
+  type: oracle
+  jdbc-batch-processing: true
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: INFO

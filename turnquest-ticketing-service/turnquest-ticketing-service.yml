@@ -1,0 +1,115 @@
+server:
+  tomcat:
+    relaxed-query-chars: '|,{,},[,]'
+  port: 4999
+  error:
+    include-message: always
+    whitelabel:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: ["health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings", "flyway"]
+
+app:
+  name: TurnQuest Version Vi Ticketing Service
+  configurations:
+    password-strength: 3
+    password-length: 6
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.keycloak.caavagroup.com/realms/turnquest-version-six}
+  rolesClaim: roles
+
+spring:
+  application:
+    name: turnquest-ticketing-service
+    jackson:
+      serialization:
+        FAIL_ON_EMPTY_BEANS: false
+  cloud:
+    function:
+      definition: reassignTicketSupplier;authorizeTicketSupplier
+    stream:
+      bindings:
+        authorizeTicketSupplier-out-0:
+          destination: ticket-authorized
+        reassignTicketSupplier-out-0:
+          destination: ticket-reassigned
+    config:
+      import-check:
+        enabled: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+  flyway:
+    locations: classpath:/db/migration
+    baseline-on-migrate: true
+    out-of-order: true
+    enabled: true
+    table: ticketing_schema_version
+  quartz:
+    job-store-type: jdbc
+    enabled: false
+    properties:
+      org:
+        quartz:
+          jobStore:
+            isClustered: true
+            driverDelegateClass: 'org.quartz.impl.jdbcjobstore.StdJDBCDelegate'
+            class: 'org.quartz.impl.jdbcjobstore.JobStoreTXthreadPool'
+            tablePrefix: 'QRTZ_'
+            selectWithLockSQL: 'SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE'
+          threadPool:
+            threadCount: 5
+  messages:
+    basename: lang/messages
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  jpa:
+    properties:
+      hibernate:
+        proc:
+          param_null_passing: true
+  sql:
+    init:
+      mode: always
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+      apache:
+        kafka: OFF
+
+feign:
+  autoconfiguration:
+    jackson:
+      enabled: true
+
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest
+  tenants:
+    turnquest:
+      datasource:
+        url: ${DATASOURCE_URL}
+        username: ${DATASOURCE_USERNAME}
+        password: ${DATASOURCE_PASSWORD}
+        driver-class-name: oracle.jdbc.OracleDriver

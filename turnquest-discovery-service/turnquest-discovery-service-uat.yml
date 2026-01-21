@@ -1,0 +1,13 @@
+server:
+  port: 8761
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: INFO

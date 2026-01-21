@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: turnquest-workflow-service
+
+camunda.bpm:
+  admin-user:
+    id: ${CAMUNDA_ADMIN_USER:admin}
+    password: ${CAMUNDA_ADMIN_PASSWORD:admin}
+    database.schema-update: true
+  filter:
+    create: All tasks
+  webapp:
+    application-path: /turnquest-workflow
+
+server:
+  port: 1027
+
+spring.cloud.kubernetes:
+  discovery:
+    enabled: true
+    all-namespaces: false
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
