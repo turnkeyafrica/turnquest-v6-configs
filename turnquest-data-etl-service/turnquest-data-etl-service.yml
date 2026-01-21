@@ -89,13 +89,18 @@ logging:
             sql:
               BasicBinder: TRACE
 
-multitenancy:
-  defaultTenant: turnquest
-  include: turnquest
-  tenants:
-    turnquest:
-      datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
-        username: TQ_CRM
-        password: CRM_2026
-        driver-class-name: oracle.jdbc.OracleDriver
+# V6 target datasource (primary)
+v6:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev}
+    username: ${SPRING_DATASOURCE_USERNAME:TQ_CRM}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: oracle.jdbc.OracleDriver
+
+# Source datasource for migration
+source:
+  datasource:
+    url: ${SOURCE_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev}
+    username: ${SOURCE_DATASOURCE_USERNAME:TQ_CRM}
+    password: ${SOURCE_DATASOURCE_PASSWORD}
+    driver-class-name: oracle.jdbc.OracleDriver

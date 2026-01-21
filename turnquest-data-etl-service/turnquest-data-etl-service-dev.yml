@@ -11,16 +11,21 @@ spring.cloud.kubernetes:
     enabled: true
     all-namespaces: false
 
-multitenancy:
-  defaultTenant: turnquest
-  include: turnquest
-  tenants:
-    turnquest:
-      datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
-        username: TQ_CRM
-        password: ${SPRING_DATASOURCE_PASSWORD}
-        driver-class-name: oracle.jdbc.OracleDriver
+# V6 target datasource (primary)
+v6:
+  datasource:
+    url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+    username: TQ_CRM
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: oracle.jdbc.OracleDriver
+
+# Source datasource for migration
+source:
+  datasource:
+    url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+    username: TQ_CRM
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: oracle.jdbc.OracleDriver
 
 logging:
   level:
