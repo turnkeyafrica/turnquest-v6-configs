@@ -24,9 +24,9 @@ multitenancy:
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
-        username: TQ_CRM
-        password: CRM_2026
+        url: ${SPRING_DATASOURCE_URL}
+        username: ${SPRING_DATASOURCE_USERNAME}
+        password: ${SPRING_DATASOURCE_PASSWORD}
         driver-class-name: oracle.jdbc.OracleDriver
 
 logging:

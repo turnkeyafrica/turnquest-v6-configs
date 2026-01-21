@@ -141,3 +141,14 @@ notifications:
       host: smtp.office365.com
       username: ${EMAIL_SMTP_USERNAME}
       password: ${EMAIL_SMTP_PASSWORD}
+
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest
+  tenants:
+    turnquest:
+      datasource:
+        url: ${SPRING_DATASOURCE_URL}
+        username: ${SPRING_DATASOURCE_USERNAME}
+        password: ${SPRING_DATASOURCE_PASSWORD}
+        driver-class-name: oracle.jdbc.OracleDriver
