@@ -4,7 +4,7 @@ server:
 app:
   auth:
     server:
-      realm-url: https://evolve.keycloak.caavagroup.com/realms/turnquest-version-six
+      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
 
 spring.cloud.kubernetes:
   discovery:
