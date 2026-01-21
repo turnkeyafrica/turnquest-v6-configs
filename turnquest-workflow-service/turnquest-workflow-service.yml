@@ -1,9 +1,20 @@
+app:
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
+
 spring:
   cloud:
     config:
       enabled: false
   application:
     name: turnquest-workflow-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
 
 camunda.bpm:
   admin-user:

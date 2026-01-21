@@ -1,15 +1,33 @@
-server:
-  port: 1027
+app:
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
+
+spring:
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: turnquest-workflow-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
 
 camunda.bpm:
   admin-user:
-    id: admin
-    password: admin
+    id: ${CAMUNDA_ADMIN_USER:admin}
+    password: ${CAMUNDA_ADMIN_PASSWORD:admin}
+    database.schema-update: true
+  filter:
+    create: All tasks
+  webapp:
+    application-path: /turnquest-workflow
 
-camunda.bpm.database:
-  schema-update: true
-  type: oracle
-  jdbc-batch-processing: true
+server:
+  port: 1027
 
 spring.cloud.kubernetes:
   discovery:
@@ -17,10 +35,16 @@ spring.cloud.kubernetes:
     all-namespaces: false
 
 logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
   level:
     org:
       hibernate:
         SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
 
 multitenancy:
   defaultTenant: turnquest
