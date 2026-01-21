@@ -114,10 +114,10 @@ v6:
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: oracle.jdbc.OracleDriver
 
-# Source datasource for migration (defaults to same as v6, override with SOURCE_DATASOURCE_* if different)
+# Source datasource for migration (using same DB as v6 for dev)
 source:
   datasource:
-    jdbc-url: ${SOURCE_DATASOURCE_URL:${SPRING_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev}}
-    username: ${SOURCE_DATASOURCE_USERNAME:${SPRING_DATASOURCE_USERNAME:TQ_CRM}}
-    password: ${SOURCE_DATASOURCE_PASSWORD:${SPRING_DATASOURCE_PASSWORD}}
+    jdbc-url: ${SPRING_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev}
+    username: ${SPRING_DATASOURCE_USERNAME:TQ_CRM}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: oracle.jdbc.OracleDriver
