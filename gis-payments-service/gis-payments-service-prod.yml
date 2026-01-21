@@ -161,21 +161,21 @@ turnquest:
     crm-accounts:
       base-url: http://crm-accounts-service
     crm-useradmin:
-      base-url: http://crm-useradmin-service
+      base-url: http://crm-user-administration-service
     setups:
       base-url: http://gis-setups-service
     premium-computation-engine:
-      base-url: http://premium-computation-engine
+      base-url: http://gis-premium-computation-service
     notification-service:
-      base-url: http://notification-service
+      base-url: http://turnquest-notification-service
     underwriting-service:
       base-url: http://gis-underwriting-service
     commons-service:
       base-url: http://gis-commons-service
     ticketing-service:
-      base-url: http://ticketing-service
+      base-url: http://gis-ticketing-service
     quotation-service:
-      base-url: http://quotation-service
+      base-url: http://gis-quotation-service
     alfresco-service:
       base-url: http://alfresco-service
     gis:
