@@ -178,8 +178,8 @@ multitenancy:
     turnquest:
       datasource:
         url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
-        username: TQ_GIS
-        password: GIS_2026
+        username: TQ_CRM
+        password: CRM_2026
         driver-class-name: oracle.jdbc.OracleDriver
 #    heritage:
 #      datasource:
