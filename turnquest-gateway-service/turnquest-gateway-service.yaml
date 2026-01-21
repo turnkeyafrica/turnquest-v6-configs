@@ -2,7 +2,7 @@ spring:
   application:
     name: turnquest-gateway-service
   main:
-    web-application-type: servlet
+    web-application-type: reactive
     allow-bean-definition-overriding: true
   sleuth:
     sampler:
@@ -52,85 +52,85 @@ spring:
             - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v2/api-docs
           uri: http://localhost:${server.port}
         - id: crm-setups-service
-          uri: lb://crm-setups-service
+          uri: http://crm-setups-service
           predicates:
             - Path=/crm/setups/**
           filters:
             - StripPrefix=2
         - id: user-administration-service
-          uri: lb://user-administration-service
+          uri: http://user-administration-service
           predicates:
             - Path=/user/administration/**
           filters:
             - StripPrefix=2
         - id: crm-accounts-service
-          uri: lb://crm-accounts-service
+          uri: http://crm-accounts-service
           predicates:
             - Path=/crm/accounts/**
           filters:
             - StripPrefix=2
         - id: banca-setups-service
-          uri: lb://banca-setups-service
+          uri: http://banca-setups-service
           predicates:
             - Path=/banca/setups/**
           filters:
             - StripPrefix=2
         - id: lms-setups-service
-          uri: lb://lms-setups-service
+          uri: http://lms-setups-service
           predicates:
             - Path=/lms/setups/**
           filters:
             - StripPrefix=2
         - id: lms-marketing-service
-          uri: lb://lms-marketing-service
+          uri: http://lms-marketing-service
           predicates:
             - Path=/lms/marketing/**
           filters:
             - StripPrefix=2
         - id: gis-setups-service
-          uri: lb://gis-setups-service
+          uri: http://gis-setups-service
           predicates:
             - Path=/gis/setups/**
           filters:
             - StripPrefix=2
         - id: gis-underwriting-service
-          uri: lb://gis-underwriting-service
+          uri: http://gis-underwriting-service
           predicates:
             - Path=/gis/underwriting/**
           filters:
             - StripPrefix=2
         - id: chart-service
-          uri: lb://turnquest-chart-service
+          uri: http://turnquest-chart-service
           predicates:
             - Path=/crm/chart/**
           filters:
             - StripPrefix=2
         - id: gis-quotation-service
-          uri: lb://gis-quotation-service
+          uri: http://gis-quotation-service
           predicates:
             - Path=/gis/quotation/**
           filters:
             - StripPrefix=2
         - id: gis-claims-service
-          uri: lb://gis-claims-service
+          uri: http://gis-claims-service
           predicates:
             - Path=/gis/claims/**
           filters:
             - StripPrefix=2
         - id: turnquest-notification-service
-          uri: lb://turnquest-notification-service
+          uri: http://turnquest-notification-service
           predicates:
             - Path=/notification/**
           filters:
             - StripPrefix=2
         - id: data-etl-service
-          uri: lb://data-etl-service
+          uri: http://data-etl-service
           predicates:
             - Path=/data/**
           filters:
             - StripPrefix=2
         - id: turnquest-ticketing-service
-          uri: lb://turnquest-ticketing-service
+          uri: http://turnquest-ticketing-service
           predicates:
             - Path=/turnquest/workflow/**
           filters:
