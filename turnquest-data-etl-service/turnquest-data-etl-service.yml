@@ -65,6 +65,16 @@ spring:
         order_by:
           default_null_ordering: last
         dialect: org.hibernate.dialect.OracleDialect
+        id:
+          db_structure_naming_strategy: legacy
+          optimizer:
+            pooled:
+              preferred: none
+          sequence:
+            increment_size_mismatch_strategy: fix
+        jpa:
+          compliance:
+            global_id_generator_scope_compliance: false
     hikari:
       connection-timeout: 60000
       maximum-pool-size: 5
