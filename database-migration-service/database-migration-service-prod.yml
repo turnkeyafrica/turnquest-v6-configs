@@ -6,7 +6,7 @@ spring:
     username: TQ_CRM
     password: CRM_2026
   liquibase:
-    change-log: classpath:/db/changelog/changelog-master.xml
+    change-log: classpath:/db/turnquest/changelog-master.xml
   jpa:
     show-sql: false
 
