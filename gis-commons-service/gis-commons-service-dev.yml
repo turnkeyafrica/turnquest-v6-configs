@@ -1,6 +1,3 @@
-locale:
-    baseName: i18n/messages
-    defaultLang: en
 spring:
   sleuth:
     sampler:
