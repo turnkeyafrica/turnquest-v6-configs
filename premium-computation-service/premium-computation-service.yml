@@ -138,4 +138,39 @@ multitenancy:
         username: TQ_GIS
         password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver
-#
+
+turnquest:
+  api:
+    basePath:
+      v1: "/api/v1"
+      v2: "/api/v2"
+  clients:
+    crm:
+      base-url: http://crm-service
+      setupsService: http://crm-setups-service
+      setups: http://crm-setups-service
+    crm-setups:
+      base-url: http://crm-setups-service
+    crm-accounts:
+      base-url: http://crm-accounts-service
+    crm-useradmin:
+      base-url: http://crm-user-administration-service
+    setups:
+      base-url: http://gis-setups-service
+    premium-computation-engine:
+      base-url: http://gis-premium-computation-service
+    notification-service:
+      base-url: http://turnquest-notification-service
+    underwriting-service:
+      base-url: http://gis-underwriting-service
+    commons-service:
+      base-url: http://gis-commons-service
+    ticketing-service:
+      base-url: http://gis-ticketing-service
+    quotation-service:
+      base-url: http://gis-quotation-service
+    alfresco-service:
+      base-url: http://alfresco-service
+    gis:
+      setups:
+        service: http://gis-setups-service
