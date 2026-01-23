@@ -130,13 +130,13 @@ misc:
 
 multitenancy:
   defaultTenant: turnquest
-  include: turnquest,heritage19c,v6test,geminia
+  include: turnquest,v6test,heritage19c
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@10.176.18.211:18000/TURNQUESTVI
-        username: TQ_GIS
-        password: TQ_GIS
+        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        username: TQ_CRM
+        password: CRM_2026
         driver-class-name: oracle.jdbc.OracleDriver
 #    heritage:
 #      datasource:
@@ -144,21 +144,15 @@ multitenancy:
 #        username: TQ_GIS
 #        password: TQ_GIS
 #        driver-class-name: oracle.jdbc.OracleDriver
-    heritage19c:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.91:1522/heritage19c
-        username: TQ_GIS
-        password: TQ_GIS
-        driver-class-name: oracle.jdbc.OracleDriver
-    v6test:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.70:18000/TQV6
-        username: TQ_GIS
-        password: TQ_GIS
-        driver-class-name: oracle.jdbc.OracleDriver
-    geminia:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.99:1521/EVOLVE_GEMINIA
-        username: TQ_GIS
-        password: TQ_GIS
-        driver-class-name: oracle.jdbc.OracleDriver
+#    heritage19c:
+#      datasource:
+#        url: jdbc:oracle:thin:@10.176.18.91:1522/heritage19c
+#        username: TQ_GIS
+#        password: TQ_GIS
+#        driver-class-name: oracle.jdbc.OracleDriver
+#    v6test:
+#      datasource:
+#        url: jdbc:oracle:thin:@10.176.18.70:18000/TQV6
+#        username: TQ_GIS
+#        password: TQ_GIS
+#        driver-class-name: oracle.jdbc.OracleDriver

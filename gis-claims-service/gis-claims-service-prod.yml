@@ -173,7 +173,6 @@ turnquest:
       setups:
         service: http://gis-setups-service
 
----
 
 multitenancy:
   defaultTenant: turnquest
