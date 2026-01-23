@@ -46,10 +46,10 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.OracleDialect
-  management:
-    zipkin:
-      tracing:
-        endpoint: http://10.176.18.27:9411
+  #management:
+    #zipkin:
+     # tracing:
+     #   endpoint: http://10.176.18.27:9411
   cloud:
     config:
       import-check:
