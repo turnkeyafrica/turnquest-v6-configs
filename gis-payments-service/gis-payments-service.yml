@@ -207,7 +207,7 @@ mpesa:
 
 multitenancy:
   defaultTenant: turnquest
-  include: turnquest,heritage,heritage19c,v6test,geminia
+  include: turnquest,heritage19c,v6test,geminia
   tenants:
     turnquest:
       datasource:
@@ -215,12 +215,12 @@ multitenancy:
         username: TQ_GIS
         password: TQ_GIS
         driver-class-name: oracle.jdbc.OracleDriver
-    heritage:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.91:1521/HERITAGE
-        username: TQ_GIS
-        password: TQ_GIS
-        driver-class-name: oracle.jdbc.OracleDriver
+#    heritage:
+#      datasource:
+#        url: jdbc:oracle:thin:@10.176.18.91:1521/HERITAGE
+#        username: TQ_GIS
+#        password: TQ_GIS
+#        driver-class-name: oracle.jdbc.OracleDriver
     heritage19c:
       datasource:
         url: jdbc:oracle:thin:@10.176.18.91:1522/heritage19c
