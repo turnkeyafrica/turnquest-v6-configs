@@ -161,7 +161,7 @@ turnquest:
     setups:
       base-url: http://gis-setups-service
     premium-computation-engine:
-      base-url: http://gis-premium-computation-service
+      base-url: http://premium-computation-service
     notification-service:
       base-url: http://turnquest-notification-service
     underwriting-service:

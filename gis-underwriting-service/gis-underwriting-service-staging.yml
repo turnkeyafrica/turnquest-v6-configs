@@ -205,7 +205,7 @@ turnquest:
     notification-service:
       base-url: http://turnquest-notification-service
     premium-computation-engine:
-      base-url: http://gis-premium-computation-service
+      base-url: http://premium-computation-service
     quotation-service:
       base-url: http://gis-quotation-service
     setups:
