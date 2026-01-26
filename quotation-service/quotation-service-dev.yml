@@ -139,6 +139,8 @@ app:
     get-parameter-value-endpoint: /parameters/parameter-name
     mandatory-clauses-endpoint: /clauses/mandatory
     find-clause-wording-endpoint: /clauses/wording
+  processflow:
+    asynchronous: false
 
 defaultTenant: turnquest
 
