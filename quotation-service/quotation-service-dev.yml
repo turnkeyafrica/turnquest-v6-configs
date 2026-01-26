@@ -195,7 +195,7 @@ turnquest:
     underwriting-service:
       base-url: http://gis-underwriting-service
     commons-service:
-      base-url: http://gis-commons-service
+      base-url: http://gis-commons-service/api/v1
     ticketing-service:
       base-url: http://gis-ticketing-service/api/v1
     quotation-service:
