@@ -2,7 +2,7 @@ server:
   port: 9991
 
 app:
-  base-url: http://localhost:9991
+  base-url: https://evolve.api.dev.caavagroup.com/turnquest/report
   auth:
     server:
       realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
