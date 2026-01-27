@@ -1,0 +1,172 @@
+spring:
+  sleuth:
+    sampler:
+      probability: 1.0
+  jackson:
+    # property-naming-strategy: SNAKE_CASE
+  messages:
+    basename: i18n/messages
+  application:
+    name: fms-cash-book-transactions-service
+    jackson:
+      serialization:
+        FAIL_ON_EMPTY_BEANS: false
+  datasource:
+    initialization-mode: always
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      maximum-pool-size: 10
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: none
+    generate-ddl: false
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+  management:
+    zipkin:
+      tracing:
+        endpoint: http://10.176.18.27:9411
+  cloud:
+    config:
+      import-check:
+        enabled: false
+      server:
+        git:
+          uri: https://github.com/turnkeyafrica/turnquest-v6
+          searchPaths: gis-setups-configs
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+    bootstrap-servers: ${kafka:localhost:9092}
+    client-id: gis-setups-service
+  security:
+    oauth2:
+      resource:
+        id: turnquest-version-6-apis
+        token-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token
+        authorization-uri: ${app.auth.server.realm-url}/protocol/openid-connect/auth
+        userinfo-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
+        token-info-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token/introspect
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+  flyway:
+    locations: classpath:/db/migration/oracle
+    baseline-on-migrate: false
+    validate-on-migrate: false
+    table: schema_version
+    enabled: true
+    ignore-missing-migrations: false
+    out-of-order: true
+  quartz:
+    job-store-type: jdbc
+    enabled: false
+    properties:
+      org:
+        quartz:
+          jobStore:
+            isClustered: true
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            tablePrefix: QRTZ_
+            selectWithLockSQL: "SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE"
+          threadPool:
+            threadCount: 5
+server:
+  port: 2009
+  servlet:
+    context-path: /
+  error:
+    include-message: always
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - metrics
+          - prometheus
+          - bindings
+          - beans
+          - env
+          - loggers
+          - streamsbindings
+          - mappings
+          - flyway
+app:
+  name: TurnQuest Version Vi Integrated FMS Setups System
+  configurations:
+    password-strength: 3
+    password-length: 6
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
+      jwk-set-uri: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}/protocol/openid-connect/certs
+    rolesClaim: roles
+  locale:
+    languages: "en, fr, sw"  # Add new languages in the format ",vi"
+    baseName: i18n/messages
+    defaultLang: en
+base_url: /api/v1
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://10.176.18.211:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+instanceId: fms-setups-service-instance
+env: environment
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    com:
+      turnkey:
+        turnquest: DEBUG
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+#  file:
+#    name: fms-setups-service.log
+#    path: ./logs
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  springdoc:
+    swagger-ui:
+      path: /swagger-ui.html
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest
+  tenants:
+    turnquest:
+      datasource:
+        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        username: TQ_FMS
+        password: FMS_2026
+        driver-class-name: oracle.jdbc.OracleDriver
+
+
+redis:
+  cache:
+    type: redis
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:redis.service.consul}
+      port: ${SPRING_REDIS_PORT:6379}
