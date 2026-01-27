@@ -168,3 +168,9 @@ redis:
     redis:
       host: ${SPRING_REDIS_HOST:redis.service.consul}
       port: ${SPRING_REDIS_PORT:6379}
+# Configuration for resiliently fetching reports      
+report-fetching:
+  retry:
+    max-attempts: 5
+    initial-backoff-ms: 1000
+    max-backoff-ms: 10000      
