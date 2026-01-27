@@ -21,8 +21,9 @@ app:
   locale:
     baseName: i18n/messages
     defaultLang: en
-  quotation-endpoints:
-    list-quotations: /quotations
+quotation-endpoints:
+  list-quotations: /quotations
+  quotation-risks: "/quotationRisks/{code}"
   setups-endpoints:
     get-parameter-by-param-name-endpoint: /parameters/parameter-name
     get-tax-type-views-endpoint: /taxes-types-view
@@ -30,6 +31,61 @@ app:
     get-clause-by-id-endpoint: "/clauses/{code}"
     get-subclass-by-id-endpoint: "/sub-classes/{code}"
     get-parameters-list-endpoint: /parameters/list/parameter-name
+    get-binder-by-code: "/binders/{code}"
+    get-commission-transactions-endpoint: "/commission-rates/commission-transactions"
+    get-screen-name-endpoint: /screens/name
+    get-populate-lien-clauses: "/populate-clauses"
+    getAllSubclassCertTypesEndpoint: "/subclass-cert-types/all"
+    getSubclassCertTypesBySectionEndpoint: "/subclass-cert-types/section"
+    find-subclass-cert-type-endpoint: /subclass-cert-types
+    find-binders-for-ins-endpoint: /binders/ins
+    find-manual-binders-for-non-ins-endpoint: /binders/manual-non-ins
+    get-potential-docs-endpoint: /required-documents/for-transaction
+    get-fetch-schedule-values-by-subclass-endpoint: "/schedule-values/bySubclass"
+    get-fetch-schedule-values-by-subclass-and-bind-endpoint: "schedule-values/sclCode-bindCode"
+    get-mandatory-sections: "/premium-rates/mandatory-sections"
+    get-cash-back-sections: "/premium-rates/cash-back-sections"
+    get-cover-type-default-s-i: "/subclass-cover-types/default-SI"
+    get-risk-limits: "/premium-rates/risk-limits"
+    get-product-subclasses-count: "product-subclasses/count-product-subclasses/{code}"
+    get-premium-rates: "/premium-rates/all-rates"
+    get-section-rates: "/premium-rates/section-rates"
+    mandatory-unassigned-clauses-endpoint: "/subclass-clauses/mandatory-unassigned"
+    get-subclass-section-peril-details-endpoint: /subclass-section-perils/details
+    get-count-driver-endpoint: "/driver-details/count"
+    get-find-driver-code-endpoint: "/driver-details/find"
+    get-add-driver-endpoint: "/driver-details/add"
+    get-find-driver-details-by-code-endpoint: "/driver-details/code"
+    get-count-driver-by-code: "/driver-details/count/code"
+    get-delete-driver-endpoint: "/driver-details/driver-details/count/code"
+
+    get-subclass-by-class-code: "/sub-classes/by-class-code/{code}"
+    get-cover-type-details: "/subclass-cover-types/details"
+    get-policy-clauses: "/subclass-clauses/policy-clauses"
+    get-clauses-not-in-policy: "/subclass-clauses/clauses-not-in-policy"
+    get-clauses-with-policy: "/subclass-clauses/clauses-with-policy"
+    get-product-subclasses-count-endpoint: "/products/product-subclasses-count"
+    get-lien-clauses-by-product-code: "/clauses/lien-clauses"
+    fetch-risk-categories-endpoint: /risk-categories
+    fetch-perils-by-subclass-bind-and-section: "/subperils//by-subclass-bind-section"
+    fetch-risk-services-list-endpoint: /risk-service
+    fetch-risk-subclass-section-peril-endpoint: /subclass-section-perils/risk
+    fetch-premium-rates-details: /premium-rates/details
+    fetch-taxes-applicable: "/taxes-types-view/applicable"
+    fetch-transaction-codes-by-category: "/transaction-types/codes-by-category"
+    fetch-premium-rate-details: "/premium-rates/details"
+    get-lien-clauses-not-in-policy: "/subclass-clauses/lien-clauses-not-in-policy"
+    get-policy-lien-clauses: "/subclass-clauses/policy-lien-clauses"
+    fetch-product-subclass-taxes-endpoint: /taxes-types-view/product-subclass-taxes
+  commons-endpoints:
+    save-transaction-details-endpoint: "/gis-transactions"
+    generate-number-format-endpoint: /number-format/generate
+    get-master-transaction-summary-endpoint: /master-transactions/summary
+    generate-certificate-number-endpoint: /number-format/certificate
+    save-transmittal-details-endpoint: /transmittal
+    fetch-paid-premium-endpoint: /master-transactions/premium
+  crm-setups-endpoints:
+    get-org-type-endpoint: "/organizations/organization-by-system/{system-code}/"
 
 spring:
   sleuth:
@@ -212,7 +268,7 @@ turnquest:
       base-url: http://gis-setups-service
     ticketing-service:
       base-url: http://gis-ticketing-service
-  
+
 feign:
   client:
     config:

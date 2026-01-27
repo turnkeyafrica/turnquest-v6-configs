@@ -137,8 +137,25 @@ app:
     get-product-expiry-endpoint: "/products/{code}"
     get-product-taxes-endpoint: /product-taxes
     get-parameter-value-endpoint: /parameters/parameter-name
+    get-parameters-list-endpoint: /parameters/list/parameter-name
     mandatory-clauses-endpoint: /clauses/mandatory
     find-clause-wording-endpoint: /clauses/wording
+    get-tax-rates-by-code: "/tax-rates/{code}"
+    find-relevant-clauses: /clauses/relevant-clauses
+    get-quake-zone-by-code-endpoint: "/quake-zones/{code}"
+    get-binder-details-endpoint: "/binders/{code}"
+    get-perils-map-by-code-endpoint: "/subperils/{code}"
+  under-writing-endpoints:
+    fetch-mergeable-policies: api/v2/policies/mergeable
+    get-perils-by-batch-number-or-risk-code: "/api/v1/perils/by-batch-risk"
+  commons-endpoints:
+    get-client-remarks: /client-remarks
+    get-transmittals-by-quote-code: "/transmittal/quote-code"
+
+  processflow:
+    asynchronous: false
+    create-quotation: "QuotationProcess"
+    revise-quotation: "QuotationProcess"
 
 defaultTenant: turnquest
 
@@ -230,21 +247,21 @@ multitenancy:
 #        username: TQ_GIS
 #        password: TQ_GIS
 #        driver-class-name: oracle.jdbc.OracleDriver
-    heritage19c:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.91:1522/heritage19c
-        username: TQ_GIS
-        password: TQ_GIS
-        driver-class-name: oracle.jdbc.OracleDriver
-    v6test:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.70:18000/TQV6
-        username: TQ_GIS
-        password: TQ_GIS
-        driver-class-name: oracle.jdbc.OracleDriver
-    geminia:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.99:1521/EVOLVE_GEMINIA
-        username: TQ_GIS
-        password: TQ_GIS
-        driver-class-name: oracle.jdbc.OracleDriver
+#    heritage19c:
+#      datasource:
+#        url: jdbc:oracle:thin:@10.176.18.91:1522/heritage19c
+#        username: TQ_GIS
+#        password: TQ_GIS
+#        driver-class-name: oracle.jdbc.OracleDriver
+#    v6test:
+#      datasource:
+#        url: jdbc:oracle:thin:@10.176.18.70:18000/TQV6
+#        username: TQ_GIS
+#        password: TQ_GIS
+#        driver-class-name: oracle.jdbc.OracleDriver
+#    geminia:
+#      datasource:
+#        url: jdbc:oracle:thin:@10.176.18.99:1521/EVOLVE_GEMINIA
+#        username: TQ_GIS
+#        password: TQ_GIS
+#        driver-class-name: oracle.jdbc.OracleDriver
