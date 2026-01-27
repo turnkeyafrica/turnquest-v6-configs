@@ -72,6 +72,7 @@ spring:
     name: fms-investments-service
 
 server:
+  forward-headers-strategy: framework
   port: 2006 # from application-InvestmentsService.yml
   error:
     include-message: always

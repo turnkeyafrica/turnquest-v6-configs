@@ -17,6 +17,7 @@ spring:
         spring.json.trusted.packages: "*"
 
 server:
+  forward-headers-strategy: framework
   port: 8081
 
 tenant-registry:

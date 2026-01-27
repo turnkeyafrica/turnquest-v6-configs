@@ -79,6 +79,7 @@ spring:
           threadPool:
             threadCount: 5
 server:
+  forward-headers-strategy: framework
   port: 2007
   servlet:
     context-path: /

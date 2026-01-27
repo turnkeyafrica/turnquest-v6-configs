@@ -1,5 +1,6 @@
 # Base configuration (from application-common.yml)
 server:
+  forward-headers-strategy: framework
   port: 1031
   error:
     include-message: always

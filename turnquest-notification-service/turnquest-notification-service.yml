@@ -12,6 +12,7 @@ app:
   rolesClaim: roles
 
 server:
+  forward-headers-strategy: framework
   port: 1041
   error:
     include-message: always

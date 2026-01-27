@@ -13,6 +13,7 @@ spring:
       fail-fast: false
 
 server:
+  forward-headers-strategy: framework
   port: 1040
   error:
     include-message: always

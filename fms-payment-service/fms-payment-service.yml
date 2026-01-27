@@ -59,6 +59,7 @@ spring:
     name: fms-payment-service
 
 server:
+  forward-headers-strategy: framework
   port: 2002 # from application-fmsPaymentService.yml
   error:
     include-message: always

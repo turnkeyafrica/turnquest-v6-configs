@@ -1,4 +1,5 @@
 server:
+  forward-headers-strategy: framework
   port: 4998
   servlet:
     context-path: /

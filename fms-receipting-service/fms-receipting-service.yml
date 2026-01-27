@@ -72,6 +72,7 @@ spring:
     name: fms-receipting-service
 
 server:
+  forward-headers-strategy: framework
   port: 2001 # from application-fmsReceiptingService.yml
   error:
     include-message: always

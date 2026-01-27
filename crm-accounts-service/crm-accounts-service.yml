@@ -3,6 +3,7 @@ locale:
   baseName: messages
   defaultLang: en
 server:
+  forward-headers-strategy: framework
   port: 1031
   error:
     include-message: always

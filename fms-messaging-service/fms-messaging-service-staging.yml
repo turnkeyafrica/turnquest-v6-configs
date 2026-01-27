@@ -44,6 +44,7 @@ spring:
     name: FMS-MESSAGING-SERVICE
 
 server:
+  forward-headers-strategy: framework
   port: 2008 # from application-fmsMessagingService.yml
   error:
     include-message: always
