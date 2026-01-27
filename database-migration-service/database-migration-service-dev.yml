@@ -1,26 +1,30 @@
 spring:
   application:
     name: database-migration-service
-  datasource:
-    url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
-    username: TQ_CRM
-    password: CRM_2026
   liquibase:
     change-log: classpath:/db/turnquest/changelog-master.xml
+      path: changelog_master.xml
   jpa:
     show-sql: true
 
+# multitenancy:
+#   include: turnquest
+#   tenants:
+#     turnquest:
+#       datasource:
+#         url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+#         username: TQ_CRM
+#         password: CRM_2026
+#         driver-class-name: oracle.jdbc.OracleDriver
+#         change-log-file: db/turnquest/changelog-master.xml
 multitenancy:
-  defaultTenant: turnquest
   include: turnquest
   tenants:
     turnquest:
-      datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
-        username: TQ_CRM
-        password: CRM_2026
-        driver-class-name: oracle.jdbc.OracleDriver
-        change-log-file: db/turnquest/changelog-master.xml
+      url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+      username: TQ_CRM
+      password: CRM_2026
+      driver-class-name: oracle.jdbc.OracleDriver
 
 logging:
   level:
