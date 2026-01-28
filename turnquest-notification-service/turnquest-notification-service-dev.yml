@@ -115,12 +115,16 @@ logging:
   file:
     name: turnquest-notification-service.log
     path: ./logs
-
+scheduled:
+  sms:
+    frequency: 300000
+    enabled: Y
+  email:
+    frequency: 60000
+    enabled: Y
 notifications:
   sms:
     service: AFRICASTALKING
-    scheduled: true
-    scheduled-frequency: 100000
     mtech:
       tss-desc: M-TECH
       api-url: http://ke.mtechcomm.com/bulkAPIV2/
@@ -136,8 +140,6 @@ notifications:
     test-mode: false
     test-message: "Mail sent by turnquest"
     max-attachments: 5
-    scheduled: true
-    scheduled-frequency: 100000
     smtp:
       sender-address: ithelpdesk@fidelityshield.com
       sender-name: fidelity Insurance
