@@ -206,6 +206,17 @@ mpesa:
     oauth-endpoint: https://sandbox.safaricom.co.ke/oauth/v1/generate
     queryStatusUrl: https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /v3/api-docs
+        name: GIS PAYMENT API
+  server-url: /gis/payments
+
 multitenancy:
   defaultTenant: turnquest
   include: turnquest,v6test,heritage19c

@@ -230,6 +230,17 @@ feign:
       premium-computation-engine:
         url: http://10.176.18.211:4020
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /v3/api-docs
+        name: GIS QUOTATIONS API
+  server-url: /gis/quotation
+
 multitenancy:
   defaultTenant: turnquest
   include: turnquest,v6test,heritage19c

@@ -129,6 +129,17 @@ misc:
     base: 313
     currency_rate_extension_days: 30
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /v3/api-docs
+        name: GIS PREMIUM COMPUTATION API
+  server-url: /premium/computation
+
 multitenancy:
   defaultTenant: turnquest
   include: turnquest,v6test,heritage19c
