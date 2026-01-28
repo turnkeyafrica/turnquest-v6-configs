@@ -71,15 +71,15 @@ spring:
     encoding: UTF-8
     cache: true
 
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
-  client:
-    serviceUrl:
-      defaultZone: http://10.176.18.211:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
+#eureka:
+#  instance:
+#    leaseRenewalIntervalInSeconds: 1
+#    leaseExpirationDurationInSeconds: 3
+#  client:
+#    serviceUrl:
+#      defaultZone: http://10.176.18.211:8761/eureka/
+#    fetch-registry: true
+#    register-with-eureka: true
 
 server:
   port: 1037
@@ -108,7 +108,7 @@ app:
     password-strength: 3
     password-length: 6
   client-secret: rZfEihte7Zgg9CrR5eS9WPcioodTZh3p
-  auth-server-url: http://10.176.18.211:8181
+  auth-server-url: https://evolve.keycloak.caavagroup.com
   auth-username: geminiaadmin@geminia.com
   auth-password: geminiaadmin@
   client-id: geminia
@@ -118,7 +118,8 @@ app:
   auth-realm: geminia
   auth-client-id: admin-cli
   keycloak:
-    data-sync-rate: 3600000
+    data-sync-rate: 3000
+  keycloak.enabled: true
 
 app.auth.server.realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
 
