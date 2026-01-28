@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: fms-gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: fms-receipting-service
+          uri: http://fms-receipting-service
+          predicates:
+            - Path=/api/v1/fms-receipting-service/**
+          filters:
+            - RewritePath=/api/v1/fms-receipting-service/(?<segment>.*), /api/v1/$\{segment}
+        - id: fms-payment-service
+          uri: http://fms-payment-service
+          predicates:
+            - Path=/api/v1/fms-payment-service/**
+          filters:
+            - RewritePath=/api/v1/fms-payment-service/(?<segment>.*), /api/v1/$\{segment}
+        - id: fms-setups-service
+          uri: http://fms-setups-service
+          predicates:
+            - Path=/api/v1/fms-setups-service/**
+          filters:
+            - RewritePath=/api/v1/fms-setups-service/(?<segment>.*), /api/v1/$\{segment}
+        - id: fms-general-ledger-service
+          uri: http://fms-general-ledger-service
+          predicates:
+            - Path=/api/v1/fms-general-ledger-service/**
+          filters:
+            - RewritePath=/api/v1/fms-general-ledger-service/(?<segment>.*), /api/v1/$\{segment}
+        - id: fms-investments-service
+          uri: http://fms-investments-service
+          predicates:
+            - Path=/api/v1/fms-investments-service/**
+          filters:
+            - RewritePath=/api/v1/fms-investments-service/(?<segment>.*), /api/v1/$\{segment}
+        - id: fms-fixed-assets-service
+          uri: http://fms-fixed-assets-service
+          predicates:
+            - Path=/api/v1/fms-fixed-assets-service/**
+          filters:
+            - RewritePath=/api/v1/fms-fixed-assets-service/(?<segment>.*), /api/v1/$\{segment}
+        - id: fms-messaging-service
+          uri: http://fms-messaging-service
+          predicates:
+            - Path=/api/v1/fms-messaging-service/**
+          filters:
+            - RewritePath=/api/v1/fms-messaging-service/(?<segment>.*), /api/v1/$\{segment}
+        - id: fms-cash-book-transactions-service
+          uri: http://fms-cash-book-transactions-service
+          predicates:
+            - Path=/api/v1/fms-cash-book-transactions-service/**
+          filters:
+            - RewritePath=/api/v1/fms-cash-book-transactions-service/(?<segment>.*), /api/v1/$\{segment}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

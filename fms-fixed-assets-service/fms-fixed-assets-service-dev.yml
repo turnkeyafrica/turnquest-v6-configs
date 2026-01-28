@@ -79,6 +79,7 @@ spring:
           threadPool:
             threadCount: 5
 server:
+  forward-headers-strategy: framework
   port: 2007
   servlet:
     context-path: /
@@ -123,7 +124,7 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://10.176.18.211:8761/eureka/
+      defaultZone: http://192.0.0.169:8761/eureka/
     fetch-registry: true
     register-with-eureka: true
 instanceId: fms-setups-service-instance

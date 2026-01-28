@@ -114,6 +114,7 @@ resilience4j:
 
 
 server:
+  forward-headers-strategy: framework
   port: 4009
   servlet:
     context-path: /

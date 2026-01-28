@@ -20,7 +20,6 @@ spring:
         jwt:
           issuer-uri: ${app.auth.server.realm-url}
           jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
-  property-naming-strategy: SNAKE_CASE
   cloud:
     config:
       enabled: false
@@ -59,6 +58,7 @@ spring:
     name: fms-payment-service
 
 server:
+  forward-headers-strategy: framework
   port: 2002 # from application-fmsPaymentService.yml
   error:
     include-message: always
@@ -78,7 +78,7 @@ app:
       jwk-set-uri: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}/protocol/openid-connect/certs
   rolesClaim: roles
   cors:
-    allowed-origins: "http://localhost:2003,http://localhost:4200,http://10.176.18.211"
+    allowed-origins: "http://localhost:2003,http://localhost:4200,http://192.0.0.169"
   locale:
     languages: "en, fr, sw"
     baseName: i18n/messages
@@ -105,7 +105,7 @@ eureka:
   client:
     enabled: true
     serviceUrl:
-      defaultZone: ${EUREKA_URL:http://10.176.18.211:8761/eureka/}
+      defaultZone: ${EUREKA_URL:http://192.0.0.169:8761/eureka/}
     register-with-eureka: ${EUREKA_CLIENT_REGISTER_WITH_EUREKA:true} # from application-dev.yml
     fetch-registry: true # from application-dev.yml
   springdoc:

@@ -3,6 +3,7 @@ spring:
     name: database-migration-service
   liquibase:
     change-log: classpath:/db/turnquest/changelog-master.xml
+      path: changelog_master.xml
   jpa:
     show-sql: true
 
@@ -22,7 +23,7 @@ multitenancy:
     turnquest:
       url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
       username: TQ_CRM
-      password: TQ_CRM
+      password: CRM_2026
       driver-class-name: oracle.jdbc.OracleDriver
 
 logging:

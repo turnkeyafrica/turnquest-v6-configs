@@ -83,6 +83,7 @@ eureka:
 
 server:
   port: 1037
+  forward-headers-strategy: framework
 
 management:
   zipkin:
