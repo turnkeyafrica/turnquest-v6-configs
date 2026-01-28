@@ -59,7 +59,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://192.0.0.169:8761/eureka/            
+      defaultZone: ${EUREKA_URL:http://192.0.0.169:8761/eureka/}            
 management:
   endpoints:
     web:
