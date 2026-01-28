@@ -177,11 +177,11 @@ springdoc:
     path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui
-    config-url: /v3/api-docs/swagger-config
+    # Update these to include your proxy prefix:
+    config-url: /gis/setups/v3/api-docs/swagger-config
     urls:
-      - url: /v3/api-docs
+      - url: /gis/setups/v3/api-docs
         name: GIS Setups API
-  server-url: /gis/setups
 
 multitenancy:
   defaultTenant: turnquest
