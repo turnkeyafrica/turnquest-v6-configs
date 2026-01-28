@@ -149,7 +149,18 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include:
+          - health
+          - info
+          - metrics
+          - prometheus
+          - bindings
+          - beans
+          - env
+          - loggers
+          - streamsbindings
+          - mappings
+          - flyway
   springdoc:
     swagger-ui:
       path: /swagger-ui.html
