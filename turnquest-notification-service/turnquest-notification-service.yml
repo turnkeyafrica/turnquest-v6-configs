@@ -116,38 +116,35 @@ logging:
     name: turnquest-notification-service.log
     path: ./logs
 
-scheduled:
-  sms:
-    frequency: 300000
-    enabled: Y
-  email:
-    frequency: 60000
-    enabled: Y
-
 notifications:
   sms:
     service: AFRICASTALKING
+    scheduled: true
+    scheduled-frequency: 100000
     mtech:
       tss-desc: M-TECH
       api-url: http://ke.mtechcomm.com/bulkAPIV2/
       sender-name: HERITAGEIC
-      username: ${SMS_MTECH_USERNAME}
-      password: ${SMS_MTECH_PASSWORD}
+      username: heritage
+      password: aad2b85c7e34150f3c9a1a0bc28b61a788f5b37dxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     africastalking:
-      username: ${SMS_AT_USERNAME}
-      api-key: ${SMS_AT_API_KEY}
+      username: agencifyMobile
+      api-key: 3b5d57ae9082704e40cc8b23b4fa256031e26200db536c309d31d6cffea69e9c
+      sender-name: AGENCIFY
   email:
     service: smtp
     test-mode: false
     test-message: "Mail sent by turnquest"
     max-attachments: 5
+    scheduled: true
+    scheduled-frequency: 100000
     smtp:
-      sender-address: ${EMAIL_SENDER_ADDRESS}
-      sender-name: ${EMAIL_SENDER_NAME}
+      sender-address: ithelpdesk@fidelityshield.com
+      sender-name: fidelity Insurance
       port: 587
       host: smtp.office365.com
-      username: ${EMAIL_SMTP_USERNAME}
-      password: ${EMAIL_SMTP_PASSWORD}
+      username: ithelpdesk@fidelityshield.com
+      password: "!CtH3lpd3sk"
 
 multitenancy:
   defaultTenant: turnquest
