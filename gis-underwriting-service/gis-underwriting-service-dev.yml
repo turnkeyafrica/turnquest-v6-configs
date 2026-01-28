@@ -22,9 +22,9 @@ app:
   locale:
     baseName: i18n/messages
     defaultLang: en
-quotation-endpoints:
-  list-quotations: /quotations
-  quotation-risks: "/quotationRisks/{code}"
+  quotation-endpoints:
+    list-quotations: /quotations
+    quotation-risks: "/quotationRisks/{code}"
   setups-endpoints:
     get-parameter-by-param-name-endpoint: /parameters/parameter-name
     get-tax-type-views-endpoint: /taxes-types-view
@@ -78,6 +78,14 @@ quotation-endpoints:
     get-lien-clauses-not-in-policy: "/subclass-clauses/lien-clauses-not-in-policy"
     get-policy-lien-clauses: "/subclass-clauses/policy-lien-clauses"
     fetch-product-subclass-taxes-endpoint: /taxes-types-view/product-subclass-taxes
+    get-special-premium-rates-by-section-endpoint: /special-premium-rates/by-section
+    get-available-perils-endpoint: /perils/available
+    fetch-clauses-for-population: /clauses/by-subclass-product-code
+    get-multi-class-clauses-endpoint: /clauses/product/multi-class
+    get-clauses-by-subclasses-endpoint: /clauses/product/subclasses
+    get-count-mandatory-clauses-endpoint: /subclass-clauses/count
+    find-cover-types-by-code-endpoint: "/api/v1/cover-types/{code}"
+
   commons-endpoints:
     save-transaction-details-endpoint: "/gis-transactions"
     generate-number-format-endpoint: /number-format/generate
@@ -85,8 +93,15 @@ quotation-endpoints:
     generate-certificate-number-endpoint: /number-format/certificate
     save-transmittal-details-endpoint: /transmittal
     fetch-paid-premium-endpoint: /master-transactions/premium
+    get-get-transactions-by-batch-no-endpoint: /batchNo
+    get-mandatory-clause-global-exception-count-endpoint: /gis-exceptions/count
   crm-setups-endpoints:
     get-org-type-endpoint: "/organizations/organization-by-system/{system-code}/"
+    find-agency-list-by-code-endpoint: /agents/fetchAllById
+    fetch-intermediary-list-endpoint: /v2/api/intermediary/
+    get-systems-by-agent-code-endpoint: "/agents/{agentCode}/agency-systems/"
+    find-client-list-by-code-endpoint: v2/api/clients/list-detailed
+
 
 spring:
   sleuth:
