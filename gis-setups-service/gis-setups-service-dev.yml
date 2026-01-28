@@ -182,6 +182,7 @@ springdoc:
     urls:
       - url: /gis/setups/v3/api-docs
         name: GIS Setups API
+
 multitenancy:
   defaultTenant: turnquest
   include: turnquest,v6test,heritage19c
