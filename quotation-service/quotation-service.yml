@@ -238,11 +238,11 @@ springdoc:
     path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui
-    config-url: /v3/api-docs/swagger-config
+    config-url: /gis/quotation/v3/api-docs/swagger-config
     urls:
-      - url: /v3/api-docs
+      - url: /gis/quotation/v3/api-docs
         name: GIS QUOTATIONS API
-  server-url: /gis/quotation
+#  server-url: /gis/quotation
 
 multitenancy:
   defaultTenant: turnquest
