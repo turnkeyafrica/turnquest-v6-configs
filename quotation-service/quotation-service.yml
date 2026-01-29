@@ -193,36 +193,49 @@ turnquest:
     basePath:
       v1: "/api/v1"
       v2: "/api/v2"
-  clients:
-    crm:
-      base-url: http://crm-service
-      setupsService: http://crm-setups-service
-      setups: http://crm-setups-service
-    crm-setups:
-      base-url: http://crm-setups-service
-    crm-accounts:
-      base-url: http://crm-accounts-service
-    crm-useradmin:
-      base-url: http://crm-user-administration-service
+clients:
+  crm:
+    base-url: https://evolve.api.dev.caavagroup.com/crm
+    setupsService: https://evolve.api.dev.caavagroup.com/crm/setups
+    setups: https://evolve.api.dev.caavagroup.com/crm/setups
+
+  crm-setups:
+    base-url: https://evolve.api.dev.caavagroup.com/crm/setups
+
+  crm-accounts:
+    base-url: https://evolve.api.dev.caavagroup.com/crm/accounts
+
+  crm-useradmin:
+    base-url: https://evolve.api.dev.caavagroup.com/user/administration
+
+  setups:
+    base-url: https://evolve.api.dev.caavagroup.com/gis/setups
+
+  premium-computation-engine:
+    base-url: https://evolve.api.dev.caavagroup.com/premium/computation
+
+  notification-service:
+    base-url: https://evolve.api.dev.caavagroup.com/turnquest/notification
+
+  underwriting-service:
+    base-url: https://evolve.api.dev.caavagroup.com/gis/underwriting
+
+  commons-service:
+    base-url: https://evolve.api.dev.caavagroup.com/gis/commons
+
+  ticketing-service:
+    base-url: https://evolve.api.dev.caavagroup.com/gis/ticketing
+
+  quotation-service:
+    base-url: https://evolve.api.dev.caavagroup.com/gis/quotation
+
+  alfresco-service:
+    base-url: http://alfresco-service   # ❗ Not exposed in gateway (left as-is)
+
+  gis:
     setups:
-      base-url: http://gis-setups-service
-    premium-computation-engine:
-      base-url: http://premium-computation-service
-    notification-service:
-      base-url: http://turnquest-notification-service
-    underwriting-service:
-      base-url: http://gis-underwriting-service
-    commons-service:
-      base-url: http://gis-commons-service
-    ticketing-service:
-      base-url: http://gis-ticketing-service/api/v1
-    quotation-service:
-      base-url: http://gis-quotation-service
-    alfresco-service:
-      base-url: http://alfresco-service
-    gis:
-      setups:
-        service: http://gis-setups-service
+      service: https://evolve.api.dev.caavagroup.com/gis/setups
+
 
 
 
