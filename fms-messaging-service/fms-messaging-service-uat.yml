@@ -61,10 +61,13 @@ management:
           - info
           - metrics
           - prometheus
+          - bindings
           - beans
           - env
           - loggers
+          - streamsbindings
           - mappings
+          - flyway
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
