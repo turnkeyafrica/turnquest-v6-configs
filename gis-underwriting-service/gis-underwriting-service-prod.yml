@@ -259,8 +259,6 @@ turnquest:
       v1: "/api/v1"
       v2: "/api/v2"
   clients:
-    commons-service:
-      base-url: http://gis-commons-service
     crm-accounts:
       base-url: http://crm-accounts-service
     crm-setups:
@@ -273,15 +271,17 @@ turnquest:
       setups: http://crm-setups-service
     gis:
       setups:
-        service: http://gis-setups-service
+        service: http://gis-setups-service/api/v1
     notification-service:
       base-url: http://turnquest-notification-service
+    commons-service:
+      base-url: http://gis-commons-service/api/v1
     premium-computation-engine:
       base-url: http://premium-computation-service
     quotation-service:
       base-url: http://gis-quotation-service
     setups:
-      base-url: http://gis-setups-service
+      base-url: http://gis-setups-service/api/v1
     ticketing-service:
       base-url: http://gis-ticketing-service
 
