@@ -47,11 +47,12 @@ spring:
   security:
     oauth2:
       resource:
-        id: turnquest-version-6-apis
+        id: geminia
         token-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token
         authorization-uri: ${app.auth.server.realm-url}/protocol/openid-connect/auth
         userinfo-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
         token-info-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token/introspect
+        user-info-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
       resourceserver:
         jwt:
           issuer-uri: ${app.auth.server.realm-url}
