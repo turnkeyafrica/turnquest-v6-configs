@@ -283,7 +283,7 @@ turnquest:
     setups:
       base-url: http://gis-setups-service/api/v1
     ticketing-service:
-      base-url: http://gis-ticketing-service
+      base-url: http://gis-ticketing-service/api/v1
 
 feign:
   client:
