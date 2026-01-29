@@ -150,34 +150,47 @@ turnquest:
       v2: "/api/v2"
   clients:
     crm:
-      base-url: http://crm-service
-      setupsService: http://crm-setups-service
-      setups: http://crm-setups-service
+      base-url: https://evolve.api.dev.caavagroup.com/crm
+      setupsService: https://evolve.api.dev.caavagroup.com/crm/setups
+      setups: https://evolve.api.dev.caavagroup.com/crm/setups
+
     crm-setups:
-      base-url: http://crm-setups-service
+      base-url: https://evolve.api.dev.caavagroup.com/crm/setups
+
     crm-accounts:
-      base-url: http://crm-accounts-service
+      base-url: https://evolve.api.dev.caavagroup.com/crm/accounts
+
     crm-useradmin:
-      base-url: http://crm-user-administration-service
+      base-url: https://evolve.api.dev.caavagroup.com/user/administration
+
     setups:
-      base-url: http://gis-setups-service
+      base-url: https://evolve.api.dev.caavagroup.com/gis/setups/api/v1   # originally had /api/v1
+
     premium-computation-engine:
-      base-url: http://premium-computation-service
+      base-url: https://evolve.api.dev.caavagroup.com/premium/computation
+
     notification-service:
-      base-url: http://turnquest-notification-service
+      base-url: https://evolve.api.dev.caavagroup.com/turnquest/notification
+
     underwriting-service:
-      base-url: http://gis-underwriting-service
+      base-url: https://evolve.api.dev.caavagroup.com/gis/underwriting
+
     commons-service:
-      base-url: http://gis-commons-service
+      base-url: https://evolve.api.dev.caavagroup.com/gis/commons/api/v1   # originally had /api/v1
+
     ticketing-service:
-      base-url: http://gis-ticketing-service
+      base-url: https://evolve.api.dev.caavagroup.com/gis/ticketing/api/v1 # originally had /api/v1
+
     quotation-service:
-      base-url: http://gis-quotation-service
+      base-url: https://evolve.api.dev.caavagroup.com/gis/quotation
+
     alfresco-service:
-      base-url: http://alfresco-service
+      base-url: http://alfresco-service   # ❗ not in gateway
+
     gis:
       setups:
-        service: http://gis-setups-service
+        service: https://evolve.api.dev.caavagroup.com/gis/setups
+
 
 springdoc:
   api-docs:
