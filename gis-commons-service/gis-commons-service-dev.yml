@@ -138,6 +138,14 @@ app:
     baseName: i18n/messages
     defaultLang: en
 
+  alfresco-endpoints:
+    get-client-document-by-client-code-endpoint: /alfrescoServices/getClientDocsByClientCode
+    upload-client-document-endpoint: /alfrescoServices/uploadClientDocument
+    get-document-by-doc-id-endpoint: /alfrescoServices/getDocumentByDocId
+    get-risk-document-by-risk-id-endpoint: /alfrescoServices/getValuationDocs
+    upload-valuation-document-endpoint: /alfrescoServices/uploadValuationDocs
+    delete-document-by-doc-id-endpoint: /alfrescoServices/deleteDocsById
+
 defaultTenant: turnquest
 
 eureka:
