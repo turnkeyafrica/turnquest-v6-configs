@@ -193,48 +193,48 @@ turnquest:
     basePath:
       v1: "/api/v1"
       v2: "/api/v2"
-clients:
-  crm:
-    base-url: https://evolve.api.dev.caavagroup.com/crm
-    setupsService: https://evolve.api.dev.caavagroup.com/crm/setups
-    setups: https://evolve.api.dev.caavagroup.com/crm/setups
+  clients:
+    crm:
+      base-url: https://evolve.api.dev.caavagroup.com/crm
+      setupsService: https://evolve.api.dev.caavagroup.com/crm/setups
+      setups: https://evolve.api.dev.caavagroup.com/crm/setups
 
-  crm-setups:
-    base-url: https://evolve.api.dev.caavagroup.com/crm/setups
+    crm-setups:
+      base-url: https://evolve.api.dev.caavagroup.com/crm/setups
 
-  crm-accounts:
-    base-url: https://evolve.api.dev.caavagroup.com/crm/accounts
+    crm-accounts:
+      base-url: https://evolve.api.dev.caavagroup.com/crm/accounts
 
-  crm-useradmin:
-    base-url: https://evolve.api.dev.caavagroup.com/user/administration
+    crm-useradmin:
+      base-url: https://evolve.api.dev.caavagroup.com/user/administration
 
-  setups:
-    base-url: https://evolve.api.dev.caavagroup.com/gis/setups/api/v1   # originally had /api/v1
-
-  premium-computation-engine:
-    base-url: https://evolve.api.dev.caavagroup.com/premium/computation
-
-  notification-service:
-    base-url: https://evolve.api.dev.caavagroup.com/turnquest/notification
-
-  underwriting-service:
-    base-url: https://evolve.api.dev.caavagroup.com/gis/underwriting
-
-  commons-service:
-    base-url: https://evolve.api.dev.caavagroup.com/gis/commons/api/v1   # originally had /api/v1
-
-  ticketing-service:
-    base-url: https://evolve.api.dev.caavagroup.com/gis/ticketing/api/v1 # originally had /api/v1
-
-  quotation-service:
-    base-url: https://evolve.api.dev.caavagroup.com/gis/quotation
-
-  alfresco-service:
-    base-url: http://alfresco-service   # ❗ not in gateway
-
-  gis:
     setups:
-      service: https://evolve.api.dev.caavagroup.com/gis/setups
+      base-url: https://evolve.api.dev.caavagroup.com/gis/setups/api/v1   # originally had /api/v1
+
+    premium-computation-engine:
+      base-url: https://evolve.api.dev.caavagroup.com/premium/computation
+
+    notification-service:
+      base-url: https://evolve.api.dev.caavagroup.com/turnquest/notification
+
+    underwriting-service:
+      base-url: https://evolve.api.dev.caavagroup.com/gis/underwriting
+
+    commons-service:
+      base-url: https://evolve.api.dev.caavagroup.com/gis/commons/api/v1   # originally had /api/v1
+
+    ticketing-service:
+      base-url: https://evolve.api.dev.caavagroup.com/gis/ticketing/api/v1 # originally had /api/v1
+
+    quotation-service:
+      base-url: https://evolve.api.dev.caavagroup.com/gis/quotation
+
+    alfresco-service:
+      base-url: http://alfresco-service   # ❗ not in gateway
+
+    gis:
+      setups:
+        service: https://evolve.api.dev.caavagroup.com/gis/setups
 
 
 
