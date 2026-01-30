@@ -1,4 +1,5 @@
 spring:
+  # from application-common.yml
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -8,7 +9,7 @@ spring:
   jpa:
     hibernate:
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-      ddl-auto: none
+      ddl-auto: none # from application-dev.yml
     properties:
       hibernate:
         dialect: org.hibernate.dialect.OracleDialect
@@ -27,14 +28,15 @@ spring:
   cloud:
     config:
       enabled: false
-    discovery:
-      enabled: false  # Disable Spring Cloud Discovery
   security:
     oauth2:
       resourceserver:
         jwt:
           issuer-uri: ${app.auth.server.realm-url}
           jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+  # redis:
+  #   host: ${REDIS_HOST:10.176.18.211}
+  #   port: ${REDIS_PORT:6380}
   quartz:
     job-store-type: jdbc
     properties:
@@ -52,7 +54,7 @@ spring:
     sampler:
       probability: 1.0
   zipkin:
-    enabled: false
+    enabled: false # from application-dev.yml
     base-url: ${ZIPKIN_URL:http://10.176.18.27:9411}
   mvc:
     format:
@@ -65,20 +67,19 @@ spring:
   sql:
     init:
       mode: always
+  # from application-fmsReceiptingService.yml
   application:
     name: fms-receipting-service
 
 server:
   forward-headers-strategy: framework
-  port: 2001
+  port: 2001 # from application-fmsReceiptingService.yml
   error:
     include-message: always
   servlet:
     context-path: /
-
 tq:
   dateTimeFormat: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
-
 management:
   endpoints:
     web:
@@ -95,28 +96,28 @@ management:
           - streamsbindings
           - mappings
           - flyway
-
 feign:
   client:
     config:
       default:
         connectTimeout: 6000
         logger-level: basic
+      # from application-fmsReceiptingService.yml
       FMS-RECEIPTING-SERVICE:
         requestInterceptors: com.turnkey.turnquest.common.multitenancy.MultiTenantFeignClientInterceptor
-
-# CRITICAL: Disable Eureka completely for Kubernetes
-eureka:
-  client:
-    enabled: false
-    register-with-eureka: false
-    fetch-registry: false
-
-# Disable Ribbon's Eureka integration
-ribbon:
-  eureka:
-    enabled: false
-
+# eureka:
+#   instance:
+#     instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${server.port}
+#     leaseRenewalIntervalInSeconds: 1
+#     leaseExpirationDurationInSeconds: 3
+#     hostname: ${HOSTNAME:localhost}
+#     prefer-ip-address: ${EUREKA_PREFER_IP:true}
+#   client:
+#     enabled: true
+#     serviceUrl:
+#       defaultZone: ${EUREKA_URL:http://192.0.0.169:8761/eureka/}
+#     register-with-eureka: ${EUREKA_CLIENT_REGISTER_WITH_EUREKA:true} # from application-dev.yml
+#     fetch-registry: true # from application-dev.yml
 app:
   auth:
     server:
@@ -129,17 +130,13 @@ app:
     languages: "en, fr, sw"
     baseName: i18n/messages
     defaultLang: en
-
 base_url: /api/v1
-
 alfresco:
   api:
     url: http://10.176.18.101:9080/alfrescoServices
-
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-
 logging:
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
@@ -153,8 +150,8 @@ logging:
               BasicBinder: TRACE
     feign:
       client: DEBUG
+    # from application-fmsReceiptingService.yml
     com.turnkey.turnquest.feigns.*: DEBUG
-
 multitenancy:
   defaultTenant: turnquest
   include: turnquest
@@ -165,7 +162,6 @@ multitenancy:
         username: TQ_FMS
         password: FMS_2026
         driver-class-name: oracle.jdbc.OracleDriver
-
 redis:
   cache:
     type: redis
@@ -173,7 +169,7 @@ redis:
     redis:
       host: ${SPRING_REDIS_HOST:redis.service.consul}
       port: ${SPRING_REDIS_PORT:6379}
-
+# Configuration for resiliently fetching reports      
 report-fetching:
   retry:
     max-attempts: 5
