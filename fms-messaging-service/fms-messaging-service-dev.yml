@@ -3,6 +3,9 @@ spring:
   cloud:
     config:
       enabled: false
+    kubernetes:
+      discovery:
+        enabled: true  
   security:
     oauth2:
       resourceserver:
@@ -68,19 +71,19 @@ management:
           - streamsbindings
           - mappings
           - flyway
-eureka:
-  instance:
-    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
-    hostname: ${HOSTNAME:localhost}
-    prefer-ip-address: true
-  client:
-    enabled: true
-    serviceUrl:
-      defaultZone: ${EUREKA_URL:http://192.0.0.169:8761/eureka/}
-    register-with-eureka: ${EUREKA_CLIENT_REGISTER_WITH_EUREKA:true} # from application-dev.yml
-    fetch-registry: true # from application-dev.yml
+# eureka:
+#   instance:
+#     instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+#     leaseRenewalIntervalInSeconds: 1
+#     leaseExpirationDurationInSeconds: 3
+#     hostname: ${HOSTNAME:localhost}
+#     prefer-ip-address: true
+#   client:
+#     enabled: true
+#     serviceUrl:
+#       defaultZone: ${EUREKA_URL:http://192.0.0.169:8761/eureka/}
+#     register-with-eureka: ${EUREKA_CLIENT_REGISTER_WITH_EUREKA:true} # from application-dev.yml
+#     fetch-registry: true # from application-dev.yml
 app:
   auth:
     server:

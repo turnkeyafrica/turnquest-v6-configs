@@ -28,6 +28,9 @@ spring:
   cloud:
     config:
       enabled: false
+    kubernetes:
+      discovery:
+        enabled: true  
   security:
     oauth2:
       resourceserver:
@@ -174,4 +177,4 @@ report-fetching:
   retry:
     max-attempts: 5
     initial-backoff-ms: 1000
-    max-backoff-ms: 10000      
+    max-backoff-ms: 10000

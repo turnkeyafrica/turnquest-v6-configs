@@ -38,6 +38,9 @@ spring:
         git:
           uri: https://github.com/turnkeyafrica/turnquest-v6
           searchPaths: gis-setups-configs
+    kubernetes:
+      discovery:
+        enabled: true      
   kafka:
     consumer:
       auto-offset-reset: earliest
@@ -116,16 +119,16 @@ app:
     baseName: i18n/messages
     defaultLang: en
 base_url: /api/v1
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: http://192.0.0.169:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
+# eureka:
+#   instance:
+#     leaseRenewalIntervalInSeconds: 1
+#     leaseExpirationDurationInSeconds: 3
+#     prefer-ip-address: true
+#   client:
+#     serviceUrl:
+#       defaultZone: http://192.0.0.169:8761/eureka/
+#     fetch-registry: true
+#     register-with-eureka: true
 instanceId: fms-setups-service-instance
 env: environment
 logging:

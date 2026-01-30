@@ -23,6 +23,9 @@ spring:
   cloud:
     config:
       enabled: false
+    kubernetes:
+      discovery:
+        enabled: true  
   mvc:
     format:
       date: yyyy-MM-dd
@@ -95,19 +98,19 @@ feign:
       FMS-PAYMENT-SERVICE:
         requestInterceptors:
           - com.turnkey.turnquest.common.multitenancy.MultiTenantFeignClientInterceptor
-eureka:
-  instance:
-    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${server.port}
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
-    hostname: ${HOSTNAME:localhost}
-    prefer-ip-address: ${EUREKA_PREFER_IP:true}
-  client:
-    enabled: true
-    serviceUrl:
-      defaultZone: ${EUREKA_URL:http://192.0.0.169:8761/eureka/}
-    register-with-eureka: ${EUREKA_CLIENT_REGISTER_WITH_EUREKA:true} # from application-dev.yml
-    fetch-registry: true # from application-dev.yml
+# eureka:
+#   instance:
+#     instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${server.port}
+#     leaseRenewalIntervalInSeconds: 1
+#     leaseExpirationDurationInSeconds: 3
+#     hostname: ${HOSTNAME:localhost}
+#     prefer-ip-address: ${EUREKA_PREFER_IP:true}
+#   client:
+#     enabled: true
+#     serviceUrl:
+#       defaultZone: ${EUREKA_URL:http://192.0.0.169:8761/eureka/}
+#     register-with-eureka: ${EUREKA_CLIENT_REGISTER_WITH_EUREKA:true} # from application-dev.yml
+#     fetch-registry: true # from application-dev.yml
   springdoc:
     swagger-ui:
       path: /swagger-ui.html
@@ -126,6 +129,8 @@ multitenancy:
         username: TQ_FMS
         password: FMS_2026
         driver-class-name: oracle.jdbc.OracleDriver
+
+
 redis:
   cache:
     type: redis
