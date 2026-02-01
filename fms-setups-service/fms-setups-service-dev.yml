@@ -167,13 +167,43 @@ management:
       path: /swagger-ui.html
 multitenancy:
   defaultTenant: turnquest
-  include: turnquest
+  include: mutual, turnquest,geminia,star,lifeco,mutual2
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@10.176.18.211:18000/TURNQUESTVI
         username: TQ_FMS
-        password: FMS_2026
+        password: TQ_FMS
+        driver-class-name: oracle.jdbc.OracleDriver
+    lifeco:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.139:1521/LIFECO_INT
+        username: TQ_FMS
+        password: TQ_FMS
+        driver-class-name: oracle.jdbc.OracleDriver
+    mutual:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.95:1521/MUTUAL
+        username: TQ_FMS
+        password: TQ_FMS
+        driver-class-name: oracle.jdbc.OracleDriver
+    mutual2:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.95:1521/MUTUAL
+        username: TQ_FMS
+        password: TQ_FMS
+        driver-class-name: oracle.jdbc.OracleDriver
+    star:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.95:1521/STAR_DISCOVERY
+        username: TQ_FMS
+        password: TQ_FMS
+        driver-class-name: oracle.jdbc.OracleDriver
+    geminia:
+      datasource:
+        url: jdbc:oracle:thin:@10.176.18.110:1521/NEW_GEMINIA
+        username: TQ_FMS
+        password: TQ_FMS
         driver-class-name: oracle.jdbc.OracleDriver
 redis:
   cache:
