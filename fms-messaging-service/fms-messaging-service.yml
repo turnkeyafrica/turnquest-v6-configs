@@ -90,8 +90,8 @@ app:
       realm-url: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
       jwk-set-uri: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}/protocol/openid-connect/certs
   rolesClaim: roles
-  cors:
-    allowed-origins: "http://localhost:2001,http://localhost:2003,http://localhost:4200,http://192.0.0.169,https://evolve.dev.caavagroup.com"
+  # cors:
+  #   allowed-origins: "http://localhost:2001,http://localhost:2003,http://localhost:4200,http://192.0.0.169,https://evolve.dev.caavagroup.com"
   locale:
     languages: "en, fr, sw"
     baseName: i18n/messages
