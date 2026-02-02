@@ -131,13 +131,13 @@ multitenancy:
         driver-class-name: oracle.jdbc.OracleDriver
 
 
-redis:
-  cache:
-    type: redis
-  data:
-    redis:
-      host: ${SPRING_REDIS_HOST:redis.service.consul}
-      port: ${SPRING_REDIS_PORT:6379}
+# redis:
+#   cache:
+#     type: redis
+#   data:
+#     redis:
+#       host: ${SPRING_REDIS_HOST:redis.service.consul}
+#       port: ${SPRING_REDIS_PORT:6379}
 # These keys should match the 'name' you use in @FeignClient
 # Format: http://[kubernetes-service-name]:[port]
 turnquest:
