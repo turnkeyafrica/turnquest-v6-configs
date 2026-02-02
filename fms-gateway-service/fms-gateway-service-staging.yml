@@ -1,6 +1,9 @@
 spring:
   application:
     name: fms-gateway-service
+app:
+  cors:
+    allowed-origins: "https://evolve.dev.caavagroup.com"
   cloud:
     gateway:
       discovery:
