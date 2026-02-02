@@ -16,7 +16,7 @@ spring:
         debug: true
   security:
     oauth2:
-      resource server:
+      resourceserver:
         jwt:
           issuer-uri: ${app.auth.server.realm-url}
           jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
