@@ -31,9 +31,7 @@ spring:
   jpa:
     hibernate:
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-      ddl-auto: update
-    generate-ddl: false
-    show-sql: false
+      ddl-auto: none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.OracleDialect
@@ -54,11 +52,7 @@ spring:
         jwt:
           issuer-uri: ${app.auth.server.realm-url}
           jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
-  flyway:
-    locations: classpath:/db/migration
-    baseline-on-migrate: true
-    out-of-order: true
-    enabled: false
+
   quartz:
     job-store-type: jdbc
     enabled: false
@@ -75,17 +69,8 @@ spring:
             threadCount: 5
   messages:
     basename: lang/messages
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: http://192.0.0.169:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
-defaultTenant: clouddb
+
+defaultTenant: turnquest
 logging:
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
@@ -113,49 +98,4 @@ multitenancy:
         driver-class-name: oracle.jdbc.OracleDriver
       notification:
         enabled: true
-    heritage:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.91:1521/HERITAGE
-        username: TQ_CRM
-        password: TQ_CRM
-        driver-class-name: oracle.jdbc.OracleDriver
-    v6test:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.70:18000/TQV6
-        username: TQ_CRM
-        password: TQ_CRM
-        driver-class-name: oracle.jdbc.OracleDriver
-      notification:
-        enabled: true
-    lifeco:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.139:1521/LIFECO_INT
-        username: TQ_CRM
-        password: TQ_CRM
-        driver-class-name: oracle.jdbc.OracleDriver
-      notification:
-        enabled: true
-    mutual:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.9:1522/MUTUALDB
-        username: TQ_CRM
-        password: TQ_CRM
-        driver-class-name: oracle.jdbc.OracleDriver
-      notification:
-        enabled: true
-    fidelity:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.138:1522/FIDINT
-        username: TQ_CRM
-        password: TQ_CRM
-        driver-class-name: oracle.jdbc.OracleDriver
-      notification:
-        enabled: true
-    test:
-      datasource:
-        url: jdbc:h2:mem:testdb;MODE=Oracle
-        username: sa
-        password: password
-        driver-class-name: org.h2.Driver
-        initialization-mode: never
-        database-platform: org.hibernate.dialect.H2Dialect
+
