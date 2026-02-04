@@ -213,17 +213,17 @@ resilience4j:
         baseConfig: default
 
 
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
-    prefer-ip-address: true
-  client:
-    enabled: false
-    serviceUrl:
-      defaultZone: http://192.0.0.169:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
+#eureka:
+#  instance:
+#    leaseRenewalIntervalInSeconds: 1
+#    leaseExpirationDurationInSeconds: 3
+#    prefer-ip-address: true
+#  client:
+#    enabled: false
+#    serviceUrl:
+#      defaultZone: http://192.0.0.169:8761/eureka/
+#    fetch-registry: true
+#    register-with-eureka: true
 
 instanceId: gis-underwriting-service-instance
 env: environment

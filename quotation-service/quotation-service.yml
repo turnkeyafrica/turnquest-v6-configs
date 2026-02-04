@@ -160,15 +160,16 @@ app:
 
 defaultTenant: turnquest
 
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
-  client:
-    serviceUrl:
-      defaultZone: http://10.176.18.211:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
+#eureka:
+#  instance:
+#    leaseRenewalIntervalInSeconds: 1
+#    leaseExpirationDurationInSeconds: 3
+#  client:
+#    enabled: false
+#    serviceUrl:
+#      defaultZone: http://10.176.18.211:8761/eureka/
+#    fetch-registry: true
+#    register-with-eureka: true
 
 instanceId: quotation-service-instance
 env: environment

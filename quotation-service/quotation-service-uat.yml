@@ -165,6 +165,7 @@ eureka:
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 3
   client:
+    enabled: false
     serviceUrl:
       defaultZone: http://10.176.18.211:8761/eureka/
     fetch-registry: true
