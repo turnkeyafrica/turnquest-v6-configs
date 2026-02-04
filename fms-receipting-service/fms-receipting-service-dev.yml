@@ -102,12 +102,11 @@ management:
 feign:
   client:
     config:
-      default:
+      default: # Use default to apply to ALL feign clients
         connectTimeout: 6000
         logger-level: basic
-      # from application-fmsReceiptingService.yml
-      FMS-RECEIPTING-SERVICE:
-        requestInterceptors: com.turnkey.turnquest.common.multitenancy.MultiTenantFeignClientInterceptor
+        requestInterceptors:
+          - com.turnkey.turnquest.common.multitenancy.MultiTenantFeignClientInterceptor
 app:
   auth:
     server:
