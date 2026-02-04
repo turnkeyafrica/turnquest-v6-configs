@@ -75,8 +75,6 @@ spring:
           threadPool:
             threadCount: 5
 defaultTenant: turnquest
-springdoc:
-  packagesToScan: com.turnkey.turnquest.v6.crm.*.controllers
 logging:
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
@@ -89,39 +87,6 @@ logging:
             sql:
               BasicBinder: TRACE
 
----
-# turnquest profile specific configuration (from application-turnquest.yml)
-#spring:
-#
-#  jpa:
-#    hibernate:
-#      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-#      hbm2ddl:
-#        auto: update
-#    generate-ddl: false
-#    show-sql: false
-#  datasource:
-#    url: jdbc:oracle:thin:@10.176.18.211:18000/TURNQUESTVI
-#    username: TQ_CRM
-#    password: TQ_CRM
-#    driver-class-name: oracle.jdbc.OracleDriver
-#    hikari:
-#      connection-timeout: 60000
-#      maximum-pool-size: 5
-#  flyway:
-#    url: jdbc:oracle:thin:@10.176.18.211:18000/TURNQUESTVI
-#    user: TQ_CRM
-#    password: TQ_CRM
-#    locations: classpath:/db/migration/oracle
-#    baseline-on-migrate: true
-#    out-of-order: true
-#    enabled: false
-#    validation: false
-
-locale:
-  baseName: messages
-  defaultLang: en
-
 multitenancy:
   defaultTenant: turnquest
   include: turnquest
@@ -132,3 +97,10 @@ multitenancy:
         username: TQ_CRM
         password: CRM_2026
         driver-class-name: oracle.jdbc.OracleDriver
+
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
