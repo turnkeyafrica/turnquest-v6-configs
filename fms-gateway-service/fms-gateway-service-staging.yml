@@ -1,6 +1,9 @@
 spring:
   application:
     name: fms-gateway-service
+app:
+  # cors:
+  #   allowed-origins: "https://evolve.dev.caavagroup.com"
   cloud:
     gateway:
       discovery:
@@ -56,10 +59,10 @@ spring:
             - Path=/api/v1/fms-cash-book-transactions-service/**
           filters:
             - RewritePath=/api/v1/fms-cash-book-transactions-service/(?<segment>.*), /api/v1/$\{segment}
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URL:http://192.0.0.169:8761/eureka/}
+# eureka:
+#   client:
+#     serviceUrl:
+#       defaultZone: ${EUREKA_URL:http://192.0.0.169:8761/eureka/}            
 management:
   endpoints:
     web:

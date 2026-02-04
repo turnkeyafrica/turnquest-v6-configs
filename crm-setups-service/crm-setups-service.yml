@@ -31,9 +31,7 @@ spring:
   jpa:
     hibernate:
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-      ddl-auto: update
-    generate-ddl: false
-    show-sql: false
+      ddl-auto: none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.OracleDialect
@@ -54,11 +52,7 @@ spring:
         jwt:
           issuer-uri: ${app.auth.server.realm-url}
           jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
-  flyway:
-    locations: classpath:/db/migration
-    baseline-on-migrate: true
-    out-of-order: true
-    enabled: false
+
   quartz:
     job-store-type: jdbc
     enabled: false
@@ -75,17 +69,8 @@ spring:
             threadCount: 5
   messages:
     basename: lang/messages
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: http://192.0.0.169:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
-defaultTenant: clouddb
+
+defaultTenant: turnquest
 logging:
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'

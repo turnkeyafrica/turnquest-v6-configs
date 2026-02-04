@@ -117,10 +117,10 @@ logging:
     path: ./logs
 scheduled:
   sms:
-    frequency: 300000
+    frequency: 3000
     enabled: Y
   email:
-    frequency: 60000
+    frequency: 3000
     enabled: Y
 notifications:
   sms:
