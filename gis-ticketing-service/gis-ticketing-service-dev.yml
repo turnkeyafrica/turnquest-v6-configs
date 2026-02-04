@@ -126,6 +126,20 @@ misc:
     base: 313
     currency_rate_extension_days: 30
 
+
+camunda:
+  bpm:
+    admin-user:
+      id: admin
+      password: admin
+    filter:
+      create: All
+    database:
+      schema-update: "true"    # âœ… quoted to ensure it binds correctly in YAML
+    auto-deployment-enabled: true
+    history-level: full
+    deployment-resource-pattern: "classpath*:processes/*.bpmn"
+
 springdoc:
   api-docs:
     path: /v3/api-docs

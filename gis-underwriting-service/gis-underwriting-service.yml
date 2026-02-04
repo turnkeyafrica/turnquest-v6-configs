@@ -59,6 +59,9 @@ app:
     get-find-driver-details-by-code-endpoint: "/driver-details/code"
     get-count-driver-by-code: "/driver-details/count/code"
     get-delete-driver-endpoint: "/driver-details/driver-details/count/code"
+    fetch-subclass-section-perils-endpoint: /subclass-section-perils/subclassSectionPerilsMap
+    bouquet-premium-rates-endpoint: /premium-rates/bouquet-rates
+    fetch-class-treaties-by-subclass-code-endpoint: /class-treaties
 
     get-subclass-by-class-code: "/sub-classes/by-class-code/{code}"
     get-cover-type-details: "/subclass-cover-types/details"
@@ -215,6 +218,7 @@ eureka:
     leaseExpirationDurationInSeconds: 3
     prefer-ip-address: true
   client:
+    enabled: false
     serviceUrl:
       defaultZone: http://192.0.0.169:8761/eureka/
     fetch-registry: true
