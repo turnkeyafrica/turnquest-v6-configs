@@ -110,8 +110,8 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
-      jwk-set-uri: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}/protocol/openid-connect/certs
+      realm-url: ${KEYCLOAK_URL:https://evolve.staging.caavagroup.com/realms/geminia}
+      jwk-set-uri: ${KEYCLOAK_URL:https://evolve.staging.caavagroup.com/realms/geminia}/protocol/openid-connect/certs
     rolesClaim: roles
   # cors:
   #   allowed-origins: "http://localhost:2003,http://localhost:4200,http://192.0.0.169,https://evolve.dev.caavagroup.com"  
