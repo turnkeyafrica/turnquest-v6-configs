@@ -33,7 +33,7 @@ reports:
   group:
     path: ${REPORTS_GROUP_PATH:/tqv6vol/APIS/TQ-V6/lms/Reports/group}
   gis:
-    path: src/resources/reports/gis
+    path: reports/gis
   crm:
     path: ${REPORTS_CRM_PATH:/tqv6vol/APIS/TQ-V6/lms/Reports/crm}
 
