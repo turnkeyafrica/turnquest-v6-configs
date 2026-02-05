@@ -16,7 +16,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+      realm-url: https://evolve.staging.caavagroup.com/realms/geminia
   rolesClaim: roles
   locale:
     baseName: i18n/messages

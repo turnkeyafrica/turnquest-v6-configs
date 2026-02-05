@@ -27,7 +27,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
+      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.staging.caavagroup.com/realms/geminia}
   rolesClaim: roles
 
 spring:
