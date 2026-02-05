@@ -16,7 +16,7 @@ reports:
   group:
     path: /tqv6vol/APIS/TQ-V6/lms/Reports/group
   gis:
-    path: /tqv6vol/APIS/TQ-V6/lms/Reports/gis
+    path: src/resources/reports/gis
   crm:
     path: /tqv6vol/APIS/TQ-V6/lms/Reports/crm
 

@@ -16,7 +16,7 @@ reports:
   group:
     path: ${REPORTS_GROUP_PATH}
   gis:
-    path: ${REPORTS_GIS_PATH}
+    path: src/resources/reports/gis
   crm:
     path: ${REPORTS_CRM_PATH}
 
