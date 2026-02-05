@@ -60,11 +60,14 @@ spring:
           uri: https://github.com/turnkeyafrica/turnquest-v6
           searchPaths: premium-computation-engine-configs
   kafka:
+    bootstrap-servers: localhost:9092
     consumer:
+      group-id: ticketing-group
       auto-offset-reset: earliest
-    # change this property if you are using your own Kafka cluster or your Docker IP is different
-    bootstrap-servers: ${kafka:localhost:9092}
-    client-id: gis-ticketing-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
   security:
     oauth2:
       resource:
