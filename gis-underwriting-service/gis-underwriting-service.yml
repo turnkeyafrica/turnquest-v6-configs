@@ -89,6 +89,8 @@ app:
     get-count-mandatory-clauses-endpoint: /subclass-clauses/count
     find-cover-types-by-code-endpoint: "/api/v1/cover-types/{code}"
     fetch-section-endpoint: "sections/{code}"
+    count-product-and-product-group-endpoint: "/products/product-count"
+    fetch-cover-type-details-endpoint: /subclass-covertype-to-sections/details
 
   commons-endpoints:
     save-transaction-details-endpoint: "/gis-transactions"
