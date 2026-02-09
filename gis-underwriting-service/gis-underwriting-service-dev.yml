@@ -294,23 +294,17 @@ feign:
     config:
       premium-computation-engine:
         url: http://10.176.18.211:4020
+
 springdoc:
   api-docs:
     path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui
-  # This tells SpringDoc to respect the X-Forwarded-Prefix header sent by the Gateway
-  show-actuator: true
-# springdoc:
-#   api-docs:
-#     path: /v3/api-docs
-#   swagger-ui:
-#     path: /swagger-ui
-#     config-url: /gis/underwriting/v3/api-docs/swagger-config
-#     urls:
-#       - url: /gis/underwriting/v3/api-docs
-#         name: GIS UNDERWRITING API
-#  server-url: /gis/underwriting
+    config-url: /gis/underwriting/v3/api-docs/swagger-config
+    urls:
+      - url: /gis/underwriting/v3/api-docs
+        name: GIS UNDERWRITING API
+ # server-url: /gis/underwriting
 
 multitenancy:
   defaultTenant: turnquest
