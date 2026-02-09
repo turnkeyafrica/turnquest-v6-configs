@@ -324,7 +324,7 @@ springdoc:
     urls:
       - url: /v3/api-docs
         name: GIS UNDERWRITING API
-  server-url: /gis/underwriting
+  # server-url: /gis/underwriting
 
 multitenancy:
   defaultTenant: turnquest
