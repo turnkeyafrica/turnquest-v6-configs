@@ -1,0 +1,180 @@
+spring:
+  application:
+    name: evolve-alfresco-service
+
+  # 1. SECURITY CONFIGURATION (Fixes the JwtDecoder error)
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Spring uses this to automatically create the JwtDecoder bean
+          issuer-uri: https://evolve.keycloak.caavagroup.com/realms/geminia
+
+  # 2. DATABASE CONFIGURATION
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    initialization-mode: always
+    hikari:
+      idle-timeout: 300000
+      max-lifetime: 1800000
+      allow-pool-suspension: true
+
+  # 3. JPA / HIBERNATE
+  jpa:
+    generate-ddl: false
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
+# SERVER SETTINGS
+server:
+  port: 4012
+  forward-headers-strategy: framework
+  servlet:
+    context-path: /
+  error:
+    include-message: always
+
+# MONITORING
+management:
+  endpoints:
+    web:
+      exposure:
+        include: [ "health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings", "flyway" ]
+
+# API DOCS (SpringDoc OpenAPI)
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+    tryItOutEnabled: true
+    filter: true
+    displayRequestDuration: true
+  show-actuator: true
+  packages-to-scan: com.caava.evolve.evolvealfrescoservice.controller
+  paths-to-match: /api/**
+
+# LOGGING
+logging:
+  file:
+    name: quotation-service.log
+    path: ./logs
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
+
+# --- CUSTOM APPLICATION PROPERTIES ---
+
+# Fixes the 'app.locale.baseName' error
+app:
+  locale:
+    baseName: i18n/messages
+    defaultLang: en
+
+  rolesClaim: roles
+# Custom Security Props (Used by your specific Java logic)
+auth:
+  server:
+    realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+  rolesClaim: roles
+
+# API Versioning
+evolve:
+  api:
+    basePath:
+      v1: "/api/v1"
+      v2: "/api/v2"
+
+# Multi-tenancy
+multitenancy:
+  defaultTenant: turnquest
+  include: turnquest,geminia,zenith
+  tenants:
+    turnquest:
+      datasource:
+        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        username: TQ_GIS
+        password: GIS_2026
+        driver-class-name: oracle.jdbc.OracleDriver
+      alfresco:
+        url: https://alfresco.dev.caavagroup.com/alfresco/api/-default-/public/cmis/versions/1.1/atom
+        username: admin
+        password: admin
+        service-impl: default
+        connect-timeout: 60000
+        read-timeout: 60000
+        folders:
+          clients: EVOLVEDMS/CLIENTS
+          agents: EVOLVEDMS/AGENTS
+          service-providers: EVOLVEDMS/SERVICEPROVIDER
+          quotes: EVOLVEDMS/QUOTATIONS
+          underwriting: EVOLVEDMS/UNDERWRITING
+          claims: EVOLVEDMS/CLAIMS
+          valuation: EVOLVEDMS/VALUATION
+          finance: EVOLVEDMS/FINANCE
+          payments: EVOLVEDMS/PAYMENTDOCS
+          uw-tickets: EVOLVEDMS/UWTICKETS
+          claims-tickets: EVOLVEDMS/CLAIMTICKETS
+          aki-certificates: EVOLVEDMS/AKICERTIFICATES
+
+    geminia:
+      datasource:
+        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        username: TQ_GIS
+        password: GIS_2026
+        driver-class-name: oracle.jdbc.OracleDriver
+      alfresco:
+        url: https://alfresco.dev.caavagroup.com/alfresco/api/-default-/public/cmis/versions/1.1/atom
+        username: admin
+        password: admin
+        service-impl: geminia
+        site-user: hradmin
+        site-password: HrAdmin#2025
+        folders:
+          clients: GEMINIADMS/CLIENTS
+          agents: GEMINIADMS/AGENTS
+          service-providers: GEMINIADMS/SERVICEPROVIDER
+          quotes: GEMINIADMS/QUOTATIONS
+          underwriting: GEMINIADMS/UNDERWRITING
+          claims: GEMINIADMS/CLAIMS
+          valuation: GEMINIADMS/VALUATION
+          finance: GEMINIADMS/FINANCE
+          hr-files: /Sites/hr-administation-documents/documentLibrary/HRFILES
+          hr-personnel-files: /Sites/hr-administation-documents/documentLibrary/PERSONNELFILES
+
+    zenith:
+      datasource:
+        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        username: TQ_GIS
+        password: GIS_2026
+        driver-class-name: oracle.jdbc.OracleDriver
+      alfresco:
+        url: https://alfresco.dev.caavagroup.com/alfresco/api/-default-/public/cmis/versions/1.1/atom
+        username: admin
+        password: admin
+        service-impl: zenith
+        folders:
+          clients: ZENITHINSDMS/CLIENTS
+          agents: ZENITHINSDMS/AGENTS
+          service-providers: ZENITHINSDMS/SERVICEPROVIDER
+          quotes: ZENITHINSDMS/QUOTATIONS
+          underwriting: ZENITHINSDMS/UNDERWRITING
+          claims: ZENITHINSDMS/CLAIMS
+          valuation: ZENITHINSDMS/VALUATION
+          payments: ZENITHINSDMS/PAYMENTDOCS
+          gis-reports: ZENITHINSDMS/GISREPORT
