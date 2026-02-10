@@ -156,4 +156,17 @@ multitenancy:
         password: password
         driver-class-name: org.h2.Driver
         initialization-mode: never
-        database-platform: org.hibernate.dialect.H2Dialect
+        database-platform: org.hibernate.dialect.H2Dialecte
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    url: /v3/api-docs
+    urls:
+      - url: /v3/api-docs
+        name: CRM SETUPS API
