@@ -207,7 +207,7 @@ turnquest:
     quotation-service:
       base-url: http://gis-quotation-service
     alfresco-service:
-      base-url: http://alfresco-service
+      base-url: http://evolve-alfresco-service
     gis:
       setups:
         service: http://gis-setups-service/api/v1

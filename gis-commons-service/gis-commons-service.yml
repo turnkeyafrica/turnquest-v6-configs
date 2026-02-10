@@ -218,7 +218,7 @@ turnquest:
       base-url: https://evolve.api.dev.caavagroup.com/gis/quotation
 
     alfresco-service:
-      base-url: http://alfresco-service   # ❗ not in gateway
+      base-url: https://evolve.api.dev.caavagroup.com/evolve/dms   # ❗ not in gateway
 
     gis:
       setups:
