@@ -294,6 +294,7 @@ feign:
     config:
       premium-computation-engine:
         url: http://10.176.18.211:4020
+
 springdoc:
   api-docs:
     path: /v3/api-docs
@@ -303,7 +304,7 @@ springdoc:
     urls:
       - url: /gis/underwriting/v3/api-docs
         name: GIS UNDERWRITING API
-#  server-url: /gis/underwriting
+ # server-url: /gis/underwriting
 
 multitenancy:
   defaultTenant: turnquest

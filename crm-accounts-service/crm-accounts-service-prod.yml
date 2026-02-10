@@ -103,8 +103,7 @@ springdoc:
   api-docs:
     path: /v3/api-docs
   swagger-ui:
-    path: /swagger-ui.html
-    config-url: /crm/accounts/v3/api-docs/swagger-config
+    path: /swagger-ui
     urls:
       - url: /crm/accounts/v3/api-docs
         name: CRM ACCOUNTS API
