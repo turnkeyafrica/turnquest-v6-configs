@@ -99,11 +99,24 @@ multitenancy:
         driver-class-name: oracle.jdbc.OracleDriver
 
 
+# springdoc:
+#   api-docs:
+#     path: /v3/api-docs
+#   swagger-ui:
+#     path: /swagger-ui
+#     urls:
+#       - url: /crm/accounts/v3/api-docs
+#         name: CRM ACCOUNTS API
 springdoc:
   api-docs:
+    enabled: true
     path: /v3/api-docs
   swagger-ui:
-    path: /swagger-ui
+    enabled: true
+    path: /swagger-ui.html
+    path-prefix: /crm/accounts
+    config-url: /v3/api-docs/swagger-config
+    url: /v3/api-docs
     urls:
       - url: /crm/accounts/v3/api-docs
         name: CRM ACCOUNTS API
