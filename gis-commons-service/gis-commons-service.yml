@@ -165,16 +165,38 @@ logging:
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
   level:
+    # --- Existing Hibernate Settings ---
     org:
       hibernate:
         SQL: DEBUG
+        level: WARN # Silences general Hibernate startup/metadata chatter
         type:
           descriptor:
             sql:
               BasicBinder: TRACE
+
+      # --- New Log Suppression ---
+      apache:
+        kafka: ERROR # Silences "Connection to node -1 could not be established"
+        kafka.clients.admin.AdminClientConfig: WARN # Silences the massive Admin config dumps
+        kafka.clients.consumer.ConsumerConfig: WARN # Silences the massive Consumer config dumps
+
+      springframework:
+        data:
+          redis: ERROR # Silences "Could not safely identify store assignment"
+        cloud:
+          stream: ERROR # Silences the constant provisioning/retry loops
+        context:
+          support:
+            PostProcessorRegistrationDelegate: ERROR # Silences Bean eligibility warnings
+
+    # Lettuce is not under the 'org' package
+    io.lettuce.core: ERROR # Silences Redis connection failure stack traces
+
   file:
     name: gis-commons.log
     path: ./logs
+
 
 turnquest:
   api:
