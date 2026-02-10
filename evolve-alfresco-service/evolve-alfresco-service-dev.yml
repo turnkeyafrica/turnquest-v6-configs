@@ -50,22 +50,6 @@ management:
       exposure:
         include: [ "health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings", "flyway" ]
 
-# API DOCS (SpringDoc OpenAPI)
-springdoc:
-  api-docs:
-    enabled: true
-    path: /v3/api-docs
-  swagger-ui:
-    enabled: true
-    path: /swagger-ui.html
-    operationsSorter: method
-    tagsSorter: alpha
-    tryItOutEnabled: true
-    filter: true
-    displayRequestDuration: true
-  show-actuator: true
-  packages-to-scan: com.caava.evolve.evolvealfrescoservice.controller
-  paths-to-match: /api/**
 
 # LOGGING
 logging:
@@ -99,6 +83,17 @@ evolve:
     basePath:
       v1: "/api/v1"
       v2: "/api/v2"
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui
+    config-url: /evolve/dms/v3/api-docs/swagger-config
+    urls:
+      - url: /evolve/dms/v3/api-docs
+        name: EVOLVE DMS API
+#  server-url: /gis/quotation
 
 # Multi-tenancy
 multitenancy:

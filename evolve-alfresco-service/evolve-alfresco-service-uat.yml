@@ -53,19 +53,14 @@ management:
 # API DOCS (SpringDoc OpenAPI)
 springdoc:
   api-docs:
-    enabled: true
     path: /v3/api-docs
   swagger-ui:
-    enabled: true
-    path: /swagger-ui.html
-    operationsSorter: method
-    tagsSorter: alpha
-    tryItOutEnabled: true
-    filter: true
-    displayRequestDuration: true
-  show-actuator: true
-  packages-to-scan: com.caava.evolve.evolvealfrescoservice.controller
-  paths-to-match: /api/**
+    path: /swagger-ui
+    config-url: /evolve/dms/v3/api-docs/swagger-config
+    urls:
+      - url: /evolve/dms/v3/api-docs
+        name: EVOLVE DMS API
+#  server-url: /gis/quotation
 
 # LOGGING
 logging:
