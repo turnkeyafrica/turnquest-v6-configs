@@ -104,3 +104,4 @@ springdoc:
     urls:
       - url: /crm/accounts/v3/api-docs
         name: CRM ACCOUNTS API
+  server-url: /crm/accounts
