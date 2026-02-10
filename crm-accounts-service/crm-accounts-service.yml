@@ -112,8 +112,9 @@ springdoc:
   swagger-ui:
     enabled: true
     path: /swagger-ui.html
+    path-prefix: /crm/accounts
     config-url: /v3/api-docs/swagger-config
     url: /v3/api-docs
     urls:
-      - url: /v3/api-docs
+      - url: /crm/accounts/v3/api-docs
         name: CRM ACCOUNTS API
