@@ -60,7 +60,7 @@ spring:
           geminia:
             provider: keycloak
             client-id: geminia
-            client-secret: rZfEihte7Zgg9CrR5eS9WPcioodTZh3p
+            client-secret: o14aKw4tSo6wJdQl8HKFTcRmvbkPjXYi
             authorization-grant-type: password
             redirect-uri: "{baseUrl}/oauth/token"
   thymeleaf:
@@ -107,8 +107,8 @@ app:
   configurations:
     password-strength: 3
     password-length: 6
-  client-secret: rZfEihte7Zgg9CrR5eS9WPcioodTZh3p
-  auth-server-url: https://evolve.keycloak.caavagroup.com
+  client-secret: o14aKw4tSo6wJdQl8HKFTcRmvbkPjXYi
+  auth-server-url: https://evolve.keycloak-staging.caavagroup.com
   auth-username: geminiaadmin@geminia.com
   auth-password: geminiaadmin@
   client-id: geminia
@@ -120,7 +120,7 @@ app:
   keycloak:
     data-sync-rate: 3000
 
-app.auth.server.realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+app.auth.server.realm-url: https://evolve.keycloak-staging.caavagroup.com/realms/geminia
 
 locale:
   baseName: messages
