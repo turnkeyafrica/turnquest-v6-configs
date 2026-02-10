@@ -106,7 +106,7 @@ app:
     find-agency-list-by-code-endpoint: /agents/fetchAllById
     fetch-intermediary-list-endpoint: /v2/api/intermediary/
     get-systems-by-agent-code-endpoint: "/agents/{agentCode}/agency-systems/"
-    find-client-list-by-code-endpoint: v2/api/clients/list-detailed
+    find-client-list-by-code-endpoint: /v2/api/clients/list-detailed
 
 
 spring:
