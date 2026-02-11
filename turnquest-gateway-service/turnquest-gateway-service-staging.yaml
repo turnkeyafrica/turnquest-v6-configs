@@ -107,7 +107,7 @@ app:
   configurations:
     password-strength: 3
     password-length: 6
-  client-secret: rZfEihte7Zgg9CrR5eS9WPcioodTZh3p
+  client-secret: o14aKw4tSo6wJdQl8HKFTcRmvbkPjXYi
   auth-server-url: http://10.176.18.211:8181
   auth-username: geminiaadmin@geminia.com
   auth-password: geminiaadmin@
