@@ -60,7 +60,7 @@ spring:
           geminia:
             provider: keycloak
             client-id: geminia
-            client-secret: rZfEihte7Zgg9CrR5eS9WPcioodTZh3p
+            client-secret: o14aKw4tSo6wJdQl8HKFTcRmvbkPjXYi
             authorization-grant-type: password
             redirect-uri: "{baseUrl}/oauth/token"
   thymeleaf:
