@@ -70,15 +70,15 @@ spring:
     oauth2:
       resource:
         id: geminia
-        token-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token
-        authorization-uri: ${app.auth.server.realm-url}/protocol/openid-connect/auth
-        userinfo-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
-        token-info-uri: ${app.auth.server.realm-url}/protocol/openid-connect/token/introspect
-        user-info-uri: ${app.auth.server.realm-url}/protocol/openid-connect/userinfo
+        token-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/token
+        authorization-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/auth
+        userinfo-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/userinfo
+        token-info-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/token/introspect
+        user-info-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/userinfo
       resourceserver:
         jwt:
-          issuer-uri: ${app.auth.server.realm-url}
-          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+          issuer-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia
+          jwk-set-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/certs
   flyway:
     locations: classpath:/db/migration/oracle
     baseline-on-migrate: false #NEVER CHANGE BASELINE TO TRUE

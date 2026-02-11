@@ -10,8 +10,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${app.auth.server.realm-url}
-          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+          issuer-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia
+          jwk-set-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/certs
   # redis:
   #   host: ${REDIS_HOST:10.176.18.211}
   #   port: ${REDIS_PORT:6380}
