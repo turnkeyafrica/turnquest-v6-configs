@@ -142,7 +142,7 @@ app:
     get-client-document-by-client-code-endpoint: /api/v1/documents/getClientDocsByClientCode
     upload-client-document-endpoint: /api/v1/documents/uploadClientDocument
     get-document-by-doc-id-endpoint: /api/v1/documents/getDocumentByDocId
-    get-risk-document-by-risk-id-endpoint: /api/v1/documents/getValuationDocs
+    get-risk-document-by-risk-id-endpoint: /api/v2/documents/valuation/risk
     upload-valuation-document-endpoint: /api/v1/documents/uploadValuationDocs
     delete-document-by-doc-id-endpoint: /api/v2/documents
 
