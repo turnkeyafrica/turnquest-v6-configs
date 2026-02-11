@@ -120,7 +120,7 @@ app:
   keycloak:
     data-sync-rate: 3600000
 
-app.auth.server.realm-url: https://evolve.staging.caavagroup.com/realms/geminia
+app.auth.server.realm-url: https://evolve.keycloak-staging.caavagroup.com/realms/geminia
 
 locale:
   baseName: messages
