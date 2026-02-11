@@ -87,7 +87,7 @@ app:
     get-multi-class-clauses-endpoint: /clauses/product/multi-class
     get-clauses-by-subclasses-endpoint: /clauses/product/subclasses
     get-count-mandatory-clauses-endpoint: /subclass-clauses/count
-    find-cover-types-by-code-endpoint: "/api/v1/cover-types/{code}"
+    find-cover-types-by-code-endpoint: "/cover-types/{code}"
     fetch-section-endpoint: "sections/{code}"
     count-product-and-product-group-endpoint: "/products/product-count"
     fetch-cover-type-details-endpoint: /subclass-covertype-to-sections/details
@@ -106,7 +106,7 @@ app:
     find-agency-list-by-code-endpoint: /agents/fetchAllById
     fetch-intermediary-list-endpoint: /v2/api/intermediary/
     get-systems-by-agent-code-endpoint: "/agents/{agentCode}/agency-systems/"
-    find-client-list-by-code-endpoint: v2/api/clients/list-detailed
+    find-client-list-by-code-endpoint: /v2/api/clients/list-detailed
 
 
 spring:
@@ -303,7 +303,13 @@ turnquest:
 
     alfresco-service:
       base-url: http://alfresco-service   # ❗ not in gateway
+      
+    reInsurance-service:
+      base-url: https://evolve.api.dev.caavagroup.com/gis/reInsurance/api/v1
 
+    claim-service:
+      base-url: https://evolve.api.dev.caavagroup.com/gis/claim/api/v1
+      
     gis:
       setups:
         service: https://evolve.api.dev.caavagroup.com/gis/setups
