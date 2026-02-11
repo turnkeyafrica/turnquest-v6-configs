@@ -151,7 +151,7 @@ multitenancy:
         password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver
 
- turnquest:
+turnquest:
   api:
     basePath:
       v1: "/api/v1"
