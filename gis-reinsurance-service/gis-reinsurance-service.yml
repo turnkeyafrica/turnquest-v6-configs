@@ -1,32 +1,3 @@
-server:
-  forward-headers-strategy: framework
-  port: 4006
-  servlet:
-    context-path: /
-  error:
-    include-message: always
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: [ "health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings","flyway" ]
-  endpoint:
-    health:
-      show-details: always
-app:
-  name: TurnQuest Version Vi Integrated GIS Underwriting System
-  configurations:
-    password-strength: 3
-    password-length: 6
-  auth:
-    server:
-      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
-  rolesClaim: roles
-  locale:
-    baseName: i18n/messages
-    defaultLang: en
-
 spring:
   sleuth:
     sampler:
@@ -34,16 +5,16 @@ spring:
   messages:
     basename: i18n/messages
   application:
-    name: GIS-REINSURANCE-SERVICE
-    jackson:
-      serialization:
-        FAIL_ON_EMPTY_BEANS: false
+    name: gis-reinsurance-service
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
   datasource:
     initialization-mode: always
     hikari:
-      connection-timeout: 30000
-      idle-timeout: 600000
+      idle-timeout: 300000
       max-lifetime: 1800000
+      allow-pool-suspension: true
   jpa:
     hibernate:
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
@@ -52,28 +23,17 @@ spring:
     show-sql: false
     properties:
       hibernate:
-        proc:
-          param_null_passing: true
-        #dialect: org.hibernate.dialect.Oracle10gDialect
-    #management:
-    # zipkin:
-    #   tracing:
-    #     endpoint: http://10.176.18.27:9411
-  cloud:
-    config:
-      import-check:
-        enabled: false
-      server:
-        git:
-          uri: https://github.com/turnkeyafrica/turnquest-v6
-          searchPaths: gis-reinsurance-configs
+        dialect: org.hibernate.dialect.OracleDialect
+  management:
+    zipkin:
+      tracing:
+        endpoint: http://10.176.18.211:9411
+
   kafka:
-    bootstrap-servers: ${kafka:localhost:9092}
+    bootstrap-servers: ${SPRING_KAFKA_HOST:kafka.service.consul}:${SPRING_KAFKA_PORT:9092}
     consumer:
       auto-offset-reset: earliest
-    # change this property if you are using your own Kafka cluster or your Docker IP is different
-    #bootstrap-servers: 10.176.18.211:29092
-    client-id: gis-setups-service
+    client-id: gis-reinsurance-service
   security:
     oauth2:
       resource:
@@ -89,10 +49,10 @@ spring:
           jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
   flyway:
     locations: classpath:/db/migration/oracle
-    baseline-on-migrate: false #NEVER CHANGE BASELINE TO TRUE
-    validate-on-migrate: false #true to populate local DB
+    baseline-on-migrate: false
+    validate-on-migrate: false
     table: schema_version
-    enabled: true
+    enabled: false
     ignore-missing-migrations: false
     out-of-order: true
   quartz:
@@ -109,39 +69,125 @@ spring:
             selectWithLockSQL: 'SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE'
           threadPool:
             threadCount: 5
+  redis:
+    cache:
+      type: redis
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:redis.service.consul}
+      port: ${SPRING_REDIS_PORT:6379}
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 30s
+        register-health-indicator: true
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        permitted-number-of-calls-in-half-open-state: 3
+        minimum-number-of-calls: 5
+    instances:
+      crmService:
+        baseConfig: default
+      setupsService:
+        baseConfig: default
+      premiumComputationService:
+        baseConfig: default
+      notificationClient:
+        baseConfig: default
+      underwritingClient:
+        baseConfig: default
+      commonsClient:
+        baseConfig: default
+
+
+server:
+  forward-headers-strategy: framework
+  port: 4006
+  servlet:
+    context-path: /
+  error:
+    include-message: always
+  endpoints:
+    web:
+      exposure:
+        include: [ "health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings","flyway" ]
+
+app:
+  name: TurnQuest Version Vi Integrated GIS Underwriting System
+  configurations:
+    password-strength: 3
+    password-length: 6
+  auth:
+    server:
+      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+  rolesClaim: roles
+  locale:
+    baseName: i18n/messages
+    defaultLang: en
+  setups-endpoints:
+    find-subclass-cover-type-by-cover-type-code-endpoint: "/subclass-cover-types/coverType/{coverTypeCode}"
+    fetch-excesses-endpoint: /excess
+    get-product-by-id-endpoint: "/products/{code}"
+    get-clause-by-id-endpoint: "/clauses/{code}"
+    get-subclass-by-id-endpoint: "/sub-classes/{code}"
+    get-product-expiry-endpoint: "/products/{code}"
+    get-product-taxes-endpoint: /product-taxes
+    get-parameter-value-endpoint: /parameters/parameter-name
+    get-parameters-list-endpoint: /parameters/list/parameter-name
+    mandatory-clauses-endpoint: /clauses/mandatory
+    find-clause-wording-endpoint: /clauses/wording
+    get-tax-rates-by-code: "/tax-rates/{code}"
+    find-relevant-clauses: /clauses/relevant-clauses
+    get-quake-zone-by-code-endpoint: "/quake-zones/{code}"
+    get-binder-details-endpoint: "/binders/{code}"
+    get-perils-map-by-code-endpoint: "/subperils/{code}"
+  under-writing-endpoints:
+    fetch-mergeable-policies: api/v2/policies/mergeable
+    get-perils-by-batch-number-or-risk-code: "/api/v1/perils/by-batch-risk"
+  commons-endpoints:
+    get-client-remarks: /client-remarks
+    get-transmittals-by-quote-code: "/transmittal/quote-code"
+
+  processflow:
+    asynchronous: false
+    create-quotation: "QuotationProcess"
+    revise-quotation: "QuotationProcess"
+
 defaultTenant: turnquest
-# configure eureka client
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: http://192.0.0.169:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
+
+#eureka:
+#  instance:
+#    leaseRenewalIntervalInSeconds: 1
+#    leaseExpirationDurationInSeconds: 3
+#  client:
+#    enabled: false
+#    serviceUrl:
+#      defaultZone: http://10.176.18.211:8761/eureka/
+#    fetch-registry: true
+#    register-with-eureka: true
+
 instanceId: gis-reinsurance-service-instance
 env: environment
 
 logging:
-  file:
-    name: gis-reinsurance-service.log
-    path: ./logs
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
   level:
     org:
-      springframework:
-        security: DEBUG
-#  level:
-#    org:
-#      hibernate:
-#        SQL: DEBUG
-#        type:
-#          descriptor:
-#            sql:
-#              BasicBinder: TRACE
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+  file:
+    name: gis-reinsurance-service.log
+    path: ./logs
 
 turnquest:
   api:
@@ -192,6 +238,15 @@ turnquest:
         service: https://evolve.api.dev.caavagroup.com/gis/setups
 
 
+
+
+feign:
+  client:
+    config:
+      premium-computation-engine:
+        url: http://10.176.18.211:4020
+
+
 springdoc:
   api-docs:
     path: /v3/api-docs
@@ -202,6 +257,7 @@ springdoc:
       - url: /v3/api-docs
         name: GIS REINSURANCE API
   server-url: /gis/reinsurance
+
 
 multitenancy:
   defaultTenant: turnquest
