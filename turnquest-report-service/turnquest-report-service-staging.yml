@@ -20,11 +20,11 @@ reports:
   crm:
     path: /tqv6vol/APIS/TQ-V6/lms/Reports/crm
 
-  spring:
+spring:
   data:
-   redis:
-    host: redis-staging-master
-    port: 6379
+    redis:
+      host: redis-staging-master
+      port: 6379
 
 spring.cloud.kubernetes:
   discovery:
