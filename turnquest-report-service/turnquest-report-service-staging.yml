@@ -23,8 +23,8 @@ reports:
 spring:
   data:
     redis:
-      host: ${SPRING_REDIS_HOST:redis-service}
-      port: ${SPRING_REDIS_PORT:6379}
+      host: redis-service
+      port: 6379
 
 spring.cloud.kubernetes:
   discovery:
