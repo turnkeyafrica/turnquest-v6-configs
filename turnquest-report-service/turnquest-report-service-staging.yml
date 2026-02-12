@@ -10,15 +10,15 @@ app:
 
 reports:
   deployed:
-    path: src/resources/reports/gis
-  individual: 
-    path: src/resources/reports/gis
+    path: /tqv6vol/APIS/TQ-V6/reports
+  individual:
+    path: /tqv6vol/APIS/TQ-V6/lms/Reports/individual
   group:
-    path: src/resources/reports/gis
+    path: /tqv6vol/APIS/TQ-V6/lms/Reports/group
   gis:
-    path: src/resources/reports/gis
+    path: reports/gis
   crm:
-    path: src/resources/reports/gis
+    path: /tqv6vol/APIS/TQ-V6/lms/Reports/crm
 
 spring:
   data:
