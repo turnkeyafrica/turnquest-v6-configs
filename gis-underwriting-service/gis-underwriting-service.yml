@@ -107,6 +107,8 @@ app:
     fetch-intermediary-list-endpoint: /v2/api/intermediary/
     get-systems-by-agent-code-endpoint: "/agents/{agentCode}/agency-systems/"
     find-client-list-by-code-endpoint: /v2/api/clients/list-detailed
+  premium-computation-endpoints:
+    compute-premium-endpoints: /premium-computation
 
 
 spring:
@@ -284,7 +286,7 @@ turnquest:
       base-url: https://evolve.api.dev.caavagroup.com/gis/setups/api/v1   # originally had /api/v1
 
     premium-computation-engine:
-      base-url: https://evolve.api.dev.caavagroup.com/premium/computation
+      base-url: https://evolve.api.dev.caavagroup.com/premium/computation/api/v1
 
     notification-service:
       base-url: https://evolve.api.dev.caavagroup.com/turnquest/notification
@@ -303,13 +305,13 @@ turnquest:
 
     alfresco-service:
       base-url: http://alfresco-service   # ❗ not in gateway
-      
+
     reinsurance-service:
       base-url: https://evolve.api.dev.caavagroup.com/gis/reinsurance/api/v1
 
     claim-service:
       base-url: https://evolve.api.dev.caavagroup.com/gis/claims/api/v1
-      
+
     gis:
       setups:
         service: https://evolve.api.dev.caavagroup.com/gis/setups
