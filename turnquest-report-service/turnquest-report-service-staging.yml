@@ -10,11 +10,11 @@ app:
 
 reports:
   deployed:
-    path: ${REPORTS_DEPLOYED_PATH}
-  individual:
-    path: ${REPORTS_INDIVIDUAL_PATH}
+    path: src/resources/reports/gis
+  individual: 
+    path: src/resources/reports/gis
   group:
-    path: ${REPORTS_GROUP_PATH}
+    path: src/resources/reports/gis
   gis:
     path: src/resources/reports/gis
   crm:
