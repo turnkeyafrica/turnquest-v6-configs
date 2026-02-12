@@ -23,7 +23,7 @@ reports:
 spring:
   data:
     redis:
-      host: redis-service-staging
+      host: redis-service
       port: 6379
 
 spring.cloud.kubernetes:
