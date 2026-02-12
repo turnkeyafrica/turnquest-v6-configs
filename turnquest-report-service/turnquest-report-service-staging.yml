@@ -3,7 +3,7 @@ server:
   port: 9991
 
 app:
-  base-url: ${APP_BASE_URL}
+  base-url: https://evolve.api.staging.caavagroup.com/turnquest/report
   auth:
     server:
       realm-url: https://evolve.staging.caavagroup.com/realms/geminia
