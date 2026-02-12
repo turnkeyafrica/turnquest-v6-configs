@@ -6,7 +6,7 @@ app:
   base-url: https://evolve.api.staging.caavagroup.com/turnquest/report
   auth:
     server:
-      realm-url: https://evolve.staging.caavagroup.com/realms/geminia
+      realm-url: https://evolve.keycloak-staging.caavagroup.com/realms/geminia
 
 reports:
   deployed:
@@ -20,11 +20,11 @@ reports:
   crm:
     path: /tqv6vol/APIS/TQ-V6/lms/Reports/crm
 
-spring:
+  spring:
   data:
-    redis:
-      host: redis-service
-      port: 6379
+   redis:
+    host: redis-staging-master
+    port: 6379
 
 spring.cloud.kubernetes:
   discovery:
