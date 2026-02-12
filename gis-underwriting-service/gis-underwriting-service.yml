@@ -304,8 +304,8 @@ turnquest:
     alfresco-service:
       base-url: http://alfresco-service   # ❗ not in gateway
       
-    reInsurance-service:
-      base-url: https://evolve.api.dev.caavagroup.com/gis/reInsurance/api/v1
+    reinsurance-service:
+      base-url: https://evolve.api.dev.caavagroup.com/gis/reinsurance/api/v1
 
     claim-service:
       base-url: https://evolve.api.dev.caavagroup.com/gis/claims/api/v1
