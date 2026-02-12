@@ -3,28 +3,28 @@ server:
   port: 9991
 
 app:
-  base-url: ${APP_BASE_URL}
+  base-url: https://evolve.api.staging.caavagroup.com/turnquest/report
   auth:
     server:
-      realm-url: ${KEYCLOAK_REALM_URL}
+      realm-url: https://evolve.staging.caavagroup.com/realms/geminia
 
 reports:
   deployed:
-    path: ${REPORTS_DEPLOYED_PATH}
+    path: /tqv6vol/APIS/TQ-V6/reports
   individual:
-    path: ${REPORTS_INDIVIDUAL_PATH}
+    path: /tqv6vol/APIS/TQ-V6/lms/Reports/individual
   group:
-    path: ${REPORTS_GROUP_PATH}
+    path: /tqv6vol/APIS/TQ-V6/lms/Reports/group
   gis:
-    path: src/resources/reports/gis
+    path: reports/gis
   crm:
-    path: ${REPORTS_CRM_PATH}
+    path: /tqv6vol/APIS/TQ-V6/lms/Reports/crm
 
 spring:
   data:
     redis:
-      host: ${SPRING_REDIS_HOST:redis-service}
-      port: ${SPRING_REDIS_PORT:6379}
+      host: redis-service
+      port: 6379
 
 spring.cloud.kubernetes:
   discovery:
