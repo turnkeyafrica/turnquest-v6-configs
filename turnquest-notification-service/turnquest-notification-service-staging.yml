@@ -1,20 +1,97 @@
+attachment.directory: "/tqv6vol/APIS/TQ-V6/turnquest-notification-service/attachments/"
+locale.baseName: lang/messages
+
+app:
+  name: TurnQuest Version Vi Integrated Notification
+  configurations:
+    password-strength: 3
+    password-length: 6
+  auth:
+    server:
+      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
+  rolesClaim: roles
+
 server:
   forward-headers-strategy: framework
   port: 1041
+  error:
+    include-message: always
+    whitelabel:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: ["health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings", "flyway"]
 
-app:
-  auth:
-    server:
-      realm-url: https://evolve.keycloak-staging.caavagroup.com/realms/geminia
+locale:
+  baseName: messages
+  defaultLang: en
 
 spring:
+  application:
+    name: turnquest-notification-service
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
   datasource:
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: oracle.jdbc.OracleDriver
+    initialization-mode: always
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+  sql:
+    init:
+      mode: always
+  cloud:
+    config:
+      import-check:
+        enabled: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+  flyway:
+    locations: classpath:/db/migration
+    baseline-on-migrate: true
+    out-of-order: true
+    enabled: false
+  quartz:
+    job-store-type: jdbc
+    enabled: false
+    properties:
+      org:
+        quartz:
+          jobStore:
+            isClustered: true
+            driverDelegateClass: 'org.quartz.impl.jdbcjobstore.StdJDBCDelegate'
+            class: 'org.quartz.impl.jdbcjobstore.JobStoreTXthreadPool'
+            tablePrefix: 'QRTZ_'
+            selectWithLockSQL: 'SELECT * FROM {0}LOCKS WHERE SCHED_NAME = {1} AND LOCK_NAME = ? FOR UPDATE'
+          threadPool:
+            threadCount: 5
+  messages:
+    basename: ${locale.baseName}
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 10MB
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
 
-# Kubernetes client disabled - OkHttp conflict with Africa's Talking SDK
+# Kubernetes client disabled due to OkHttp version conflict with Africa's Talking SDK
+# The AT SDK bundles an old OkHttp version incompatible with kubernetes-client
 spring.cloud.kubernetes:
   enabled: false
   config:
@@ -23,6 +100,53 @@ spring.cloud.kubernetes:
     enabled: false
   loadbalancer:
     enabled: false
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+  file:
+    name: turnquest-notification-service.log
+    path: ./logs
+scheduled:
+  sms:
+    frequency: 3000
+    enabled: Y
+  email:
+    frequency: 3000
+    enabled: Y
+notifications:
+  sms:
+    service: AFRICASTALKING
+    mtech:
+      tss-desc: M-TECH
+      api-url: http://ke.mtechcomm.com/bulkAPIV2/
+      sender-name: HERITAGEIC
+      username: heritage
+      password: aad2b85c7e34150f3c9a1a0bc28b61a788f5b37dxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    africastalking:
+      username: agencifyMobile
+      api-key: 3b5d57ae9082704e40cc8b23b4fa256031e26200db536c309d31d6cffea69e9c
+      sender-name: AGENCIFY
+  email:
+    service: smtp
+    test-mode: false
+    test-message: "Mail sent by turnquest"
+    max-attachments: 5
+    smtp:
+      sender-address: ithelpdesk@fidelityshield.com
+      sender-name: fidelity Insurance
+      port: 587
+      host: smtp.office365.com
+      username: ithelpdesk@fidelityshield.com
+      password: "!CtH3lpd3sk"
 
 multitenancy:
   defaultTenant: turnquest
@@ -34,9 +158,3 @@ multitenancy:
         username: ${SPRING_DATASOURCE_USERNAME}
         password: ${SPRING_DATASOURCE_PASSWORD}
         driver-class-name: oracle.jdbc.OracleDriver
-
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: INFO
