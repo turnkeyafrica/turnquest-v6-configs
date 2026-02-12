@@ -308,7 +308,7 @@ turnquest:
       base-url: https://evolve.api.dev.caavagroup.com/gis/reInsurance/api/v1
 
     claim-service:
-      base-url: https://evolve.api.dev.caavagroup.com/gis/claim/api/v1
+      base-url: https://evolve.api.dev.caavagroup.com/gis/claims/api/v1
       
     gis:
       setups:
