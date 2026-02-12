@@ -6,7 +6,7 @@ app:
   base-url: ${APP_BASE_URL}
   auth:
     server:
-      realm-url: ${KEYCLOAK_REALM_URL}
+      realm-url: https://evolve.staging.caavagroup.com/realms/geminia
 
 reports:
   deployed:
