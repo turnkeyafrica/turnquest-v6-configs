@@ -106,9 +106,9 @@ springdoc:
   swagger-ui:
     enabled: true
     path: /swagger-ui.html
-    config-url: /v3/api-docs/swagger-config
-    url: /v3/api-docs
+    config-url: /crm/setups/v3/api-docs/swagger-config
+    url: /crm/setups/v3/api-docs
     urls:
-      - url: /v3/api-docs
+      - url: /crm/setups/v3/api-docs
         name: CRM SETUPS API
    
