@@ -107,7 +107,7 @@ app:
     fetch-intermediary-list-endpoint: /v2/api/intermediary/
     get-systems-by-agent-code-endpoint: "/agents/{agentCode}/agency-systems/"
     find-client-list-by-code-endpoint: v2/api/clients/list-detailed
-   premium-computation-endpoints:
+  premium-computation-endpoints:
     compute-premium-endpoints: /premium-computation
  
 
