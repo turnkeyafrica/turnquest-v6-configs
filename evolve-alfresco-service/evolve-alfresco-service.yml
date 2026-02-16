@@ -178,3 +178,8 @@ multitenancy:
           valuation: ZENITHINSDMS/VALUATION
           payments: ZENITHINSDMS/PAYMENTDOCS
           gis-reports: ZENITHINSDMS/GISREPORT
+ai:
+  service:
+    url: https://turnquest-ai.turnkeyafrica.com/akili/v2/runs/wait
+    storage-url: https://turnquest-ai.turnkeyafrica.com/akili/storage/files
+    jwt-token: sk-akv1_MgByM76PW_JUja6lruC8rv5zIZmvU7J1qKoVCNqCwlk
