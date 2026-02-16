@@ -45,6 +45,9 @@ spring:
   # from application-fmsMessagingService.yml
   application:
     name: FMS-MESSAGING-SERVICE
+    jackson:
+      serialization:
+        FAIL_ON_EMPTY_BEANS: false
 
 server:
   forward-headers-strategy: framework

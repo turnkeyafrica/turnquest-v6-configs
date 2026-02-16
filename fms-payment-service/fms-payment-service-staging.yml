@@ -1,5 +1,4 @@
 spring:
-  # from application-common.yml
   mail:
     host: smtp.office365.com
     port: 587
@@ -18,8 +17,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia
-          jwk-set-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/certs
+          issuer-uri: ${app.auth.server.realm-url}
+          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
   cloud:
     config:
       enabled: false
@@ -42,7 +41,7 @@ spring:
   jpa:
     hibernate:
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-      ddl-auto: none # from application-dev.yml
+      ddl-auto: none 
     properties:
       hibernate:
         dialect: org.hibernate.dialect.OracleDialect
@@ -55,14 +54,16 @@ spring:
     init:
       mode: always
   zipkin:
-    enabled: false # from application-dev.yml
-  # from application-fmsPaymentService.yml
+    enabled: false
   application:
     name: fms-payment-service
+    jackson:
+      serialization:
+        FAIL_ON_EMPTY_BEANS: false
 
 server:
   forward-headers-strategy: framework
-  port: 2002 # from application-fmsPaymentService.yml
+  port: 2002 
   error:
     include-message: always
   servlet:
@@ -77,8 +78,8 @@ management:
 app:
   auth:
     server:
-      realm-url: ${KEYCLOAK_URL:https://evolve.staging.caavagroup.com/realms/geminia}
-      jwk-set-uri: ${KEYCLOAK_URL:https://evolve.staging.caavagroup.com/realms/geminia}/protocol/openid-connect/certs
+      realm-url: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
+      jwk-set-uri: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}/protocol/openid-connect/certs
   rolesClaim: roles
   # cors:
   #   allowed-origins: "http://localhost:2003,http://localhost:4200,http://192.0.0.169,https://evolve.dev.caavagroup.com"
@@ -94,7 +95,6 @@ feign:
       default:
         connectTimeout: 6000
         logger-level: basic
-      # from application-fmsPaymentService.yml
       FMS-PAYMENT-SERVICE:
         requestInterceptors:
           - com.turnkey.turnquest.common.multitenancy.MultiTenantFeignClientInterceptor
@@ -116,7 +116,6 @@ feign:
       path: /swagger-ui.html
 logging:
   level:
-    # from application-fmsPaymentService.yml
     com.turnkey.turnquest.feigns.*: DEBUG
     com.turnkey.turnquest.service.*: DEBUG
 multitenancy:
@@ -131,51 +130,10 @@ multitenancy:
         driver-class-name: oracle.jdbc.OracleDriver
 
 
-# redis:
-#   cache:
-#     type: redis
-#   data:
-#     redis:
-#       host: ${SPRING_REDIS_HOST:redis.service.consul}
-#       port: ${SPRING_REDIS_PORT:6379}
-# These keys should match the 'name' you use in @FeignClient
-# Format: http://[kubernetes-service-name]:[port]
-turnquest:
-  clients:
-    # --- CRM Services ---
-    crm-user-administration-service: http://crm-user-administration-service:8080
-    crm-setups-service: http://crm-setups-service:8080
-    crm-accounts-service: http://crm-accounts-service:8080
-    turnquest-chart-service: http://turnquest-chart-service:8080
-
-    # --- FMS Services ---
-    fms-setups-service: http://fms-setups-service:8080
-    fms-receipting-service: http://fms-receipting-service:8080
-    fms-payment-service: http://fms-payment-service:8080
-    fms-fixed-assets-service: http://fms-fixed-assets-service:8080
-    fms-general-ledger-service: http://fms-general-ledger-service:8080
-    fms-investments-service: http://fms-investments-service:8080
-    fms-messaging-service: http://fms-messaging-service:8080
-    fms-cash-book-transactions-service: http://fms-cash-book-transactions-service:8080
-
-    # --- GIS Services ---
-    gis-setups-service: http://gis-setups-service:8080
-    gis-underwriting-service: http://gis-underwriting-service:8080
-    gis-payment-service: http://gis-payment-service:8080
-    gis-quotation-service: http://gis-quotation-service:8080
-    gis-claims-service: http://gis-claims-service:8080
-    gis-commons-service: http://gis-commons-service:8080
-    gis-ticketing-service: http://gis-ticketing-service:8080
-
-    # --- Core / Shared Services ---
-    turnquest-notification-service: http://turnquest-notification-service:8080
-    turnquest-ticketing-service: http://turnquest-ticketing-service:8080
-    turnquest-report-service: http://turnquest-report-service:8080
-    turnquest-workflow-service: http://turnquest-workflow-service:8080
-    data-etl-service: http://data-etl-service:8080
-    premium-computation-service: http://premium-computation-service:8080
-
-    # --- Other Departments (Banca, LMS) ---
-    banca-setups-service: http://banca-setups-service:8080
-    lms-setups-service: http://lms-setups-service:8080
-    lms-marketing-service: http://lms-marketing-service:8080 
+redis:
+  cache:
+    type: redis
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:redis.service.consul}
+      port: ${SPRING_REDIS_PORT:6379}

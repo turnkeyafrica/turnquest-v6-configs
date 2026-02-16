@@ -73,6 +73,9 @@ spring:
   # from application-InvestmentsService.yml
   application:
     name: fms-investments-service
+    jackson:
+      serialization:
+        FAIL_ON_EMPTY_BEANS: false
 
 server:
   forward-headers-strategy: framework
