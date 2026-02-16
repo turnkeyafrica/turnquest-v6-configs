@@ -295,9 +295,9 @@ turnquest:
     ticketing-service:
       base-url: http://gis-ticketing-service/api/v1
     reinsurance-service:
-      base-url: https://gis-reinsurance-service/api/v1
+      base-url: http://gis-reinsurance-service/api/v1
     claim-service:
-      base-url: https://gis-claims-service/api/v1
+      base-url: http://gis-claims-service/api/v1
 
 feign:
   client:
