@@ -45,54 +45,19 @@ multitenancy:
         username: TQ_CRM
         password: CRM_2026
         driver-class-name: oracle.jdbc.OracleDriver
-      notification:
-        enabled: true
-    heritage:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.91:1521/HERITAGE
-        username: TQ_CRM
-        password: TQ_CRM
-        driver-class-name: oracle.jdbc.OracleDriver
-    v6test:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.70:18000/TQV6
-        username: TQ_CRM
-        password: TQ_CRM
-        driver-class-name: oracle.jdbc.OracleDriver
-      notification:
-        enabled: true
-    lifeco:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.139:1521/LIFECO_INT
-        username: TQ_CRM
-        password: TQ_CRM
-        driver-class-name: oracle.jdbc.OracleDriver
-      notification:
-        enabled: true
-    mutual:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.9:1522/MUTUALDB
-        username: TQ_CRM
-        password: TQ_CRM
-        driver-class-name: oracle.jdbc.OracleDriver
-      notification:
-        enabled: true
-    fidelity:
-      datasource:
-        url: jdbc:oracle:thin:@10.176.18.138:1522/FIDINT
-        username: TQ_CRM
-        password: TQ_CRM
-        driver-class-name: oracle.jdbc.OracleDriver
-      notification:
-        enabled: true
-    test:
-      datasource:
-        url: jdbc:h2:mem:testdb;MODE=Oracle
-        username: sa
-        password: password
-        driver-class-name: org.h2.Driver
-        initialization-mode: never
-        database-platform: org.hibernate.dialect.H2Dialect
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /user/administration/v3/api-docs/swagger-config
+    url: /user/administration/v3/api-docs
+    urls:
+      - url: /user/administration/v3/api-docs
+        name: User Administrations API
 
 locale:
   baseName: messages
