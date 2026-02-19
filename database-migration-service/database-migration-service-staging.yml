@@ -7,7 +7,6 @@ spring:
     password: CRM_2026
   liquibase:
     change-log: classpath:/changelog-master.xml
-    path: changelog_master.xml
   jpa:
     show-sql: true
 
