@@ -17,14 +17,14 @@ spring:
 #         password: CRM_2026
 #         driver-class-name: oracle.jdbc.OracleDriver
 #         change-log-file: db/turnquest/changelog-master.xml
-multitenancy:
-  include: turnquest
-  tenants:
-    turnquest:
-      url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
-      username: TQ_CRM
-      password: CRM_2026
-      driver-class-name: oracle.jdbc.OracleDriver
+# multitenancy:
+#   include: turnquest
+#   tenants:
+#     turnquest:
+#       url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+#       username: TQ_CRM
+#       password: CRM_2026
+#       driver-class-name: oracle.jdbc.OracleDriver
 
 logging:
   level:
