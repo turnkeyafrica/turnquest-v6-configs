@@ -14,7 +14,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+      realm-url: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
   rolesClaim: roles
 spring:
   application:
@@ -52,7 +52,11 @@ spring:
         jwt:
           issuer-uri: ${app.auth.server.realm-url}
           jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
-
+  flyway:
+    locations: classpath:/db/migration
+    baseline-on-migrate: true
+    out-of-order: true
+    enabled: false
   quartz:
     job-store-type: jdbc
     enabled: false
@@ -69,8 +73,17 @@ spring:
             threadCount: 5
   messages:
     basename: lang/messages
-
-defaultTenant: turnquest
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://192.0.0.169:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+defaultTenant: clouddb
 logging:
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
@@ -92,10 +105,20 @@ multitenancy:
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
         username: TQ_CRM
         password: CRM_2026
         driver-class-name: oracle.jdbc.OracleDriver
-      notification:
-        enabled: true
 
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /crm/setups/v3/api-docs/swagger-config
+    url: /crm/setups/v3/api-docs
+    urls:
+      - url: /crm/setups/v3/api-docs
+        name: CRM SETUPS API

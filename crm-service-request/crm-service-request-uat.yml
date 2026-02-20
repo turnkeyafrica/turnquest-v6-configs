@@ -9,7 +9,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+      realm-url: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
   rolesClaim: roles
 
 spring:
@@ -44,7 +44,7 @@ multitenancy:
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
         username: TQ_CRM
         password: CRM_2026
         driver-class-name: oracle.jdbc.OracleDriver

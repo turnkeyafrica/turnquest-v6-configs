@@ -1,7 +1,3 @@
-# Base configuration (from application-common.yml)
-locale:
-  baseName: messages
-  defaultLang: en
 server:
   forward-headers-strategy: framework
   port: 1031
@@ -19,7 +15,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+      realm-url: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
   rolesClaim: roles
 spring:
   application:
@@ -86,23 +82,40 @@ logging:
           descriptor:
             sql:
               BasicBinder: OFF
+
+locale:
+  baseName: messages
+  defaultLang: en
+
 multitenancy:
   defaultTenant: turnquest
   include: turnquest
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
         username: TQ_CRM
         password: CRM_2026
         driver-class-name: oracle.jdbc.OracleDriver
 
+
+# springdoc:
+#   api-docs:
+#     path: /v3/api-docs
+#   swagger-ui:
+#     path: /swagger-ui
+#     urls:
+#       - url: /crm/accounts/v3/api-docs
+#         name: CRM ACCOUNTS API
 springdoc:
   api-docs:
+    enabled: true
     path: /v3/api-docs
   swagger-ui:
+    enabled: true
     path: /swagger-ui.html
     config-url: /crm/accounts/v3/api-docs/swagger-config
+    url: /crm/accounts/v3/api-docs
     urls:
       - url: /crm/accounts/v3/api-docs
         name: CRM ACCOUNTS API

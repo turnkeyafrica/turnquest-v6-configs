@@ -16,7 +16,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+      realm-url: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
   rolesClaim: roles
   locale:
     baseName: i18n/messages
@@ -97,7 +97,6 @@ eureka:
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 3
   client:
-    enabled: false
     serviceUrl:
       defaultZone: http://10.176.18.211:8761/eureka/
     fetch-registry: true
@@ -161,7 +160,7 @@ multitenancy:
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
         username: TQ_GIS
         password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver

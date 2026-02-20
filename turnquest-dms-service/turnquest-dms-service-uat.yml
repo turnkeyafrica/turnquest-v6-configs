@@ -5,7 +5,7 @@ server:
 app:
   auth:
     server:
-      realm-url: ${KEYCLOAK_REALM_URL}
+      realm-url: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
 
 spring.cloud.kubernetes:
   discovery:
@@ -16,4 +16,4 @@ logging:
   level:
     org:
       hibernate:
-        SQL: INFO
+        SQL: DEBUG

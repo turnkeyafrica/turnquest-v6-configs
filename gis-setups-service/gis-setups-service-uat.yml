@@ -16,7 +16,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+      realm-url: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
   rolesClaim: roles
   locale:
     baseName: i18n/messages
@@ -172,7 +172,6 @@ turnquest:
     alfresco-service:
       base-url: http://turnquest-alfresco-service
 
-
 springdoc:
   api-docs:
     path: /v3/api-docs
@@ -186,11 +185,12 @@ springdoc:
 
 multitenancy:
   defaultTenant: turnquest
-  include: turnquest,v6test,heritage19c,evolvetest
+  include: turnquest,v6test,heritage19c
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
         username: TQ_CRM
         password: CRM_2026
         driver-class-name: oracle.jdbc.OracleDriver
+

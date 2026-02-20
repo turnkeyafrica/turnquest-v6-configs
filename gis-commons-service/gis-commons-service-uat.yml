@@ -132,11 +132,12 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+      realm-url: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
   rolesClaim: roles
   locale:
     baseName: i18n/messages
     defaultLang: en
+
   alfresco-endpoints:
     get-client-document-by-client-code-endpoint: /api/v1/documents/getClientDocsByClientCode
     upload-client-document-endpoint: /api/v1/documents/uploadClientDocument
@@ -144,7 +145,6 @@ app:
     get-risk-document-by-risk-id-endpoint: /api/v2/documents/valuation/risk
     upload-valuation-document-endpoint: /api/v1/documents/uploadValuationDocs
     delete-document-by-doc-id-endpoint: /api/v2/documents
-
 
 defaultTenant: turnquest
 
@@ -193,7 +193,7 @@ turnquest:
     crm-useradmin:
       base-url: http://crm-user-administration-service
     setups:
-      base-url: http://gis-setups-service
+      base-url: http://gis-setups-service/api/v1
     premium-computation-engine:
       base-url: http://premium-computation-service
     notification-service:
@@ -210,7 +210,7 @@ turnquest:
       base-url: http://evolve-alfresco-service
     gis:
       setups:
-        service: http://gis-setups-service
+        service: http://gis-setups-service/api/v1
 
 
 feign:
@@ -218,7 +218,6 @@ feign:
     config:
       premium-computation-engine:
         url: http://10.176.18.211:4020
-
 
 springdoc:
   api-docs:
@@ -237,7 +236,7 @@ multitenancy:
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
         username: TQ_GIS
         password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver

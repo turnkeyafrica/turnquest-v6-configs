@@ -16,7 +16,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+      realm-url: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
   rolesClaim: roles
   locale:
     baseName: i18n/messages
@@ -47,10 +47,10 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.OracleDialect
-  management:
-    zipkin:
-      tracing:
-        endpoint: http://10.176.18.27:9411
+  #management:
+    #zipkin:
+     # tracing:
+     #   endpoint: http://10.176.18.27:9411
   cloud:
     config:
       import-check:
@@ -142,29 +142,47 @@ springdoc:
 
 multitenancy:
   defaultTenant: turnquest
-  include: turnquest,v6test,heritage19c
+  include: turnquest
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
-        username: TQ_CRM
-        password: CRM_2026
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
+        username: TQ_GIS
+        password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver
-#    heritage:
-#      datasource:
-#        url: jdbc:oracle:thin:@10.176.18.91:1521/HERITAGE
-#        username: TQ_GIS
-#        password: TQ_GIS
-#        driver-class-name: oracle.jdbc.OracleDriver
-#    heritage19c:
-#      datasource:
-#        url: jdbc:oracle:thin:@10.176.18.91:1522/heritage19c
-#        username: TQ_GIS
-#        password: TQ_GIS
-#        driver-class-name: oracle.jdbc.OracleDriver
-#    v6test:
-#      datasource:
-#        url: jdbc:oracle:thin:@10.176.18.70:18000/TQV6
-#        username: TQ_GIS
-#        password: TQ_GIS
-#        driver-class-name: oracle.jdbc.OracleDriver
+
+turnquest:
+  api:
+    basePath:
+      v1: "/api/v1"
+      v2: "/api/v2"
+  clients:
+    crm:
+      base-url: http://crm-service
+      setupsService: http://crm-setups-service
+      setups: http://crm-setups-service
+    crm-setups:
+      base-url: http://crm-setups-service
+    crm-accounts:
+      base-url: http://crm-accounts-service
+    crm-useradmin:
+      base-url: http://crm-user-administration-service
+    setups:
+      base-url: http://gis-setups-service
+    premium-computation-engine:
+      base-url: http://premium-computation-service
+    notification-service:
+      base-url: http://turnquest-notification-service
+    underwriting-service:
+      base-url: http://gis-underwriting-service
+    commons-service:
+      base-url: http://gis-commons-service
+    ticketing-service:
+      base-url: http://gis-ticketing-service
+    quotation-service:
+      base-url: http://gis-quotation-service
+    alfresco-service:
+      base-url: http://alfresco-service
+    gis:
+      setups:
+        service: http://gis-setups-service

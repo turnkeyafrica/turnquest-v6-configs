@@ -8,7 +8,7 @@ spring:
       resourceserver:
         jwt:
           # Spring uses this to automatically create the JwtDecoder bean
-          issuer-uri: https://evolve.keycloak.caavagroup.com/realms/geminia
+          issuer-uri: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
 
   # 2. DATABASE CONFIGURATION
   datasource:
@@ -50,17 +50,6 @@ management:
       exposure:
         include: [ "health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings", "flyway" ]
 
-# API DOCS (SpringDoc OpenAPI)
-springdoc:
-  api-docs:
-    path: /v3/api-docs
-  swagger-ui:
-    path: /swagger-ui
-    config-url: /evolve/dms/v3/api-docs/swagger-config
-    urls:
-      - url: /evolve/dms/v3/api-docs
-        name: EVOLVE DMS API
-#  server-url: /gis/quotation
 
 # LOGGING
 logging:
@@ -85,7 +74,7 @@ app:
 # Custom Security Props (Used by your specific Java logic)
 auth:
   server:
-    realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+    realm-url: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
   rolesClaim: roles
 
 # API Versioning
@@ -95,6 +84,17 @@ evolve:
       v1: "/api/v1"
       v2: "/api/v2"
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui
+    config-url: /evolve/dms/v3/api-docs/swagger-config
+    urls:
+      - url: /evolve/dms/v3/api-docs
+        name: EVOLVE DMS API
+#  server-url: /gis/quotation
+
 # Multi-tenancy
 multitenancy:
   defaultTenant: turnquest
@@ -102,7 +102,7 @@ multitenancy:
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
         username: TQ_GIS
         password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver
@@ -129,7 +129,7 @@ multitenancy:
 
     geminia:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
         username: TQ_GIS
         password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver
@@ -154,7 +154,7 @@ multitenancy:
 
     zenith:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
         username: TQ_GIS
         password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver
@@ -173,3 +173,8 @@ multitenancy:
           valuation: ZENITHINSDMS/VALUATION
           payments: ZENITHINSDMS/PAYMENTDOCS
           gis-reports: ZENITHINSDMS/GISREPORT
+ai:
+  service:
+    url: https://turnquest-ai.turnkeyafrica.com/akili/v2/runs/wait
+    storage-url: https://turnquest-ai.turnkeyafrica.com/akili/storage/files
+    jwt-token: sk-akv1_MgByM76PW_JUja6lruC8rv5zIZmvU7J1qKoVCNqCwlk

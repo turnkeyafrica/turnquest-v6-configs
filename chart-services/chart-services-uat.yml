@@ -6,7 +6,7 @@ app:
   name: TurnQuest Version Vi Charts Service
   auth:
     server:
-      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
+      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.keycloak-uat.caavagroup.com/realms/geminia}
 
 spring:
   application:
@@ -42,7 +42,7 @@ multitenancy:
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
         username: TQ_CRM
         password: CRM_2026
         driver-class-name: oracle.jdbc.OracleDriver
