@@ -27,7 +27,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
+      realm-url: ${KEYCLOAK_REALM_URL:https://evolve.keycloak-uat.caavagroup.com/realms/geminia}
   rolesClaim: roles
 
 spring:
@@ -110,7 +110,7 @@ logging:
 # V6 target datasource (primary)
 v6:
   datasource:
-    jdbc-url: ${SPRING_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev}
+    jdbc-url: ${SPRING_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat}
     username: ${SPRING_DATASOURCE_USERNAME:TQ_CRM}
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: oracle.jdbc.OracleDriver
@@ -118,7 +118,7 @@ v6:
 # Source datasource for migration (using same DB as v6 for dev)
 source:
   datasource:
-    jdbc-url: ${SPRING_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev}
+    jdbc-url: ${SPRING_DATASOURCE_URL:jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat}
     username: ${SPRING_DATASOURCE_USERNAME:TQ_CRM}
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: oracle.jdbc.OracleDriver

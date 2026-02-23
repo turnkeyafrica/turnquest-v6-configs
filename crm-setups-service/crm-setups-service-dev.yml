@@ -90,11 +90,11 @@ logging:
   level:
     org:
       hibernate:
-        SQL: DEBUG
+        SQL: OFF
         type:
           descriptor:
             sql:
-              BasicBinder: TRACE
+              BasicBinder: OFF
 locale:
   baseName: messages
   defaultLang: en

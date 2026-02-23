@@ -124,7 +124,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+      realm-url: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
   rolesClaim: roles
   locale:
     baseName: i18n/messages
@@ -157,19 +157,18 @@ app:
     asynchronous: false
     create-quotation: "QuotationProcess"
     revise-quotation: "QuotationProcess"
-
 defaultTenant: turnquest
 
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
-  client:
-    enabled: false
-    serviceUrl:
-      defaultZone: http://10.176.18.211:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
+#eureka:
+#  instance:
+#    leaseRenewalIntervalInSeconds: 1
+#    leaseExpirationDurationInSeconds: 3
+#  client:
+#    enabled: false
+#    serviceUrl:
+#      defaultZone: http://10.176.18.211:8761/eureka/
+#    fetch-registry: true
+#    register-with-eureka: true
 
 instanceId: gis-reinsurance-service-instance
 env: environment
@@ -232,6 +231,7 @@ feign:
       premium-computation-engine:
         url: http://10.176.18.211:4020
 
+
 springdoc:
   api-docs:
     path: /v3/api-docs
@@ -249,7 +249,7 @@ multitenancy:
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
         username: TQ_GIS
         password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver

@@ -17,7 +17,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
+      realm-url: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
   rolesClaim: roles
   locale:
     baseName: i18n/messages
@@ -107,6 +107,9 @@ app:
     fetch-intermediary-list-endpoint: /v2/api/intermediary/
     get-systems-by-agent-code-endpoint: "/agents/{agentCode}/agency-systems/"
     find-client-list-by-code-endpoint: v2/api/clients/list-detailed
+  premium-computation-endpoints:
+    compute-premium-endpoints: /premium-computation
+ 
 
 
 spring:
@@ -214,18 +217,18 @@ resilience4j:
       notificationClient:
         baseConfig: default
 
-
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 3
-    prefer-ip-address: true
-  client:
-    enabled: false
-    serviceUrl:
-      defaultZone: http://192.0.0.169:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
+#
+#eureka:
+#  instance:
+#    leaseRenewalIntervalInSeconds: 1
+#    leaseExpirationDurationInSeconds: 3
+#    prefer-ip-address: true
+#  client:
+#    enabled: false
+#    serviceUrl:
+#      defaultZone: http://192.0.0.169:8761/eureka/
+#    fetch-registry: true
+#    register-with-eureka: true
 
 instanceId: gis-underwriting-service-instance
 env: environment
@@ -284,7 +287,7 @@ turnquest:
     commons-service:
       base-url: http://gis-commons-service/api/v1
     premium-computation-engine:
-      base-url: http://premium-computation-service
+      base-url: http://premium-computation-service/api/v1
     quotation-service:
       base-url: http://gis-quotation-service
     setups:
@@ -311,7 +314,7 @@ springdoc:
     urls:
       - url: /gis/underwriting/v3/api-docs
         name: GIS UNDERWRITING API
-#  server-url: /gis/underwriting
+ # server-url: /gis/underwriting
 
 multitenancy:
   defaultTenant: turnquest
@@ -319,7 +322,7 @@ multitenancy:
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
+        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
         username: TQ_GIS
         password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver

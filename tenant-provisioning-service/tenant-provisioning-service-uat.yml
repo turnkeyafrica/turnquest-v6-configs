@@ -4,27 +4,22 @@ server:
 
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
+    url: jdbc:postgresql://localhost:5432/provisioning_jobs
+    username: provisioning_user
     password: ${SPRING_DATASOURCE_PASSWORD}
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    bootstrap-servers: localhost:9092
 
 tenant-registry:
-  base-url: ${TENANT_REGISTRY_URL}
+  base-url: http://tenant-registry-service:8080/api/v1
 
 provisioning:
   saas:
     postgresql:
-      host: ${POSTGRES_HOST}
-      port: ${POSTGRES_PORT:5432}
-      admin-username: ${POSTGRES_ADMIN_USERNAME}
+      host: postgres-shared.internal
+      port: 5432
+      admin-username: postgres
       admin-password: ${POSTGRES_ADMIN_PASSWORD}
-    oracle:
-      host: ${ORACLE_HOST}
-      port: ${ORACLE_PORT:1521}
-      admin-username: ${ORACLE_ADMIN_USERNAME}
-      admin-password: ${ORACLE_ADMIN_PASSWORD}
 
 spring.cloud.kubernetes:
   discovery:
@@ -33,4 +28,4 @@ spring.cloud.kubernetes:
 
 logging:
   level:
-    root: INFO
+    root: DEBUG
