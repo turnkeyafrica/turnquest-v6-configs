@@ -139,11 +139,11 @@ app:
     defaultLang: en
 
   alfresco-endpoints:
-    get-client-document-by-client-code-endpoint: /api/v1/documents/getClientDocsByClientCode
-    upload-client-document-endpoint: /api/v1/documents/uploadClientDocument
-    get-document-by-doc-id-endpoint: /api/v1/documents/getDocumentByDocId
+    get-client-document-by-client-code-endpoint: /api/v2/documents/clients
+    upload-client-document-endpoint: /api/v2/documents/clients
+    get-document-by-doc-id-endpoint: /api/v2/documents
     get-risk-document-by-risk-id-endpoint: /api/v2/documents/valuation/risk
-    upload-valuation-document-endpoint: /api/v1/documents/uploadValuationDocs
+    upload-valuation-document-endpoint: /api/v2/documents/valuation
     delete-document-by-doc-id-endpoint: /api/v2/documents
 
 defaultTenant: turnquest
