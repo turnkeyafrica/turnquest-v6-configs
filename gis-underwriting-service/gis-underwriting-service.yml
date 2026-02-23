@@ -101,6 +101,16 @@ app:
     fetch-paid-premium-endpoint: /master-transactions/premium
     get-get-transactions-by-batch-no-endpoint: /batchNo
     get-mandatory-clause-global-exception-count-endpoint: /gis-exceptions/count
+  reinsurance-endpoints:
+    delete-risk-details-endpoint: "/reinsurance-risk-details/delete-risk-info/{riskCode}"
+    find-prrd-code-endpoint: /reinsurance-risk-details/prrd-code
+    fac-balance-count-endpoint: /reinsurance-risk-details/fac-balance-count
+    fac-balance-count-risks-endpoint: /reinsurance-risk-details/fac-balance-count-risks
+    ri-auth-dates-endpoint: /reinsurance-risk-details/ri-auth-dates
+    ri-auth-dates-update-endpoint: /reinsurance-risk-details/ri-auth-dates-update
+    calculate-aggregates-endpoint: /reinsurance/pre-debit/calculate-aggregates
+    check-risk-ri-endpoint: /reinsurance-risk-details/check-risk-ri
+    check-uw-ri-data-endpoint: /reinsurance-risk-details/check-uw-ri-data
   crm-setups-endpoints:
     get-org-type-endpoint: "/organizations/organization-by-system/{system-code}/"
     find-agency-list-by-code-endpoint: /agents/fetchAllById
