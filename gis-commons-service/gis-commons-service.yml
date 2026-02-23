@@ -39,7 +39,7 @@ spring:
     consumer:
       auto-offset-reset: earliest
     # change this property if you are using your own Kafka cluster or your Docker IP is different
-    bootstrap-servers: ${kafka:localhost:9092}
+    bootstrap-servers: ${SPRING_KAFKA_HOST:kafka.service.consul}:${SPRING_KAFKA_PORT:9092}
     client-id: gis-commons-service
   security:
     oauth2:
