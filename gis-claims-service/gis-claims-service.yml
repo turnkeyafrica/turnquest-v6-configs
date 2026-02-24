@@ -168,7 +168,7 @@ turnquest:
       base-url: https://evolve.api.dev.caavagroup.com/turnquest/notification
 
     underwriting-service:
-      base-url: https://evolve.api.dev.caavagroup.com/gis/underwriting
+      base-url: https://evolve.api.dev.caavagroup.com/gis/underwriting/api/v2
 
     commons-service:
       base-url: https://evolve.api.dev.caavagroup.com/gis/commons/api/v1   # originally had /api/v1
