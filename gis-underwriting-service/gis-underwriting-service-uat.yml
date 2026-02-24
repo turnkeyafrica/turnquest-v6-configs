@@ -101,6 +101,10 @@ app:
     fetch-paid-premium-endpoint: /master-transactions/premium
     get-get-transactions-by-batch-no-endpoint: /batchNo
     get-mandatory-clause-global-exception-count-endpoint: /gis-exceptions/count
+    count-unauthorised-exceptions-endpoint: /gis-exceptions/count-unauthorised
+    find-transaction-no-by-batch-endpoint: /gis-transactions/find-transaction-no-by-batch
+    find-transaction-code-endpoint: "/gis-transactions/{transNo}/code"
+    find-master-trans-duplicate-info-endpoint: /master-transactions/duplicate-info
   reinsurance-endpoints:
     delete-risk-details-endpoint: "/reinsurance-risk-details/delete-risk-info/{riskCode}"
     find-prrd-code-endpoint: /reinsurance-risk-details/prrd-code
