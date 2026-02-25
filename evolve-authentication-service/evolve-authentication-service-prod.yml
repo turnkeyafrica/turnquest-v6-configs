@@ -1,0 +1,52 @@
+server:
+  port: 1040
+
+spring:
+  application:
+    name: evolve-authentication-service
+  config:
+    import: optional:configserver:http://turnquest-configuration-service/config
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+  cloud:
+    kubernetes:
+      enabled: false
+      discovery:
+        enabled: false
+    discovery:
+      enabled: false
+
+app:
+  keycloak:
+    auth-server-url: https://evolve.keycloak.caavagroup.com
+    default-realm: geminia
+    client-id: ${KEYCLOAK_CLIENT_ID:evolve-auth}
+    client-secret: ${KEYCLOAK_CLIENT_SECRET:changeme}
+  cors:
+    allowed-origins: "*"
+
+# TODO: Uncomment once tenant-registry-service is deployed
+#tenant-registry:
+#  base-url: http://localhost:8081/api/v1
+#
+#registry:
+#  api-key: ${REGISTRY_API_KEY:default-dev-api-key}
+#
+#tenant:
+#  cache:
+#    ttl-minutes: 10
+#    max-size: 500
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
