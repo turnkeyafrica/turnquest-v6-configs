@@ -45,11 +45,19 @@ app:
 #    ttl-minutes: 10
 #    max-size: 500
 
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n'
 springdoc:
   api-docs:
     path: /v3/api-docs
   swagger-ui:
-    path: /swagger-ui.html
+    path: /swagger-ui
+    config-url: /evolve/auth/v3/api-docs/swagger-config
+    urls:
+      - url: /evolve/auth/v3/api-docs
+        name: EVOLVE AUTHENTICATION API
+#  server-url: /evolve/auth
 
 management:
   endpoints:
