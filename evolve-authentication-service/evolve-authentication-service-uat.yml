@@ -1,9 +1,21 @@
 server:
   port: 1040
+  forward-headers-strategy: framework
+  servlet:
+    context-path: /
+  error:
+    include-message: always
+  endpoints:
+    web:
+      exposure:
+        include: [ "health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings","flyway" ]
 
 spring:
   application:
     name: evolve-authentication-service
+    jackson:
+      serialization:
+        FAIL_ON_EMPTY_BEANS: false
   cloud:
     kubernetes:
       enabled: false
@@ -16,8 +28,8 @@ app:
   keycloak:
     auth-server-url: https://evolve.keycloak.caavagroup.com
     default-realm: geminia
-    client-id: ${KEYCLOAK_CLIENT_ID:evolve-auth}
-    client-secret: ${KEYCLOAK_CLIENT_SECRET:changeme}
+    client-id: ${KEYCLOAK_CLIENT_ID}
+    client-secret: ${KEYCLOAK_CLIENT_SECRET}
   cors:
     allowed-origins: "*"
 
