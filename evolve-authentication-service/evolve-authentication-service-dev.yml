@@ -28,8 +28,8 @@ app:
   keycloak:
     auth-server-url: https://evolve.keycloak.caavagroup.com
     default-realm: geminia
-    client-id: ${KEYCLOAK_CLIENT_ID}
-    client-secret: ${KEYCLOAK_CLIENT_SECRET}
+    client-id: geminia
+    client-secret: 3VxBn0f0d3GkMrddURfmxuLWNw3eUj5B
   cors:
     allowed-origins: "*"
 
