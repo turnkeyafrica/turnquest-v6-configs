@@ -161,7 +161,7 @@ turnquest:
     notification-service:
       base-url: http://turnquest-notification-service
     underwriting-service:
-      base-url: http://gis-underwriting-service
+      base-url: http://gis-underwriting-service/api/v2
     commons-service:
       base-url: http://gis-commons-service
     ticketing-service:
