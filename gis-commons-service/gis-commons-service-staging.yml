@@ -210,7 +210,7 @@ turnquest:
       base-url: http://evolve-alfresco-service
     gis:
       setups:
-        service: http://gis-setups-service
+        service: http://gis-setups-service/api/v1
 
 
 feign:
