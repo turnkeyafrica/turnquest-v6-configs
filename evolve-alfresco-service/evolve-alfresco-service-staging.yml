@@ -134,7 +134,7 @@ multitenancy:
         password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver
       alfresco:
-        url: https://alfresco.dev.caavagroup.com/alfresco/api/-default-/public/cmis/versions/1.1/atom
+        url: https://alfresco.staging.caavagroup.com/alfresco/api/-default-/public/cmis/versions/1.1/atom
         username: admin
         password: admin
         service-impl: geminia
