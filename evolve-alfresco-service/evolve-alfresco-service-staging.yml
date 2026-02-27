@@ -8,7 +8,7 @@ spring:
       resourceserver:
         jwt:
           # Spring uses this to automatically create the JwtDecoder bean
-          issuer-uri: https://evolve.keycloak.caavagroup.com/realms/geminia
+          issuer-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia
 
   # 2. DATABASE CONFIGURATION
   datasource:
