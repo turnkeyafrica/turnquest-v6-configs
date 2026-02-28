@@ -115,6 +115,11 @@ app:
     calculate-aggregates-endpoint: /reinsurance/pre-debit/calculate-aggregates
     check-risk-ri-endpoint: /reinsurance-risk-details/check-risk-ri
     check-uw-ri-data-endpoint: /reinsurance-risk-details/check-uw-ri-data
+    register-treaty-data-endpoint: /reinsurance/pre-debit/register-treaty-data
+    facre-cessions-by-trans-no-endpoint: /reinsurance/pre-debit/facre-cessions-by-trans
+    pool-risk-details-by-trans-endpoint: /reinsurance/pre-debit/pool-risk-details-by-trans
+    xol-cessions-by-trans-no-endpoint: /reinsurance/pre-debit/xol-cessions-by-trans
+    treaty-participants-by-codes-endpoint: /reinsurance/pre-debit/treaty-participants-by-codes
   crm-setups-endpoints:
     get-org-type-endpoint: "/organizations/organization-by-system/{system-code}/"
     find-agency-list-by-code-endpoint: /agents/fetchAllById
