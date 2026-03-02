@@ -156,7 +156,7 @@ multitenancy:
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@192.0.2.231:1521/EVOLVE_STAGING
+        url: jdbc:oracle:thin:@190.0.2.231:1521/EVOLVE_STAGING
         username: TQ_CRM
         password: CRM_2026
         driver-class-name: oracle.jdbc.OracleDriver
