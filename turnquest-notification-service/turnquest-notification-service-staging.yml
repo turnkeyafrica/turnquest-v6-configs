@@ -148,13 +148,15 @@ notifications:
       username: ithelpdesk@fidelityshield.com
       password: "!CtH3lpd3sk"
 
+
+
 multitenancy:
   defaultTenant: turnquest
   include: turnquest
   tenants:
     turnquest:
       datasource:
-        url: ${SPRING_DATASOURCE_URL}
-        username: ${SPRING_DATASOURCE_USERNAME}
-        password: ${SPRING_DATASOURCE_PASSWORD}
+        url: jdbc:oracle:thin:@192.0.2.231:1521/EVOLVE_STAGING
+        username: TQ_CRM
+        password: CRM_2026
         driver-class-name: oracle.jdbc.OracleDriver
