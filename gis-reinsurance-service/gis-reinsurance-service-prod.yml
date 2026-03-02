@@ -149,6 +149,7 @@ app:
   under-writing-endpoints:
     fetch-mergeable-policies: api/v2/policies/mergeable
     get-perils-by-batch-number-or-risk-code: "/api/v1/perils/by-batch-risk"
+    fetch-populate-treaty-request-payload-endpoint: /api/v2/policies/populate-allocations-payload
   commons-endpoints:
     get-client-remarks: /client-remarks
     get-transmittals-by-quote-code: "/transmittal/quote-code"
