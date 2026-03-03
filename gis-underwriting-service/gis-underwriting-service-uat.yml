@@ -100,7 +100,7 @@ app:
     generate-certificate-number-endpoint: /number-format/certificate
     save-transmittal-details-endpoint: /transmittal
     fetch-paid-premium-endpoint: /master-transactions/premium
-    get-get-transactions-by-batch-no-endpoint: /batchNo
+    get-get-transactions-by-batch-no-endpoint: /gis-transactions/batchNo
     get-mandatory-clause-global-exception-count-endpoint: /gis-exceptions/count
     count-unauthorised-exceptions-endpoint: /gis-exceptions/count-unauthorised
     find-transaction-no-by-batch-endpoint: /gis-transactions/find-transaction-no-by-batch
