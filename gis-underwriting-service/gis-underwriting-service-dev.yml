@@ -131,7 +131,6 @@ app:
     compute-premium-endpoints: /premium-computation
  
 
-
 spring:
   sleuth:
     sampler:
