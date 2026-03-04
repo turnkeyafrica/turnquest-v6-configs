@@ -1,3 +1,4 @@
+
 spring:
   sleuth:
     sampler:
@@ -146,6 +147,10 @@ app:
     get-quake-zone-by-code-endpoint: "/quake-zones/{code}"
     get-binder-details-endpoint: "/binders/{code}"
     get-perils-map-by-code-endpoint: "/subperils/{code}"
+    get-binder-detail-count-endpoint: /binders/detail-count
+    get-participant-rates-endpoint: /treaties/rates
+    get-treaty-details-endpoint: /treaties/treaty-details
+    get-treaty-limit-endpoint: /treaties/setup-view
   under-writing-endpoints:
     fetch-mergeable-policies: api/v2/policies/mergeable
     get-perils-by-batch-number-or-risk-code: "/api/v1/perils/by-batch-risk"
