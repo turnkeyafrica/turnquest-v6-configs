@@ -1,3 +1,4 @@
+
 spring:
   sleuth:
     sampler:
@@ -124,7 +125,7 @@ app:
     password-length: 6
   auth:
     server:
-      realm-url: https://evolve.keycloak-uat.caavagroup.com/realms/geminia
+      realm-url: https://evolve.keycloak.caavagroup.com/realms/geminia
   rolesClaim: roles
   locale:
     baseName: i18n/messages
@@ -146,6 +147,10 @@ app:
     get-quake-zone-by-code-endpoint: "/quake-zones/{code}"
     get-binder-details-endpoint: "/binders/{code}"
     get-perils-map-by-code-endpoint: "/subperils/{code}"
+    get-binder-detail-count-endpoint: /binders/detail-count
+    get-participant-rates-endpoint: /treaties/rates
+    get-treaty-details-endpoint: /treaties/treaty-details
+    get-treaty-limit-endpoint: /treaties/setup-view
   under-writing-endpoints:
     fetch-mergeable-policies: api/v2/policies/mergeable
     get-perils-by-batch-number-or-risk-code: "/api/v1/perils/by-batch-risk"
@@ -158,6 +163,7 @@ app:
     asynchronous: false
     create-quotation: "QuotationProcess"
     revise-quotation: "QuotationProcess"
+
 defaultTenant: turnquest
 
 #eureka:
@@ -196,34 +202,48 @@ turnquest:
       v2: "/api/v2"
   clients:
     crm:
-      base-url: http://crm-service
-      setupsService: http://crm-setups-service
-      setups: http://crm-setups-service
+      base-url: https://evolve.api.dev.caavagroup.com/crm
+      setupsService: https://evolve.api.dev.caavagroup.com/crm/setups
+      setups: https://evolve.api.dev.caavagroup.com/crm/setups
+
     crm-setups:
-      base-url: http://crm-setups-service
+      base-url: https://evolve.api.dev.caavagroup.com/crm/setups
+
     crm-accounts:
-      base-url: http://crm-accounts-service
+      base-url: https://evolve.api.dev.caavagroup.com/crm/accounts
+
     crm-useradmin:
-      base-url: http://crm-user-administration-service
+      base-url: https://evolve.api.dev.caavagroup.com/user/administration
+
     setups:
-      base-url: http://gis-setups-service/api/v1
+      base-url: https://evolve.api.dev.caavagroup.com/gis/setups/api/v1   # originally had /api/v1
+
     premium-computation-engine:
-      base-url: http://premium-computation-service
+      base-url: https://evolve.api.dev.caavagroup.com/premium/computation
+
     notification-service:
-      base-url: http://turnquest-notification-service
+      base-url: https://evolve.api.dev.caavagroup.com/turnquest/notification
+
     underwriting-service:
-      base-url: http://gis-underwriting-service
+      base-url: https://evolve.api.dev.caavagroup.com/gis/underwriting
+
     commons-service:
-      base-url: http://gis-commons-service/api/v1
+      base-url: https://evolve.api.dev.caavagroup.com/gis/commons/api/v1   # originally had /api/v1
+
     ticketing-service:
-      base-url: http://gis-ticketing-service/api/v1
+      base-url: https://evolve.api.dev.caavagroup.com/gis/ticketing/api/v1 # originally had /api/v1
+
     quotation-service:
-      base-url: http://gis-quotation-service
+      base-url: https://evolve.api.dev.caavagroup.com/gis/quotation
+
     alfresco-service:
-      base-url: http://alfresco-service
+      base-url: http://alfresco-service   # ❗ not in gateway
+
     gis:
       setups:
-        service: http://gis-setups-service
+        service: https://evolve.api.dev.caavagroup.com/gis/setups
+
+
 
 
 feign:
@@ -238,19 +258,20 @@ springdoc:
     path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui
-    config-url: /gis/reinsurance/v3/api-docs/swagger-config
+    config-url: /v3/api-docs/swagger-config
     urls:
-      - url: /gis/reinsurance/v3/api-docs
+      - url: /v3/api-docs
         name: GIS REINSURANCE API
-#  server-url: /gis/reinsurance
+  server-url: /gis/reinsurance
+
 
 multitenancy:
   defaultTenant: turnquest
-  include: turnquest,v6test,heritage19c
+  include: turnquest
   tenants:
     turnquest:
       datasource:
-        url: jdbc:oracle:thin:@//190.0.2.231:18034/evolve_uat
+        url: jdbc:oracle:thin:@//190.0.2.231:1521/evolvedb_dev
         username: TQ_GIS
         password: GIS_2026
         driver-class-name: oracle.jdbc.OracleDriver
@@ -269,6 +290,12 @@ multitenancy:
 #    v6test:
 #      datasource:
 #        url: jdbc:oracle:thin:@10.176.18.70:18000/TQV6
+#        username: TQ_GIS
+#        password: TQ_GIS
+#        driver-class-name: oracle.jdbc.OracleDriver
+#    geminia:
+#      datasource:
+#        url: jdbc:oracle:thin:@10.176.18.99:1521/EVOLVE_GEMINIA
 #        username: TQ_GIS
 #        password: TQ_GIS
 #        driver-class-name: oracle.jdbc.OracleDriver
