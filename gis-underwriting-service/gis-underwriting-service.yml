@@ -100,7 +100,7 @@ app:
     generate-certificate-number-endpoint: /number-format/certificate
     save-transmittal-details-endpoint: /transmittal
     fetch-paid-premium-endpoint: /master-transactions/premium
-    get-get-transactions-by-batch-no-endpoint: /batchNo
+    get-get-transactions-by-batch-no-endpoint: /gis-transactions/batchNo
     get-mandatory-clause-global-exception-count-endpoint: /gis-exceptions/count
     count-unauthorised-exceptions-endpoint: /gis-exceptions/count-unauthorised
     find-transaction-no-by-batch-endpoint: /gis-transactions/find-transaction-no-by-batch
@@ -124,7 +124,7 @@ app:
   crm-setups-endpoints:
     get-org-type-endpoint: "/organizations/organization-by-system/{system-code}/"
     find-agency-list-by-code-endpoint: /agents/fetchAllById
-    fetch-intermediary-list-endpoint: /v2/api/intermediary/
+    fetch-intermediary-list-endpoint: /agents/fetchAllById
     get-systems-by-agent-code-endpoint: "/agents/{agentCode}/agency-systems/"
     find-client-list-by-code-endpoint: /v2/api/clients/list-detailed
   premium-computation-endpoints:
