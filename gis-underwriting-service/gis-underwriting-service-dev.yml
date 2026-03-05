@@ -1,4 +1,4 @@
-fserver:
+server:
   forward-headers-strategy: framework
   port: 4001
   servlet:
