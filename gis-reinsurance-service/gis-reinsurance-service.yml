@@ -151,6 +151,7 @@ app:
     get-participant-rates-endpoint: /treaties/rates
     get-treaty-details-endpoint: /treaties/treaty-details
     get-treaty-limit-endpoint: /treaties/setup-view
+    get-retention-amount-endpoint: /treaty-setups/retention-amount
   under-writing-endpoints:
     fetch-mergeable-policies: api/v2/policies/mergeable
     get-perils-by-batch-number-or-risk-code: "/api/v1/perils/by-batch-risk"
