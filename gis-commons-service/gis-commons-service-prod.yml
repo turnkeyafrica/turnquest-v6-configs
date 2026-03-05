@@ -145,6 +145,12 @@ app:
     get-risk-document-by-risk-id-endpoint: /api/v2/documents/valuation/risk
     upload-valuation-document-endpoint: /api/v2/documents/valuation
     delete-document-by-doc-id-endpoint: /api/v2/documents
+  crm-setups-endpoints:
+    get-org-type-endpoint: "/organizations/organization-by-system/{system-code}/"
+    find-agency-list-by-code-endpoint: /agents/fetchAllById
+    fetch-intermediary-list-endpoint: /agents/fetchAllById
+    get-systems-by-agent-code-endpoint: "/agents/{agentCode}/agency-systems/"
+    find-client-list-by-code-endpoint: /v2/api/clients/list-detailed
 
 defaultTenant: turnquest
 
