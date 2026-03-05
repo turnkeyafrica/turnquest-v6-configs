@@ -152,6 +152,10 @@ app:
   commons-endpoints:
     get-client-remarks: /client-remarks
     get-transmittals-by-quote-code: "/transmittal/quote-code"
+  crm-setups-endpoints:
+    find-agency-list-by-code-endpoint: /agents/fetchAllById
+    fetch-intermediary-list-endpoint: /agents/fetchAllById
+    find-client-list-by-code-endpoint: v2/api/clients/list-detailed
 
   processflow:
     asynchronous: false
