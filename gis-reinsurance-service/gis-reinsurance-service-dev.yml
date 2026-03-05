@@ -203,46 +203,34 @@ turnquest:
       v2: "/api/v2"
   clients:
     crm:
-      base-url: https://evolve.api.dev.caavagroup.com/crm
-      setupsService: https://evolve.api.dev.caavagroup.com/crm/setups
-      setups: https://evolve.api.dev.caavagroup.com/crm/setups
-
+      base-url: http://crm-service
+      setupsService: http://crm-setups-service
+      setups: http://crm-setups-service
     crm-setups:
-      base-url: https://evolve.api.dev.caavagroup.com/crm/setups
-
+      base-url: http://crm-setups-service
     crm-accounts:
-      base-url: https://evolve.api.dev.caavagroup.com/crm/accounts
-
+      base-url: http://crm-accounts-service
     crm-useradmin:
-      base-url: https://evolve.api.dev.caavagroup.com/user/administration
-
+      base-url: http://crm-user-administration-service
     setups:
-      base-url: https://evolve.api.dev.caavagroup.com/gis/setups/api/v1   # originally had /api/v1
-
+      base-url: http://gis-setups-service/api/v1
     premium-computation-engine:
-      base-url: https://evolve.api.dev.caavagroup.com/premium/computation
-
+      base-url: http://premium-computation-service
     notification-service:
-      base-url: https://evolve.api.dev.caavagroup.com/turnquest/notification
-
+      base-url: http://turnquest-notification-service
     underwriting-service:
-      base-url: https://evolve.api.dev.caavagroup.com/gis/underwriting
-
+      base-url: http://gis-underwriting-service
     commons-service:
-      base-url: https://evolve.api.dev.caavagroup.com/gis/commons/api/v1   # originally had /api/v1
-
+      base-url: http://gis-commons-service
     ticketing-service:
-      base-url: https://evolve.api.dev.caavagroup.com/gis/ticketing/api/v1 # originally had /api/v1
-
+      base-url: http://gis-ticketing-service
     quotation-service:
-      base-url: https://evolve.api.dev.caavagroup.com/gis/quotation
-
+      base-url: http://gis-quotation-service
     alfresco-service:
-      base-url: http://alfresco-service   # ❗ not in gateway
-
+      base-url: http://evolve-alfresco-service
     gis:
       setups:
-        service: https://evolve.api.dev.caavagroup.com/gis/setups
+        service: http://gis-setups-service/api/v1
 
 
 
