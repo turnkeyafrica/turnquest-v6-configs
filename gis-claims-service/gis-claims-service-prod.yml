@@ -1,3 +1,4 @@
+
 server:
   forward-headers-strategy: framework
   port: 4003
@@ -21,6 +22,10 @@ app:
   locale:
     baseName: i18n/messages
     defaultLang: en
+  uw-endpoints:
+    get-policy-risks-by-codes-endpoint: /policy-risks/risksByCodes
+  setups-endpoints:
+    get-products-by-codes-endpoint: /products/productsByCodes    
 management:
   zipkin:
     tracing:
