@@ -191,7 +191,7 @@ springdoc:
 
 multitenancy:
   defaultTenant: turnquest
-  include: turnquest,v6test,heritage19c
+  include: turnquest
   tenants:
     turnquest:
       datasource:
