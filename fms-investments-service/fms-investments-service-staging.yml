@@ -1,4 +1,6 @@
 spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
   # from application-common.yml
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
@@ -170,10 +172,10 @@ multitenancy:
         driver-class-name: oracle.jdbc.OracleDriver
 
 
-redis:
-  cache:
-    type: redis
-  data:
-    redis:
-      host: ${SPRING_REDIS_HOST:redis.service.consul}
-      port: ${SPRING_REDIS_PORT:6379}
+#redis:
+#  cache:
+#    type: redis
+#  data:
+#    redis:
+#      host: ${SPRING_REDIS_HOST:redis.service.consul}
+#      port: ${SPRING_REDIS_PORT:6379}

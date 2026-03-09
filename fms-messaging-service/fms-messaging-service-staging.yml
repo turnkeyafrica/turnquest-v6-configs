@@ -1,4 +1,6 @@
 spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
   # from application-common.yml
   cloud:
     config:
@@ -116,10 +118,10 @@ meta:
     access-token: ${META_WHATSAPP_SYSTEM_USER_TOKEN}
 
 
-redis:
-  cache:
-    type: redis
-  data:
-    redis:
-      host: ${SPRING_REDIS_HOST:redis.service.consul}
-      port: ${SPRING_REDIS_PORT:6379}
+#redis:
+#  cache:
+#    type: redis
+#  data:
+#    redis:
+#      host: ${SPRING_REDIS_HOST:redis.service.consul}
+#      port: ${SPRING_REDIS_PORT:6379}
