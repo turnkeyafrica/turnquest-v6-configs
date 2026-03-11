@@ -7,7 +7,7 @@ server:
   endpoints:
     web:
       exposure:
-        include: ["health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings","flyway"]
+        include: [ "health", "info", "metrics", "prometheus", "bindings", "beans", "env", "loggers", "streamsbindings", "mappings","flyway" ]
 
 app:
   name: TurnQuest Version Vi CRM Setups System
@@ -53,6 +53,13 @@ spring:
 
   security:
     oauth2:
+      resource:
+        id: geminia
+        token-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/token
+        authorization-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/auth
+        userinfo-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/userinfo
+        token-info-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/token/introspect
+        user-info-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/userinfo
       resourceserver:
         jwt:
           issuer-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia
