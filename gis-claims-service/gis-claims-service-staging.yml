@@ -159,7 +159,7 @@ turnquest:
     crm-useradmin:
       base-url: http://crm-user-administration-service
     setups:
-      base-url: http://gis-setups-service
+      base-url: http://gis-setups-service/api/v1
     premium-computation-engine:
       base-url: http://premium-computation-service
     notification-service:
