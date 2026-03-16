@@ -92,7 +92,7 @@ app:
     count-product-and-product-group-endpoint: "/products/product-count"
     fetch-cover-type-details-endpoint: /subclass-covertype-to-sections/details
     get-reinsurance-treaty-setups-endpoint: /treaty-setups/reinsurance-details
-    get-peril-by-code-endpoint: "/perils/{code}"
+
 
   commons-endpoints:
     save-transaction-details-endpoint: "/gis-transactions"
