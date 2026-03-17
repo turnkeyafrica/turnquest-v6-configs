@@ -179,3 +179,4 @@ turnquest:
     fms-general-ledger-service: https://evolve.api.uat.caavagroup.com/fms/general-ledger
     fms-cash-book-transactions-service: https://evolve.api.uat.caavagroup.com/fms/cash-book-transactions
     fms-fixed-assets-service: https://evolve.api.uat.caavagroup.com/fms/fixed-assets
+    evolve-alfresco-service: https://evolve.api.uat.caavagroup.com/alfresco
