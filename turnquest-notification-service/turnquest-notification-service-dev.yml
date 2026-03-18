@@ -27,16 +27,16 @@ locale:
   baseName: messages
   defaultLang: en
 
-spring:
+:
   application:
     name: turnquest-notification-service
   jackson:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${_DATASOURCE_URL}
+    username: ${_DATASOURCE_USERNAME}
+    password: ${_DATASOURCE_PASSWORD}
     driver-class-name: oracle.jdbc.OracleDriver
     initialization-mode: always
     hikari:
@@ -92,7 +92,7 @@ spring:
 
 # Kubernetes client disabled due to OkHttp version conflict with Africa's Talking SDK
 # The AT SDK bundles an old OkHttp version incompatible with kubernetes-client
-spring.cloud.kubernetes:
+.cloud.kubernetes:
   enabled: false
   config:
     enabled: false
@@ -154,7 +154,17 @@ multitenancy:
   tenants:
     turnquest:
       datasource:
-        url: ${SPRING_DATASOURCE_URL}
-        username: ${SPRING_DATASOURCE_USERNAME}
-        password: ${SPRING_DATASOURCE_PASSWORD}
+        url: ${_DATASOURCE_URL}
+        username: ${_DATASOURCE_USERNAME}
+        password: ${_DATASOURCE_PASSWORD}
         driver-class-name: oracle.jdbc.OracleDriver
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui
+    config-url: /turnquest/notification/v3/api-docs/swagger-config
+    urls:
+      - url: /turnquest/notification/v3/api-docs
+        name: TURNQUEST NOTIFICATION
