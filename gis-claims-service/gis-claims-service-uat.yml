@@ -24,7 +24,8 @@ app:
   uw-endpoints:
     get-policy-risks-by-codes-endpoint: /policy-risks/risksByCodes
   setups-endpoints:
-    get-products-by-codes-endpoint: /products/productsByCodes    
+    get-products-by-codes-endpoint: /products/productsByCodes
+    get-subclass-by-id-endpoint: "/sub-classes/{code}"
 management:
   zipkin:
     tracing:
