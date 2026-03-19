@@ -17,10 +17,17 @@ spring:
         debug: true
   security:
     oauth2:
+      resource:
+        id: geminia
+        token-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/token
+        authorization-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/auth
+        userinfo-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/userinfo
+        token-info-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/token/introspect
+        user-info-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/userinfo
       resourceserver:
         jwt:
-          issuer-uri: ${app.auth.server.realm-url}
-          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+          issuer-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia
+          jwk-set-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/certs
   cloud:
     config:
       enabled: false
@@ -80,8 +87,8 @@ management:
 app:
   auth:
     server:
-      realm-url: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
-      jwk-set-uri: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}/protocol/openid-connect/certs
+      realm-url: ${KEYCLOAK_URL:https://evolve.keycloak-staging.caavagroup.com/realms/geminia}
+      jwk-set-uri: ${KEYCLOAK_URL:https://evolve.keycloak-staging.caavagroup.com/realms/geminia}/protocol/openid-connect/certs
   rolesClaim: roles
   # cors:
   #   allowed-origins: "http://localhost:2003,http://localhost:4200,http://192.0.0.169,https://evolve.dev.caavagroup.com"
@@ -139,3 +146,24 @@ multitenancy:
 #    redis:
 #      host: ${SPRING_REDIS_HOST:redis.service.consul}
 #      port: ${SPRING_REDIS_PORT:6379}
+turnquest:
+  clients:
+    # CRM Services (Mapped to Gateway Route: /crm/setups)
+    crm-setups-service: https://evolve.api.staging.caavagroup.com/crm/setups
+    crm-accounts-service: https://evolve.api.staging.caavagroup.com/crm/accounts
+    crm-user-administration-service: https://evolve.api.staging.caavagroup.com/user/administration
+
+    # FMS Services (Mapped to Gateway Route: /fms/setups)
+    fms-setups-service: https://evolve.api.staging.caavagroup.com/fms/setups
+    fms-receipting-service: https://evolve.api.staging.caavagroup.com/fms/receipting
+    fms-payment-service: https://evolve.api.staging.caavagroup.com/fms/payment
+    fms-general-ledger-service: https://evolve.api.staging.caavagroup.com/fms/general-ledger
+    fms-cash-book-transactions-service: https://evolve.api.staging.caavagroup.com/fms/cash-book-transactions
+    fms-fixed-assets-service: https://evolve.api.staging.caavagroup.com/fms/fixed-assets
+    evolve-alfresco-service: https://evolve.api.staging.caavagroup.com/alfresco
+    
+report-fetching:
+  retry:
+    max-attempts: 5
+    initial-backoff-ms: 1000
+    max-backoff-ms: 10000
