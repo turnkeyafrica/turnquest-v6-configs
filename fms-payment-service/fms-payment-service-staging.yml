@@ -38,7 +38,7 @@ spring:
           searchPaths: gis-setups-configs
     kubernetes:
       discovery:
-        enabled: true  
+        enabled: false  
   mvc:
     format:
       date: yyyy-MM-dd
