@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(xargs sed:*)",
+      "Bash(git status:*)",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(git add:*)",
+      "Bash(git rebase:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}
