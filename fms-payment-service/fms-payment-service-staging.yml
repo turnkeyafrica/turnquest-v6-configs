@@ -101,8 +101,8 @@ app:
     languages: "en, fr, sw"
     baseName: i18n/messages
     defaultLang: en
-  base_url: api/v1
-  springdoc:
+base_url: api/v1
+springdoc:
     swagger-ui:
       path: /swagger-ui.html
 logging:

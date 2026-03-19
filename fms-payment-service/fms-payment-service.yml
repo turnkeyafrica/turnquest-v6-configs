@@ -92,7 +92,7 @@ app:
     languages: "en, fr, sw"
     baseName: i18n/messages
     defaultLang: en
-  base_url: api/v1
+base_url: api/v1
 # eureka:
 #   instance:
 #     instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${server.port}
@@ -106,8 +106,8 @@ app:
 #       defaultZone: ${EUREKA_URL:http://192.0.0.169:8761/eureka/}
 #     register-with-eureka: ${EUREKA_CLIENT_REGISTER_WITH_EUREKA:true} # from application-dev.yml
 #     fetch-registry: true # from application-dev.yml
-  springdoc:
-    swagger-ui:
+springdoc:
+  swagger-ui:
       path: /swagger-ui.html
 logging:
   level:
