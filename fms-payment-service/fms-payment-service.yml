@@ -21,10 +21,10 @@ spring:
           jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
   cloud:
     config:
-      enabled: true
+      enabled: false
     kubernetes:
       discovery:
-        enabled: true  
+        enabled: false  
   mvc:
     format:
       date: yyyy-MM-dd
