@@ -92,7 +92,7 @@ app:
     languages: "en, fr, sw"
     baseName: i18n/messages
     defaultLang: en
-base_url: api/v1
+  base_url: api/v1
 # eureka:
 #   instance:
 #     instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${server.port}
