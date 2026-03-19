@@ -97,16 +97,6 @@ app:
     baseName: i18n/messages
     defaultLang: en
 base_url: api/v1
-feign:
-  client:
-    name: fms-payment-service
-    config:
-      default:
-        connectTimeout: 6000
-        logger-level: basic
-      FMS-PAYMENT-SERVICE:
-        requestInterceptors:
-          - com.turnkey.turnquest.common.multitenancy.MultiTenantFeignClientInterceptor
 # eureka:
 #   instance:
 #     instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${server.port}
