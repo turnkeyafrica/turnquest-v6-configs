@@ -200,6 +200,8 @@ turnquest:
       base-url: http://gis-ticketing-service
     quotation-service:
       base-url: http://gis-quotation-service
+    claim-service:
+      base-url: http://gis-claims-service/api/v1
     alfresco-service:
       base-url: http://evolve-alfresco-service
     gis:
@@ -222,7 +224,7 @@ springdoc:
     urls:
       - url: /gis/commons/v3/api-docs
         name: GIS COMMONS API
-#  server-url: /gis/commons
+    server-url: /gis/commons
 
 multitenancy:
   defaultTenant: turnquest
