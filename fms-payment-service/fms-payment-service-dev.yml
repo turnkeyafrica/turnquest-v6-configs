@@ -143,15 +143,15 @@ multitenancy:
 turnquest:
   clients:
     # --- CRM Services ---
-    crm-user-administration-service: http://crm-user-administration-service:8080
-    crm-setups-service: http://crm-setups-service:8080
-    crm-accounts-service: http://crm-accounts-service:8080
+    crm-user-administration-service: https://evolve.api.dev.caavagroup.com/user/administration
+    crm-setups-service:  https://evolve.api.dev.caavagroup.com/crm/setups
+    crm-accounts-service:https://evolve.api.dev.caavagroup.com/crm/accounts
     turnquest-chart-service: http://turnquest-chart-service:8080
 
     # --- FMS Services ---
-    fms-setups-service: http://fms-setups-service:8080
-    fms-receipting-service: http://fms-receipting-service:8080
-    fms-payment-service: http://fms-payment-service:8080
+    fms-setups-service: https://evolve.api.dev.caavagroup.com/fms/setups
+    fms-receipting-service: https://evolve.api.dev.caavagroup.com/fms/receipting
+    fms-payment-service: https://evolve.api.dev.caavagroup.com/fms/payment
     fms-fixed-assets-service: http://fms-fixed-assets-service:8080
     fms-general-ledger-service: http://fms-general-ledger-service:8080
     fms-investments-service: http://fms-investments-service:8080

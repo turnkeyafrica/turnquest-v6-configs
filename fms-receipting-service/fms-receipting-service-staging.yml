@@ -34,10 +34,17 @@ spring:
         enabled: false
   security:
     oauth2:
+      resource:
+        id: geminia
+        token-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/token
+        authorization-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/auth
+        userinfo-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/userinfo
+        token-info-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/token/introspect
+        user-info-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/userinfo
       resourceserver:
         jwt:
-          issuer-uri: ${app.auth.server.realm-url}
-          jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
+          issuer-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia
+          jwk-set-uri: https://evolve.keycloak-staging.caavagroup.com/realms/geminia/protocol/openid-connect/certs
   # redis:
   #   host: ${REDIS_HOST:10.176.18.211}
   #   port: ${REDIS_PORT:6380}
@@ -113,8 +120,8 @@ feign:
 app:
   auth:
     server:
-      realm-url: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}
-      jwk-set-uri: ${KEYCLOAK_URL:https://evolve.keycloak.caavagroup.com/realms/geminia}/protocol/openid-connect/certs
+      realm-url: ${KEYCLOAK_URL:https://evolve.keycloak-staging.caavagroup.com/realms/geminia}
+      jwk-set-uri: ${KEYCLOAK_URL:https://evolve.keycloak-staging.caavagroup.com/realms/geminia}/protocol/openid-connect/certs
   rolesClaim: roles
   # cors:
   #   allowed-origins: "http://localhost:2003,http://localhost:4200,http://192.0.0.169,https://evolve.dev.caavagroup.com"
@@ -174,7 +181,7 @@ turnquest:
     fms-general-ledger-service: https://evolve.api.staging.caavagroup.com/fms/general-ledger
     fms-cash-book-transactions-service: https://evolve.api.staging.caavagroup.com/fms/cash-book-transactions
     fms-fixed-assets-service: https://evolve.api.staging.caavagroup.com/fms/fixed-assets
-    evolve-alfresco-service: https://evolve.api.staging.caavagroup.com/alfresco
+    #evolve-alfresco-service: https://evolve.api.staging.caavagroup.com/alfresco
 report-fetching:
   retry:
     max-attempts: 5

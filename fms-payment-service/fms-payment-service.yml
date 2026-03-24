@@ -21,7 +21,12 @@ spring:
           jwk-set-uri: ${app.auth.server.realm-url}/protocol/openid-connect/certs
   cloud:
     config:
-      enabled: false
+      import-check:
+        enabled: false
+      server:
+        git:
+          uri: https://github.com/turnkeyafrica/turnquest-v6
+          searchPaths: gis-setups-configs
     kubernetes:
       discovery:
         enabled: false  
@@ -88,16 +93,6 @@ app:
     baseName: i18n/messages
     defaultLang: en
 base_url: api/v1
-feign:
-  client:
-    name: fms-payment-service
-    config:
-      default:
-        connectTimeout: 6000
-        logger-level: basic
-      FMS-PAYMENT-SERVICE:
-        requestInterceptors:
-          - com.turnkey.turnquest.common.multitenancy.MultiTenantFeignClientInterceptor
 # eureka:
 #   instance:
 #     instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${server.port}
@@ -111,8 +106,8 @@ feign:
 #       defaultZone: ${EUREKA_URL:http://192.0.0.169:8761/eureka/}
 #     register-with-eureka: ${EUREKA_CLIENT_REGISTER_WITH_EUREKA:true} # from application-dev.yml
 #     fetch-registry: true # from application-dev.yml
-  springdoc:
-    swagger-ui:
+springdoc:
+  swagger-ui:
       path: /swagger-ui.html
 logging:
   level:
