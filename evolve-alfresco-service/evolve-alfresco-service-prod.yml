@@ -60,7 +60,7 @@ springdoc:
     urls:
       - url: /evolve/dms/v3/api-docs
         name: EVOLVE DMS API
-#  server-url: /gis/quotation
+    server-url: /evolve/dms
 
 # LOGGING
 logging:

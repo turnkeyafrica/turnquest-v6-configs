@@ -189,7 +189,7 @@ springdoc:
     urls:
       - url: /gis/claims/v3/api-docs
         name: GIS CLAIMS API
-#  server-url: /gis/claims
+    server-url: /gis/claims
 
 multitenancy:
   defaultTenant: turnquest

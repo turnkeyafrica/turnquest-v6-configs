@@ -152,7 +152,7 @@ springdoc:
     urls:
       - url: /gis/ticketing/v3/api-docs
         name: GIS TICKETING API
-#  server-url: /gis/ticketing
+    server-url: /gis/ticketing
 
 multitenancy:
   defaultTenant: turnquest

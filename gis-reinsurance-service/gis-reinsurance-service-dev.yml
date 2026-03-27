@@ -250,7 +250,7 @@ springdoc:
     urls:
       - url: /gis/reinsurance/v3/api-docs
         name: GIS REINSURANCE API
-#  server-url: /gis/reinsurance
+    server-url: /gis/reinsurance
 
 
 multitenancy:

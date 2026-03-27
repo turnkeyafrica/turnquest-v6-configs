@@ -215,7 +215,7 @@ springdoc:
     urls:
       - url: /gis/payments/v3/api-docs
         name: GIS PAYMENT API
-#  server-url: /gis/payments
+    server-url: /gis/payments
 
 multitenancy:
   defaultTenant: turnquest
