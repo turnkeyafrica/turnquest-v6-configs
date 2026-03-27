@@ -122,13 +122,14 @@ app:
     pool-risk-details-by-trans-endpoint: /reinsurance/pre-debit/pool-risk-details-by-trans
     xol-cessions-by-trans-no-endpoint: /reinsurance/pre-debit/xol-cessions-by-trans
     treaty-participants-by-codes-endpoint: /reinsurance/pre-debit/treaty-participants-by-codes
+    delete-zero-cessions-endpoint: /reinsurance/reinsurance-risk-details/zero-cessions
   crm-setups-endpoints:
     get-org-type-endpoint: "/organizations/organization-by-system/{system-code}/"
     find-agency-list-by-code-endpoint: /agents/fetchAllById
     fetch-intermediary-list-endpoint: /v2/api/intermediary/
     get-systems-by-agent-code-endpoint: "/agents/{agentCode}/agency-systems/"
     find-client-list-by-code-endpoint: v2/api/clients/list-detailed
-   premium-computation-endpoints:
+  premium-computation-endpoints:
     compute-premium-endpoints: /premium-computation
  
 
